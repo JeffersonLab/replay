@@ -1,0 +1,41 @@
+begin hist hms_decoded_hits group=hms group=both
+
+
+;rf25ps,gmisc_dec_data(116),1,0,1 $### HMS CALORIMETERS
+;
+; MOST OF THIS IS DUPLICATED IN hist.HMS_scin_and_cal
+;
+;hcaldpos,80,-15.,15.            $hcal delta x t=user
+;hcalsumadc,100,-100,200         $hcal ADCs t=user
+hcalaposhits,13,0.5,13.5        $hcal layer A+ hits t=user
+hcalbposhits,13,0.5,13.5        $hcal layer B+ hits t=user
+hcalcposhits,13,0.5,13.5        $hcal layer C+ hits t=user
+hcaldposhits,13,0.5,13.5        $hcal layer D+ hits t=user
+hcalaneghits,13,0.5,13.5        $hcal layer A- hits t=user
+hcalbneghits,13,0.5,13.5        $hcal layer B- hits t=user
+;
+;rf25ps,gmisc_dec_data(116),1,0,1 $### HMS SCINTILLATORS
+;
+;hpostdc1,16,0.5,16.5         $HMS s1x+ TDC hits t=user
+;hnegtdc1,16,0.5,16.5         $HMS s1x- TDC hits t=user
+;hpostdc2,10,0.5,10.5         $HMS s1y+ TDC hits t=user
+;hnegtdc2,10,0.5,10.5         $HMS s1y- TDC hits t=user
+;hpostdc3,16,0.5,16.5         $HMS s2x+ TDC hits t=user
+;hnegtdc3,16,0.5,16.5         $HMS s2x- TDC hits t=user
+;hpostdc4,10,0.5,10.5         $HMS s2y+ TDC hits t=user
+;hnegtdc4,10,0.5,10.5         $HMS s2y- TDC hits t=user
+;
+;hposadc1,16,0.5,16.5         $HMS s1x+ ADC hits t=user
+;hnegadc1,16,0.5,16.5         $HMS s1x- ADC hits t=user
+;hposadc2,10,0.5,10.5         $HMS s1y+ ADC hits t=user
+;hnegadc2,10,0.5,10.5         $HMS s1y- ADC hits t=user
+;hposadc3,16,0.5,16.5         $HMS s2x+ ADC hits t=user
+;hnegadc3,16,0.5,16.5         $HMS s2x- ADC hits t=user
+;hposadc4,10,0.5,10.5         $HMS s2y+ ADC hits t=user
+;hnegadc4,10,0.5,10.5         $HMS s2y- ADC hits t=user
+;
+;hscinplane1,16,0.5,16.5      $HMS scinplane1 t=user
+;hscinplane2,10,0.5,10.5      $HMS scinplane2 t=user
+;hscinplane3,16,0.5,16.5      $HMS scinplane3 t=user
+;hscinplane4,10,0.5,10.5      $HMS scinplane4 t=user
+end   hist hms_decoded_hits

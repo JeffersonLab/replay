@@ -1,0 +1,422 @@
+;this test block is called 'a_...' so that it is evaluated before all of the others
+begin test a_trigs group=hms group=sos group=both
+#int dmytst, ctrig, htrig, strig, atrig
+ dmytst = 1
+ ctrig = (gen_event_type==3)
+ htrig = (gen_event_type == 1) || ctrig
+ strig = (gen_event_type == 2) || ctrig
+ atrig = htrig || strig
+end test a_trigs
+
+begin test hms_tests group=hms group=both
+#int hfoundtrack, hfound1track, hfound2track, hfound3track, hfound4track
+hfoundtrack = hntracks_fp != 0
+hfound1track = hntracks_fp == 1
+hfound2track = hntracks_fp == 2
+hfound3track = hntracks_fp == 3
+hfound4track = hntracks_fp == 4
+
+#int hclean0track,hcleantrack, hclean1track, hclean2track, hclean3track, hclean4track
+hclean0track = (hcer_npe_sum > 2.0) && (hsdelta > -8.0) && (hsdelta < 8.0) && (hsshtrk >= 0.7*hsp)
+hcleantrack = hsnum_fptrack != 0
+hclean1track = hsnum_fptrack == 1
+hclean2track = hsnum_fptrack == 2
+hclean3track = hsnum_fptrack == 3
+hclean4track = hsnum_fptrack == 4
+
+;good here means that there is a hit in the plane with a high chance of being understandable
+#int goodhdc1x1, goodhdc1y1, goodhdc1u1, goodhdc1v1, goodhdc1y2, goodhdc1x2
+goodhdc1x1 = (HDC_HITS_PER_PLANE(1) > 0) && (HDC_HITS_PER_PLANE(1) < 3)
+goodhdc1y1 = (HDC_HITS_PER_PLANE(2) > 0) && (HDC_HITS_PER_PLANE(2) < 3)
+goodhdc1u1 = (HDC_HITS_PER_PLANE(3) > 0) && (HDC_HITS_PER_PLANE(3) < 3)
+goodhdc1v1 = (HDC_HITS_PER_PLANE(4) > 0) && (HDC_HITS_PER_PLANE(4) < 3)
+goodhdc1y2 = (HDC_HITS_PER_PLANE(5) > 0) && (HDC_HITS_PER_PLANE(5) < 3)
+goodhdc1x2 = (HDC_HITS_PER_PLANE(6) > 0) && (HDC_HITS_PER_PLANE(6) < 3)
+#int goodhdc2x1, goodhdc2y1, goodhdc2u1, goodhdc2v1, goodhdc2y2, goodhdc2x2
+goodhdc2x1 = (HDC_HITS_PER_PLANE(7) > 0) && (HDC_HITS_PER_PLANE(7) < 3)
+goodhdc2y1 = (HDC_HITS_PER_PLANE(8) > 0) && (HDC_HITS_PER_PLANE(8) < 3)
+goodhdc2u1 = (HDC_HITS_PER_PLANE(9) > 0) && (HDC_HITS_PER_PLANE(9) < 3)
+goodhdc2v1 = (HDC_HITS_PER_PLANE(10) > 0) && (HDC_HITS_PER_PLANE(10) < 3)
+goodhdc2y2 = (HDC_HITS_PER_PLANE(11) > 0) && (HDC_HITS_PER_PLANE(11) < 3)
+goodhdc2x2 = (HDC_HITS_PER_PLANE(12) > 0) && (HDC_HITS_PER_PLANE(12) < 3)
+#int goodhdc1, goodhdc2, bothgoodhdc
+goodhdc1 = goodhdc1x1 && goodhdc1y1 && goodhdc1u1 && goodhdc1v1 && goodhdc1y2 && goodhdc1x2
+goodhdc2 = goodhdc2x1 && goodhdc2y1 && goodhdc2u1 && goodhdc2v1 && goodhdc2y2 && goodhdc2x2
+bothgoodhdc = goodhdc1 && goodhdc2
+
+;real here means that there is a hit in the plane with a high chance of being understandable
+; AND a space point was found (the drift time varable is filled only if a space point
+;  was found).
+#int realhdc1x1, realhdc1y1, realhdc1u1, realhdc1v1, realhdc1y2, realhdc1x2
+realhdc1x1 = goodhdc1x1 && (hnspace_points_tot != 0)
+realhdc1y1 = goodhdc1y1 && (hnspace_points_tot != 0)
+realhdc1u1 = goodhdc1u1 && (hnspace_points_tot != 0)
+realhdc1v1 = goodhdc1v1 && (hnspace_points_tot != 0)
+realhdc1y2 = goodhdc1y2 && (hnspace_points_tot != 0)
+realhdc1x2 = goodhdc1x2 && (hnspace_points_tot != 0)
+#int realhdc2x1, realhdc2y1, realhdc2u1, realhdc2v1, realhdc2y2, realhdc2x2
+realhdc2x1 = goodhdc2x1 && (hnspace_points_tot != 0)
+realhdc2y1 = goodhdc2y1 && (hnspace_points_tot != 0)
+realhdc2u1 = goodhdc2u1 && (hnspace_points_tot != 0)
+realhdc2v1 = goodhdc2v1 && (hnspace_points_tot != 0)
+realhdc2y2 = goodhdc2y2 && (hnspace_points_tot != 0)
+realhdc2x2 = goodhdc2x2 && (hnspace_points_tot != 0)
+
+#int realhdc1x1coin
+realhdc1x1coin = realhdc1x1 && ctrig
+
+; need test telling if a residual was found for the given plane.  Since
+; a track must be found, and the residual is initialized to 1000,
+; use foundtrack && resid. != 1000
+#int hdcres(12)
+#int hlowchi2
+hlowchi2 = (hschi2perdeg<10) && hcleantrack
+hdcres(1) = (hdc_sing_res(1) != 1000) && hlowchi2
+hdcres(2) = (hdc_sing_res(2) != 1000) && hlowchi2
+hdcres(3) = (hdc_sing_res(3) != 1000) && hlowchi2
+hdcres(4) = (hdc_sing_res(4) != 1000) && hlowchi2
+hdcres(5) = (hdc_sing_res(5) != 1000) && hlowchi2
+hdcres(6) = (hdc_sing_res(6) != 1000) && hlowchi2
+hdcres(7) = (hdc_sing_res(7) != 1000) && hlowchi2
+hdcres(8) = (hdc_sing_res(8) != 1000) && hlowchi2
+hdcres(9) = (hdc_sing_res(9) != 1000) && hlowchi2
+hdcres(10) = (hdc_sing_res(10) != 1000) && hlowchi2
+hdcres(11) = (hdc_sing_res(11) != 1000) && hlowchi2
+hdcres(12) = (hdc_sing_res(12) != 1000) && hlowchi2
+
+#real hdcaveeff1,hdcaveeff2,hdcaveeff,hdc5of6_1,hdc5of6_2,hdc5of6
+hdcaveeff1=(hdc_plane_eff(1)+hdc_plane_eff(2)+hdc_plane_eff(3)+hdc_plane_eff(4)+hdc_plane_eff(5)+hdc_plane_eff(6))/6
+hdcaveeff2=(hdc_plane_eff(7)+hdc_plane_eff(8)+hdc_plane_eff(9)+hdc_plane_eff(10)+hdc_plane_eff(11)+hdc_plane_eff(12))/6
+hdcaveeff=(hdcaveeff1+hdcaveeff2)/2
+hdc5of6_1=(6-5*hdcaveeff1)*hdcaveeff1*hdcaveeff1*hdcaveeff1*hdcaveeff1*hdcaveeff1
+hdc5of6_2=(6-5*hdcaveeff2)*hdcaveeff2*hdcaveeff2*hdcaveeff2*hdcaveeff2*hdcaveeff2
+hdc5of6=hdc5of6_1*hdc5of6_2
+
+#int anyhs1x, anyhs1y, anyhs2x, anyhs2y
+anyhs1x = (hscin_hits_per_plane(1) > 0)
+anyhs1y = (hscin_hits_per_plane(2) > 0)
+anyhs2x = (hscin_hits_per_plane(3) > 0)
+anyhs2y = (hscin_hits_per_plane(4) > 0)
+
+#int hs1xshould, hs1yshould, hs2xshould, hs2yshould
+#int hs1xdid, hs1ydid, hs2xdid, hs2ydid
+
+hs1xshould = anyhs1y && anyhs2x && anyhs2y
+hs1yshould = anyhs1x && anyhs2x && anyhs2y
+hs2xshould = anyhs1x && anyhs1y && anyhs2y
+hs2yshould = anyhs1x && anyhs1y && anyhs2x
+hs1xdid = hs1xshould && anyhs1x
+hs1ydid = hs1yshould && anyhs1y
+hs2xdid = hs2xshould && anyhs2x
+hs2ydid = hs2yshould && anyhs2y
+
+
+
+#int goodhs1x, goodhs1y, goodhs1, goodhs2x, goodhs2y, goodhs2, goodhs1s2
+goodhs1x = (hscin_hits_per_plane(1) > 0) && (hscin_hits_per_plane(1) < 3)
+goodhs1y = (hscin_hits_per_plane(2) > 0) && (hscin_hits_per_plane(2) < 3)
+goodhs1 = goodhs1x && goodhs1y
+goodhs2x = (hscin_hits_per_plane(3) > 0) && (hscin_hits_per_plane(3) < 3)
+goodhs2y = (hscin_hits_per_plane(4) > 0) && (hscin_hits_per_plane(4) < 3)
+goodhs2 = goodhs2x && goodhs2y
+goodhs1s2 = goodhs1 && goodhs2
+
+#int hcal_fid, hcer_fid, hcer_fid_lowX, hcer_fid_highX
+hcal_fid = (hsx_cal > -65) && (hsx_cal < 50) && (hcleantrack)
+hcer_fid = (hsx_s2<40) && (hsx_s2>-40) && (hsy_s2<20) && (hsy_s2>-20) && (hcleantrack)
+hcer_fid_highX = (hcer_fid) && (hsx_s2>5)
+hcer_fid_lowX = (hcer_fid) && (hsx_s2<-5)
+
+; Particle ID tests (assume pi/e, moderatly tight cuts, may not be good at low energy)
+; Used for defining particles as nominally electron or hadron.
+; Tighter cuts needed for efficiencies!
+; The calorimeter fiducial cut must be restored for efficiencies (in h*_cercut)
+
+#int helec_calcut,helec_cercut,helec_bothcut,helec_cercut2
+helec_calcut  = (hsshtrk   > 0.6) && hcleantrack && hcal_fid
+helec_cercut  = (hcer_npe_sum > 0.5) && hcleantrack 
+helec_cercut2  = (hcer_npe_sum > 2.0) && hcleantrack 
+helec_bothcut = helec_calcut && helec_cercut
+
+#int hhadron_calcut,hhadron_cercut,hhadron_bothcut
+hhadron_calcut  = (hstrack_et   < 0.6)  && hcleantrack && hcal_fid
+hhadron_cercut  = (hcer_npe_sum < 0.5)  && hcleantrack 
+hhadron_bothcut = hhadron_calcut && hhadron_cercut
+
+; ... and with tighter cuts for efficiencies.
+#int hpion_calcut,hpion_cercut,hpion_bothcut
+hpion_calcut  = (hstrack_et   < 0.5)  && hcleantrack && hcal_fid
+hpion_cercut  = (hcer_npe_sum < 0.2)  && hcleantrack && hcer_fid
+hpion_bothcut = hpion_calcut && hpion_cercut
+
+#int hprlo,hprhi,hshlo,hcerlat,hcerhi
+hprhi = (hmisc_dec_data(43) > 1)
+hprlo = (hmisc_dec_data(44) > 1)
+hshlo = (hmisc_dec_data(45) > 1)
+hcerlat = (hmisc_dec_data(34) > 1)
+hcerhi = (hmisc_dec_data(36) >  1)
+
+#int hprhi_n_cercut,hprlo_n_cercut,hshlo_n_cercut,hcerlat_n_calcut
+hprhi_n_cercut = hprhi && helec_cercut
+hprlo_n_cercut = hprlo && helec_cercut
+hshlo_n_cercut = hshlo && helec_cercut
+hcerlat_n_calcut = hcerlat && helec_calcut
+
+#int hprhi_n_cercutpi,hprlo_n_cercutpi,hshlo_n_cercutpi,hcerlat_n_calcutpi
+hprhi_n_cercutpi = hprhi && hpion_cercut
+hprlo_n_cercutpi = hprlo && hpion_cercut
+hshlo_n_cercutpi = hshlo && hpion_cercut
+hcerlat_n_calcutpi = hcerlat && hpion_calcut
+
+; the y_tar cut is only to be used for optics checks!
+#int hgoodtar 
+hgoodtar = (hsy_tar > -.5) && (hsy_tar < .5) && hcleantrack
+
+#real hcompdth,hcompdts,hcompdtave,helecdt
+; computer dead time, as measured by signals going to HMS and SOS scalers
+; elec. dead time calculated assuming 50ns trigger latency time (from hodo disc.)
+hcompdth=(1-gscaler(189)/(gscaler(185)+.0001))
+hcompdts=(1-gscaler(349)/(gscaler(345)+.0001))
+hcompdtave=(hcompdth+hcompdts)/2.
+;helecdt=(50/60)*(gscaler(151)-gscaler(154))/(gscaler(151)+.0001)
+;helecdt=(50/100)*(gscaler(151)-gscaler(154))/(gscaler(151)+.0001)
+helecdt=(50/100)*(gscaler(146)-gscaler(148))/(gscaler(146)+.0001)
+
+
+;hthreshold histograms.  pionprescale triggers only, +PID latches.
+#int hpipre,hpipre_prhi,hpipre_prlo,hpipre_shlo,hpipre_cer,hpipre_cerhi,helreal,helclean
+hpipre = (hmisc_dec_data(30) > 1)
+helreal = (hmisc_dec_data(29)>1)
+helclean = (hmisc_dec_data(31)>1)
+hpipre_prhi = hpipre && hprhi 
+hpipre_prlo = hpipre && hprlo
+hpipre_shlo = hpipre && hshlo
+hpipre_cer  = hpipre && hcerlat
+hpipre_cerhi  = hpipre && hcerhi
+
+end test hms_tests
+
+begin test sos_tests group=sos group=both
+
+#int sfoundtrack, sfound1track, sfound2track, sfound3track, sfound4track
+sfoundtrack = sntracks_fp != 0
+sfound1track = sntracks_fp == 1
+sfound2track = sntracks_fp == 2
+sfound3track = sntracks_fp == 3
+sfound4track = sntracks_fp == 4
+
+#int scleantrack, sclean1track, sclean2track, sclean3track, sclean4track
+;scleantrack = ssnum_fptrack != 0 && (ssdelta > -20.) && (ssdelta < 20.)
+scleantrack = ssnum_fptrack != 0
+sclean1track = ssnum_fptrack == 1
+sclean2track = ssnum_fptrack == 2
+sclean3track = ssnum_fptrack == 3
+sclean4track = ssnum_fptrack == 4
+
+;good here means that there is a hit in the plane with a high chance of being understandable
+#int goodsdc1u1, goodsdc1u2, goodsdc1x1, goodsdc1x2, goodsdc1v1, goodsdc1v2
+goodsdc1u1 = (SDC_HITS_PER_PLANE(1) > 0) && (SDC_HITS_PER_PLANE(1) < 3)
+goodsdc1u2 = (SDC_HITS_PER_PLANE(2) > 0) && (SDC_HITS_PER_PLANE(2) < 3)
+goodsdc1x1 = (SDC_HITS_PER_PLANE(3) > 0) && (SDC_HITS_PER_PLANE(3) < 3)
+goodsdc1x2 = (SDC_HITS_PER_PLANE(4) > 0) && (SDC_HITS_PER_PLANE(4) < 3)
+goodsdc1v1 = (SDC_HITS_PER_PLANE(5) > 0) && (SDC_HITS_PER_PLANE(5) < 3)
+goodsdc1v2 = (SDC_HITS_PER_PLANE(6) > 0) && (SDC_HITS_PER_PLANE(6) < 3)
+#int goodsdc2u1, goodsdc2u2, goodsdc2x1, goodsdc2x2, goodsdc2v1, goodsdc2v2
+goodsdc2u1 = (SDC_HITS_PER_PLANE(7) > 0) && (SDC_HITS_PER_PLANE(7) < 3)
+goodsdc2u2 = (SDC_HITS_PER_PLANE(8) > 0) && (SDC_HITS_PER_PLANE(8) < 3)
+goodsdc2x1 = (SDC_HITS_PER_PLANE(9) > 0) && (SDC_HITS_PER_PLANE(9) < 3)
+goodsdc2x2 = (SDC_HITS_PER_PLANE(10) > 0) && (SDC_HITS_PER_PLANE(10) < 3)
+goodsdc2v1 = (SDC_HITS_PER_PLANE(11) > 0) && (SDC_HITS_PER_PLANE(11) < 3)
+goodsdc2v2 = (SDC_HITS_PER_PLANE(12) > 0) && (SDC_HITS_PER_PLANE(12) < 3)
+#int goodsdc1, goodsdc2, bothgoodsdc
+goodsdc1 = goodsdc1u1 && goodsdc1u2 && goodsdc1x1 && goodsdc1x2 && goodsdc1v1 && goodsdc1v2
+goodsdc2 = goodsdc2u1 && goodsdc2u2 && goodsdc2x1 && goodsdc2x2 && goodsdc2v1 && goodsdc2v2
+bothgoodsdc = goodsdc1 && goodsdc2
+
+;real here means that there is a hit in the plane with a high chance of being understandable
+; AND a space point was found (the drift time varable is filled only if a space point
+;  was found).
+#int realsdc1u1, realsdc1u2, realsdc1x1, realsdc1x2, realsdc1v1, realsdc1v2
+realsdc1u1 = goodsdc1u1 && (snspace_points_tot != 0)
+realsdc1u2 = goodsdc1u2 && (snspace_points_tot != 0)
+realsdc1x1 = goodsdc1x1 && (snspace_points_tot != 0)
+realsdc1x2 = goodsdc1x2 && (snspace_points_tot != 0)
+realsdc1v1 = goodsdc1v1 && (snspace_points_tot != 0)
+realsdc1v2 = goodsdc1v2 && (snspace_points_tot != 0)
+#int realsdc2u1, realsdc2u2, realsdc2x1, realsdc2x2, realsdc2v1, realsdc2v2
+realsdc2u1 = goodsdc2u1 && (snspace_points_tot != 0)
+realsdc2u2 = goodsdc2u2 && (snspace_points_tot != 0)
+realsdc2x1 = goodsdc2x1 && (snspace_points_tot != 0)
+realsdc2x2 = goodsdc2x2 && (snspace_points_tot != 0)
+realsdc2v1 = goodsdc2v1 && (snspace_points_tot != 0)
+realsdc2v2 = goodsdc2v2 && (snspace_points_tot != 0)
+
+#int realsdc1u1coin
+realsdc1u1coin = realsdc1u1 && ctrig
+
+; need test telling if a residual was found for the given plane.  Since
+; a track must be found, and the residual is initialized to 1000,
+; use foundtrack && resid. != 1000
+#int sdcres(12)
+#int slowchi2
+slowchi2 = (sschi2perdeg<10) && scleantrack
+sdcres(1) = (sdc_sing_res(1) != 1000) && slowchi2
+sdcres(2) = (sdc_sing_res(2) != 1000) && slowchi2
+sdcres(3) = (sdc_sing_res(3) != 1000) && slowchi2
+sdcres(4) = (sdc_sing_res(4) != 1000) && slowchi2
+sdcres(5) = (sdc_sing_res(5) != 1000) && slowchi2
+sdcres(6) = (sdc_sing_res(6) != 1000) && slowchi2
+sdcres(7) = (sdc_sing_res(7) != 1000) && slowchi2
+sdcres(8) = (sdc_sing_res(8) != 1000) && slowchi2
+sdcres(9) = (sdc_sing_res(9) != 1000) && slowchi2
+sdcres(10) = (sdc_sing_res(10) != 1000) && slowchi2
+sdcres(11) = (sdc_sing_res(11) != 1000) && slowchi2
+sdcres(12) = (sdc_sing_res(12) != 1000) && slowchi2
+
+#int anyss1x, anyss1y, anyss2x, anyss2y
+anyss1x = (sscin_hits_per_plane(1) > 0)
+anyss1y = (sscin_hits_per_plane(2) > 0)
+anyss2x = (sscin_hits_per_plane(3) > 0)
+anyss2y = (sscin_hits_per_plane(4) > 0)
+
+#int ss1xshould, ss1yshould, ss2xshould, ss2yshould
+#int ss1xdid, ss1ydid, ss2xdid, ss2ydid
+
+ss1xshould = anyss1y && anyss2x && anyss2y
+ss1yshould = anyss1x && anyss2x && anyss2y
+ss2xshould = anyss1x && anyss1y && anyss2y
+ss2yshould = anyss1x && anyss1y && anyss2x
+ss1xdid = ss1xshould && anyss1x
+ss1ydid = ss1yshould && anyss1y
+ss2xdid = ss2xshould && anyss2x
+ss2ydid = ss2yshould && anyss2y
+
+#int goodss1x, goodss1y, goodss1, goodss2x, goodss2y, goodss2, goodss1s2
+goodss1x = (sscin_hits_per_plane(1) > 0) && (sscin_hits_per_plane(1) < 3)
+goodss1y = (sscin_hits_per_plane(2) > 0) && (sscin_hits_per_plane(2) < 3)
+goodss1 = goodss1x && goodss1y
+goodss2x = (sscin_hits_per_plane(3) > 0) && (sscin_hits_per_plane(3) < 3)
+goodss2y = (sscin_hits_per_plane(4) > 0) && (sscin_hits_per_plane(4) < 3)
+goodss2 = goodss2x && goodss2y
+goodss1s2 = goodss1 && goodss2
+
+#int scal_fid,scer_fid
+scal_fid = (ssx_cal > -48) && (ssx_cal < 48) && scleantrack
+scer_fid = (ssx_s2<30) && (ssx_s2>-30) && (ssy_s2<15) && (ssy_s2>-15) && (scleantrack)
+
+; Particle ID tests (assume pi/e, moderatly tight cuts, may not be good at low energy)
+; Used for defining particles as nominally electron or hadron.
+; Tighter cuts needed for efficiencies!
+; The calorimeter fiducial cut must be restored for efficiencies (in h*_cercut)
+
+#int selec_calcut,selec_cercut,selec_bothcut
+selec_calcut  = (ssshtrk   > 0.6) && scleantrack && scal_fid
+selec_cercut  = (scer_npe_sum > 0.2) && scleantrack
+selec_bothcut = selec_calcut && selec_cercut
+
+#int shadron_calcut,shadron_cercut,shadron_bothcut
+shadron_calcut  = (sstrack_et   < 0.6)  && scleantrack && scal_fid
+shadron_cercut  = (scer_npe_sum < 0.2)  && scleantrack
+shadron_bothcut = shadron_calcut && shadron_cercut
+
+; ... and with tighter cuts for efficiencies.
+#int spion_calcut,spion_cercut,spion_bothcut
+spion_calcut  = (sstrack_et   < 0.5)  && scleantrack && scal_fid
+spion_cercut  = (scer_npe_sum < 0.2)  && scleantrack
+spion_bothcut = spion_calcut && spion_cercut
+
+#int sprlo,sprhi,sshlo,scerlat
+sprhi = (smisc_dec_data(45) > 1)
+sprlo = (smisc_dec_data(46) > 1)
+sshlo = (smisc_dec_data(47) > 1)
+scerlat = (smisc_dec_data(42) > 1)
+
+#int sprhi_n_cercut,sprlo_n_cercut,sshlo_n_cercut,scerlat_n_calcut
+sprhi_n_cercut = sprhi && selec_cercut
+sprlo_n_cercut = sprlo && selec_cercut
+sshlo_n_cercut = sshlo && selec_cercut
+scerlat_n_calcut = scerlat && selec_calcut
+
+#int sprhi_n_cercutpi,sprlo_n_cercutpi,sshlo_n_cercutpi,scerlat_n_calcutpi
+sprhi_n_cercutpi = sprhi && spion_cercut
+sprlo_n_cercutpi = sprlo && spion_cercut
+sshlo_n_cercutpi = sshlo && spion_cercut
+scerlat_n_calcutpi = scerlat && spion_calcut
+
+;this delta test is only intended for online optics checks!
+;without this cut we have no hope of seeing a transverse focus (ie, hourglass)
+#int sgoodtar,sgoodtar_seleccercut
+sgoodtar = (ssy_tar > -0.3) && (ssy_tar < 0.3) && scleantrack
+sgoodtar_seleccercut = sgoodtar && selec_cercut
+
+#real scompdts,scompdth,scompdtave,selecdt
+;computer dead time, as measured by signals going to HMS and SOS scalers
+scompdts=(1-gscaler(350)/(gscaler(346)+.0001))
+scompdth=(1-gscaler(190)/(gscaler(186)+.0001))
+scompdtave=(scompdts+scompdth)/2.
+
+; elec. dead time calculated assuming 50ns trigger latency time (from hodo disc.)
+selecdt=(50/100)*(gscaler(311)-gscaler(314))/(gscaler(311)+.0001)
+
+;RMM added 23-aug-96
+#int saer_betacut
+saer_betacut = (ssbeta > .85) && (ssbeta < 1.2)
+
+end test sos_tests
+
+
+begin test coin_tests group=both
+
+#integer ccleantrack
+ccleantrack = hcleantrack && scleantrack
+	    
+#integer goodctime,tightctime,randomctime
+;changed from hms cctime variable to sos cctime variable djm 12/1/97
+;changed sos cctime offset to put reals peak near 0ns run 17258 djm 12/5/97
+; 3 beam burst cut centered on reals 
+;goodctime = (ccointime_sos<3.) && (ccointime_sos>-3.)
+;goodctime = (ccointime_sos<31.25) && (ccointime_sos>25.25)
+goodctime = (ccointime_hms<3.5) && (ccointime_hms>-3.5)
+;
+; 1 beam burst cut centered on reals
+;tightctime = (ccointime_sos<1.) && (ccointime_sos>-1.)
+;tightctime = (ccointime_sos<29.25) && (ccointime_sos>27.25)
+tightctime = (ccointime_hms<1.5) && (ccointime_hms>-1.5)
+;
+; 4 random beam bursts on the high beta side of the reals (ie, no proton feedthru)
+#integer coincut,coincut_ran,coincut_e
+randomctime =  (ccointime_hms<-6.5) && (ccointime_hms>-15.)
+;randomctime =  (ccointime_sos<27.25) && (ccointime_sos>19.25)
+coincut = ccleantrack && goodctime
+coincut_ran = ccleantrack && randomctime  
+;djm coincut = ccleantrack && goodctime && selec_bothcut
+
+; hadron pid should be done with tofmass2 offline. for now a beta cut is best.
+#integer hbetacut_p,hbetacut_pi 
+hbetacut_p = (hsbeta > 0.0) && (hsbeta < .95)
+hbetacut_pi = (hsbeta > .95) && (hsbeta < 1.20)
+
+; choose: electron in HMS with helec_bothcut or in SOS with selec_bothcut
+; Electrons in HMS for I. Sick Correlated Spectral Function Expt.
+#integer coincut_e,coincut_e_h,coincut_e_h_ran,tightcoincut_e_h,ccleantrack_e_h
+#integer mmcut,mmcut_relax
+#integer coincut_e_pi,ccleantrack_e_pi,coincut_e_p
+coincut_e        = coincut && helec_bothcut
+;coincut_e_h      = coincut && helec_bothcut && shadron_bothcut
+coincut_e_h      = coincut && selec_bothcut && hhadron_bothcut
+coincut_e_h_ran  = coincut_ran && helec_bothcut && shadron_bothcut
+tightcoincut_e_h = coincut_e_h && tightctime
+ccleantrack_e_h  = ccleantrack && helec_bothcut && shadron_bothcut
+mmcut = tightcoincut_e_h && (cmissing_mass > .9) && (cmissing_mass < 1)
+;mmcut_relax = coincut_e_h && (cmissing_mass > .9) &&
+; (cmissing_mass < 1)
+mmcut_relax = coincut_e_h && (cmissing_mass > .9) && (cmissing_mass < 1)
+
+coincut_e_p  =  ccleantrack && selec_bothcut && hbetacut_p
+coincut_e_pi =  coincut && selec_bothcut && hbetacut_pi
+ccleantrack_e_pi = ccleantrack && selec_bothcut && hbetacut_pi
+
+end   test coin_tests
+
+#include TEST/trackeff.test
+#include TEST/trigeff.test

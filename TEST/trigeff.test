@@ -1,0 +1,349 @@
+;Tests to monitor hodoscope trigger efficiency. Engine produces the following:
+;
+; htrig_hodoshouldflag(pln): T if other 3 planes fired and not near edge of s2y
+; htrig_hododidflag(pln) = hodoshouldflag && pln was hit
+; htrig_hodoshould(pln) is counter of shouldflag
+; htrig_hododid(pln)    is counter of didflag
+;
+;Test block htrig_hodoeff_raw will calculate plane efficiencies and trigger
+; signal efficiencies from these values.  Other blocks can apply additionl
+; tests to htrigshould and htrigdid to get modified versions (e.g. PID cuts)
+
+begin test htrig_hodoeff_raw group=hms group=both
+#int htrigshould1,htrigshould2,htrigshould3,htrigshould4
+#int htrigdid1,htrigdid2,htrigdid3,htrigdid4
+#real htrigeff1,htrigeff2,htrigeff3,htrigeff4
+#real p1,p2,p3,p4
+#real p123,p124,p134,p234,p1234
+#real htrig_s1,htrig_s2,htrig_stof,htrig_3of4,htrig_4of4
+#int localcut
+localcut = hcleantrack
+htrigshould1=htrig_hodoshouldflag(1) && localcut
+htrigshould2=htrig_hodoshouldflag(2) && localcut
+htrigshould3=htrig_hodoshouldflag(3) && localcut
+htrigshould4=htrig_hodoshouldflag(4) && localcut
+htrigdid1=htrig_hododidflag(1) && localcut
+htrigdid2=htrig_hododidflag(2) && localcut
+htrigdid3=htrig_hododidflag(3) && localcut
+htrigdid4=htrig_hododidflag(4) && localcut
+;WARNING:  *.scaler is incremented AFTER this point -> THIS IS ONE EVENT BEHIND
+htrigeff1=htrigdid1.scaler/(htrigshould1.scaler+0.00001)
+htrigeff2=htrigdid2.scaler/(htrigshould2.scaler+0.00001)
+htrigeff3=htrigdid3.scaler/(htrigshould3.scaler+0.00001)
+htrigeff4=htrigdid4.scaler/(htrigshould4.scaler+0.00001)
+p1=htrigeff1
+p2=htrigeff2
+p3=htrigeff3
+p4=htrigeff4
+p123 = p1*p2*p3*(1.-p4)
+p124 = p1*p2*(1.-p3)*p4
+p134 = p1*(1.-p2)*p3*p4
+p234 = (1.-p1)*p2*p3*p4
+p1234= p1*p2*p3*p4
+htrig_s1 = 1. - ((1.-p1)*(1.-p2))
+htrig_s2 = 1. - ((1.-p3)*(1.-p4))
+htrig_stof=htrig_s1 * htrig_s2
+htrig_3of4=p1234+p123+p124+p134+p234
+htrig_4of4=p1234
+end test htrig_hodoeff_raw
+
+
+
+;SAME AS ABOVE, BUT WITH CERENKOV CUT TO TAG ELECTRONS.
+
+begin test htrig_cer_hodoeff_raw group=hms group=both
+#int htrig_cershould1,htrig_cershould2,htrig_cershould3,htrig_cershould4
+#int htrig_cerdid1,htrig_cerdid2,htrig_cerdid3,htrig_cerdid4
+#real htrig_cereff1,htrig_cereff2,htrig_cereff3,htrig_cereff4
+#real p1,p2,p3,p4
+#real p123,p124,p134,p234,p1234
+#real htrig_cer_s1,htrig_cer_s2,htrig_cer_stof,htrig_cer_3of4,htrig_cer_4of4
+#localcut
+localcut = hcleantrack && hcer_npe>2
+htrig_cershould1=htrig_hodoshouldflag(1) && localcut
+htrig_cershould2=htrig_hodoshouldflag(2) && localcut
+htrig_cershould3=htrig_hodoshouldflag(3) && localcut
+htrig_cershould4=htrig_hodoshouldflag(4) && localcut
+htrig_cerdid1=htrig_hododidflag(1) && localcut
+htrig_cerdid2=htrig_hododidflag(2) && localcut
+htrig_cerdid3=htrig_hododidflag(3) && localcut
+htrig_cerdid4=htrig_hododidflag(4) && localcut
+;WARNING:  *.scaler is incremented AFTER this point -> THIS IS ONE EVENT BEHIND
+htrig_cereff1=htrig_cerdid1.scaler/(htrig_cershould1.scaler+0.00001)
+htrig_cereff2=htrig_cerdid2.scaler/(htrig_cershould2.scaler+0.00001)
+htrig_cereff3=htrig_cerdid3.scaler/(htrig_cershould3.scaler+0.00001)
+htrig_cereff4=htrig_cerdid4.scaler/(htrig_cershould4.scaler+0.00001)
+p1=htrig_cereff1
+p2=htrig_cereff2
+p3=htrig_cereff3
+p4=htrig_cereff4
+p123 = p1*p2*p3*(1.-p4)
+p124 = p1*p2*(1.-p3)*p4
+p134 = p1*(1.-p2)*p3*p4
+p234 = (1.-p1)*p2*p3*p4
+p1234= p1*p2*p3*p4
+htrig_cer_s1 = 1. - ((1.-p1)*(1.-p2))
+htrig_cer_s2 = 1. - ((1.-p3)*(1.-p4))
+htrig_cer_stof=htrig_cer_s1 * htrig_cer_s2
+htrig_cer_3of4=p1234+p123+p124+p134+p234
+htrig_cer_4of4=p1234
+end test htrig_cer_hodoeff_raw
+
+
+
+
+;SAME AS ABOVE, BUT WITH CERENKOV CUT TO TAG ELECTRONS and |delta|<8%
+
+begin test htrig_cerdel_hodoeff_raw group=hms group=both
+#int htrig_cerdelshould1,htrig_cerdelshould2,htrig_cerdelshould3,htrig_cerdelshould4
+#int htrig_cerdeldid1,htrig_cerdeldid2,htrig_cerdeldid3,htrig_cerdeldid4
+#real htrig_cerdeleff1,htrig_cerdeleff2,htrig_cerdeleff3,htrig_cerdeleff4
+#real p1,p2,p3,p4
+#real p123,p124,p134,p234,p1234
+#real htrig_cerdel_s1,htrig_cerdel_s2,htrig_cerdel_stof,htrig_cerdel_3of4,htrig_cerdel_4of4
+#int localcut
+localcut = hcleantrack && hcer_npe>2 && abs(hsdelta)<8
+htrig_cerdelshould1=htrig_hodoshouldflag(1) && localcut
+htrig_cerdelshould2=htrig_hodoshouldflag(2) && localcut
+htrig_cerdelshould3=htrig_hodoshouldflag(3) && localcut
+htrig_cerdelshould4=htrig_hodoshouldflag(4) && localcut
+htrig_cerdeldid1=htrig_hododidflag(1) && localcut
+htrig_cerdeldid2=htrig_hododidflag(2) && localcut
+htrig_cerdeldid3=htrig_hododidflag(3) && localcut
+htrig_cerdeldid4=htrig_hododidflag(4) && localcut
+;WARNING:  *.scaler is incremented AFTER this point -> THIS IS ONE EVENT BEHIND
+htrig_cerdeleff1=htrig_cerdeldid1.scaler/(htrig_cerdelshould1.scaler+0.00001)
+htrig_cerdeleff2=htrig_cerdeldid2.scaler/(htrig_cerdelshould2.scaler+0.00001)
+htrig_cerdeleff3=htrig_cerdeldid3.scaler/(htrig_cerdelshould3.scaler+0.00001)
+htrig_cerdeleff4=htrig_cerdeldid4.scaler/(htrig_cerdelshould4.scaler+0.00001)
+p1=htrig_cerdeleff1
+p2=htrig_cerdeleff2
+p3=htrig_cerdeleff3
+p4=htrig_cerdeleff4
+p123 = p1*p2*p3*(1.-p4)
+p124 = p1*p2*(1.-p3)*p4
+p134 = p1*(1.-p2)*p3*p4
+p234 = (1.-p1)*p2*p3*p4
+p1234= p1*p2*p3*p4
+htrig_cerdel_s1 = 1. - ((1.-p1)*(1.-p2))
+htrig_cerdel_s2 = 1. - ((1.-p3)*(1.-p4))
+htrig_cerdel_stof=htrig_cerdel_s1 * htrig_cerdel_s2
+htrig_cerdel_3of4=p1234+p123+p124+p134+p234
+htrig_cerdel_4of4=p1234
+end test htrig_cerdel_hodoeff_raw
+
+
+
+
+;SAME AS ABOVE, BUT WITH CERENKOV CUT TO TAG ELECTRONS and |delta|<8% and coin only.
+
+begin test chtrig_cerdel_hodoeff_raw group=both
+#int chtrig_cerdelshould1,chtrig_cerdelshould2,chtrig_cerdelshould3,chtrig_cerdelshould4
+#int chtrig_cerdeldid1,chtrig_cerdeldid2,chtrig_cerdeldid3,chtrig_cerdeldid4
+#real chtrig_cerdeleff1,chtrig_cerdeleff2,chtrig_cerdeleff3,chtrig_cerdeleff4
+#real p1,p2,p3,p4
+#real p123,p124,p134,p234,p1234
+#real chtrig_cerdel_s1,chtrig_cerdel_s2,chtrig_cerdel_stof,chtrig_cerdel_3of4,chtrig_cerdel_4of4
+#int localcut
+localcut = hcleantrack && hcer_npe>2 && abs(hsdelta)<8
+chtrig_cerdelshould1=htrig_hodoshouldflag(1) && localcut
+chtrig_cerdelshould2=htrig_hodoshouldflag(2) && localcut
+chtrig_cerdelshould3=htrig_hodoshouldflag(3) && localcut
+chtrig_cerdelshould4=htrig_hodoshouldflag(4) && localcut
+chtrig_cerdeldid1=htrig_hododidflag(1) && localcut
+chtrig_cerdeldid2=htrig_hododidflag(2) && localcut
+chtrig_cerdeldid3=htrig_hododidflag(3) && localcut
+chtrig_cerdeldid4=htrig_hododidflag(4) && localcut
+;WARNING:  *.scaler is incremented AFTER this point -> THIS IS ONE EVENT BEHIND
+chtrig_cerdeleff1=chtrig_cerdeldid1.scaler/(chtrig_cerdelshould1.scaler+0.00001)
+chtrig_cerdeleff2=chtrig_cerdeldid2.scaler/(chtrig_cerdelshould2.scaler+0.00001)
+chtrig_cerdeleff3=chtrig_cerdeldid3.scaler/(chtrig_cerdelshould3.scaler+0.00001)
+chtrig_cerdeleff4=chtrig_cerdeldid4.scaler/(chtrig_cerdelshould4.scaler+0.00001)
+p1=chtrig_cerdeleff1
+p2=chtrig_cerdeleff2
+p3=chtrig_cerdeleff3
+p4=chtrig_cerdeleff4
+p123 = p1*p2*p3*(1.-p4)
+p124 = p1*p2*(1.-p3)*p4
+p134 = p1*(1.-p2)*p3*p4
+p234 = (1.-p1)*p2*p3*p4
+p1234= p1*p2*p3*p4
+chtrig_cerdel_s1 = 1. - ((1.-p1)*(1.-p2))
+chtrig_cerdel_s2 = 1. - ((1.-p3)*(1.-p4))
+chtrig_cerdel_stof=chtrig_cerdel_s1 * chtrig_cerdel_s2
+chtrig_cerdel_3of4=p1234+p123+p124+p134+p234
+chtrig_cerdel_4of4=p1234
+end test chtrig_cerdel_hodoeff_raw
+
+
+
+
+begin test strig_hodoeff_raw group=sos group=both
+#int strigshould1,strigshould2,strigshould3,strigshould4
+#int strigdid1,strigdid2,strigdid3,strigdid4
+#real strigeff1,strigeff2,strigeff3,strigeff4
+#real p1,p2,p3,p4
+#real p123,p124,p134,p234,p1234
+#real strig_s1,strig_s2,strig_stof,strig_3of4,strig_4of4
+#int localcut
+localcut = scleantrack
+strigshould1=strig_hodoshouldflag(1) && localcut
+strigshould2=strig_hodoshouldflag(2) && localcut
+strigshould3=strig_hodoshouldflag(3) && localcut
+strigshould4=strig_hodoshouldflag(4) && localcut
+strigdid1=strig_hododidflag(1) && localcut
+strigdid2=strig_hododidflag(2) && localcut
+strigdid3=strig_hododidflag(3) && localcut
+strigdid4=strig_hododidflag(4) && localcut
+;WARNING:  *.scaler is incremented AFTER this point -> THIS IS ONE EVENT BEHIND
+strigeff1=strigdid1.scaler/(strigshould1.scaler+0.00001)
+strigeff2=strigdid2.scaler/(strigshould2.scaler+0.00001)
+strigeff3=strigdid3.scaler/(strigshould3.scaler+0.00001)
+strigeff4=strigdid4.scaler/(strigshould4.scaler+0.00001)
+p1=strigeff1
+p2=strigeff2
+p3=strigeff3
+p4=strigeff4
+p123 = p1*p2*p3*(1.-p4)
+p124 = p1*p2*(1.-p3)*p4
+p134 = p1*(1.-p2)*p3*p4
+p234 = (1.-p1)*p2*p3*p4
+p1234= p1*p2*p3*p4
+strig_s1 = 1. - ((1.-p1)*(1.-p2))
+strig_s2 = 1. - ((1.-p3)*(1.-p4))
+strig_stof=strig_s1 * strig_s2
+strig_3of4=p1234+p123+p124+p134+p234
+strig_4of4=p1234
+end test strig_hodoeff_raw
+
+
+
+;SAME AS ABOVE, BUT WITH |SSDELTA|<18%
+
+begin test strig_del_hodoeff_raw group=sos group=both
+#int strig_delshould1,strig_delshould2,strig_delshould3,strig_delshould4
+#int strig_deldid1,strig_deldid2,strig_deldid3,strig_deldid4
+#real strig_deleff1,strig_deleff2,strig_deleff3,strig_deleff4
+#real p1,p2,p3,p4
+#real p123,p124,p134,p234,p1234
+#real strig_del_s1,strig_del_s2,strig_del_stof,strig_del_3of4,strig_del_4of4
+#localcut
+localcut = scleantrack && abs(ssdelta)<18
+strig_delshould1=strig_hodoshouldflag(1) && localcut
+strig_delshould2=strig_hodoshouldflag(2) && localcut
+strig_delshould3=strig_hodoshouldflag(3) && localcut
+strig_delshould4=strig_hodoshouldflag(4) && localcut
+strig_deldid1=strig_hododidflag(1) && localcut
+strig_deldid2=strig_hododidflag(2) && localcut
+strig_deldid3=strig_hododidflag(3) && localcut
+strig_deldid4=strig_hododidflag(4) && localcut
+;WARNING:  *.scaler is incremented AFTER this point -> THIS IS ONE EVENT BEHIND
+strig_deleff1=strig_deldid1.scaler/(strig_delshould1.scaler+0.00001)
+strig_deleff2=strig_deldid2.scaler/(strig_delshould2.scaler+0.00001)
+strig_deleff3=strig_deldid3.scaler/(strig_delshould3.scaler+0.00001)
+strig_deleff4=strig_deldid4.scaler/(strig_delshould4.scaler+0.00001)
+p1=strig_deleff1
+p2=strig_deleff2
+p3=strig_deleff3
+p4=strig_deleff4
+p123 = p1*p2*p3*(1.-p4)
+p124 = p1*p2*(1.-p3)*p4
+p134 = p1*(1.-p2)*p3*p4
+p234 = (1.-p1)*p2*p3*p4
+p1234= p1*p2*p3*p4
+strig_del_s1 = 1. - ((1.-p1)*(1.-p2))
+strig_del_s2 = 1. - ((1.-p3)*(1.-p4))
+strig_del_stof=strig_del_s1 * strig_del_s2
+strig_del_3of4=p1234+p123+p124+p134+p234
+strig_del_4of4=p1234
+end test strig_del_hodoeff_raw
+
+
+
+
+;SAME AS ABOVE, BUT WITH |SSDELTA|<18% and kaon PID
+
+begin test strig_delpid_hodoeff_raw group=sos group=both
+#int strig_delpidshould1,strig_delpidshould2,strig_delpidshould3,strig_delpidshould4
+#int strig_delpiddid1,strig_delpiddid2,strig_delpiddid3,strig_delpiddid4
+#real strig_delpideff1,strig_delpideff2,strig_delpideff3,strig_delpideff4
+#real p1,p2,p3,p4
+#real p123,p124,p134,p234,p1234
+#real strig_delpid_s1,strig_delpid_s2,strig_delpid_stof,strig_delpid_3of4,strig_delpid_4of4
+#localcut
+localcut = scleantrack && abs(ssdelta)<18 && saer_npe_sum>5.0 && (sluc_neg_npe_sum+sluc_pos_npe_sum)>1.0
+strig_delpidshould1=strig_hodoshouldflag(1) && localcut
+strig_delpidshould2=strig_hodoshouldflag(2) && localcut
+strig_delpidshould3=strig_hodoshouldflag(3) && localcut
+strig_delpidshould4=strig_hodoshouldflag(4) && localcut
+strig_delpiddid1=strig_hododidflag(1) && localcut
+strig_delpiddid2=strig_hododidflag(2) && localcut
+strig_delpiddid3=strig_hododidflag(3) && localcut
+strig_delpiddid4=strig_hododidflag(4) && localcut
+;WARNING:  *.scaler is incremented AFTER this point -> THIS IS ONE EVENT BEHIND
+strig_delpideff1=strig_delpiddid1.scaler/(strig_delpidshould1.scaler+0.00001)
+strig_delpideff2=strig_delpiddid2.scaler/(strig_delpidshould2.scaler+0.00001)
+strig_delpideff3=strig_delpiddid3.scaler/(strig_delpidshould3.scaler+0.00001)
+strig_delpideff4=strig_delpiddid4.scaler/(strig_delpidshould4.scaler+0.00001)
+p1=strig_delpideff1
+p2=strig_delpideff2
+p3=strig_delpideff3
+p4=strig_delpideff4
+p123 = p1*p2*p3*(1.-p4)
+p124 = p1*p2*(1.-p3)*p4
+p134 = p1*(1.-p2)*p3*p4
+p234 = (1.-p1)*p2*p3*p4
+p1234= p1*p2*p3*p4
+strig_delpid_s1 = 1. - ((1.-p1)*(1.-p2))
+strig_delpid_s2 = 1. - ((1.-p3)*(1.-p4))
+strig_delpid_stof=strig_delpid_s1 * strig_delpid_s2
+strig_delpid_3of4=p1234+p123+p124+p134+p234
+strig_delpid_4of4=p1234
+end test strig_delpid_hodoeff_raw
+
+
+
+
+;SAME AS ABOVE, BUT WITH |SSDELTA|<18% and kaon PID and coinonly (group=both)
+
+begin test cstrig_delpid_hodoeff_raw group=both
+#int cstrig_delpidshould1,cstrig_delpidshould2,cstrig_delpidshould3,cstrig_delpidshould4
+#int cstrig_delpiddid1,cstrig_delpiddid2,cstrig_delpiddid3,cstrig_delpiddid4
+#real cstrig_delpideff1,cstrig_delpideff2,cstrig_delpideff3,cstrig_delpideff4
+#real p1,p2,p3,p4
+#real p123,p124,p134,p234,p1234
+#real cstrig_delpid_s1,cstrig_delpid_s2,cstrig_delpid_stof,cstrig_delpid_3of4,cstrig_delpid_4of4
+#localcut
+localcut = scleantrack && abs(ssdelta)<18 && saer_npe_sum<5.0 && (sluc_neg_npe_sum+sluc_pos_npe_sum)>1.0
+cstrig_delpidshould1=strig_hodoshouldflag(1) && localcut
+cstrig_delpidshould2=strig_hodoshouldflag(2) && localcut
+cstrig_delpidshould3=strig_hodoshouldflag(3) && localcut
+cstrig_delpidshould4=strig_hodoshouldflag(4) && localcut
+cstrig_delpiddid1=strig_hododidflag(1) && localcut
+cstrig_delpiddid2=strig_hododidflag(2) && localcut
+cstrig_delpiddid3=strig_hododidflag(3) && localcut
+cstrig_delpiddid4=strig_hododidflag(4) && localcut
+;WARNING:  *.scaler is incremented AFTER this point -> THIS IS ONE EVENT BEHIND
+cstrig_delpideff1=cstrig_delpiddid1.scaler/(cstrig_delpidshould1.scaler+0.00001)
+cstrig_delpideff2=cstrig_delpiddid2.scaler/(cstrig_delpidshould2.scaler+0.00001)
+cstrig_delpideff3=cstrig_delpiddid3.scaler/(cstrig_delpidshould3.scaler+0.00001)
+cstrig_delpideff4=cstrig_delpiddid4.scaler/(cstrig_delpidshould4.scaler+0.00001)
+p1=cstrig_delpideff1
+p2=cstrig_delpideff2
+p3=cstrig_delpideff3
+p4=cstrig_delpideff4
+p123 = p1*p2*p3*(1.-p4)
+p124 = p1*p2*(1.-p3)*p4
+p134 = p1*(1.-p2)*p3*p4
+p234 = (1.-p1)*p2*p3*p4
+p1234= p1*p2*p3*p4
+cstrig_delpid_s1 = 1. - ((1.-p1)*(1.-p2))
+cstrig_delpid_s2 = 1. - ((1.-p3)*(1.-p4))
+cstrig_delpid_stof=cstrig_delpid_s1 * cstrig_delpid_s2
+cstrig_delpid_3of4=p1234+p123+p124+p134+p234
+cstrig_delpid_4of4=p1234
+end test cstrig_delpid_hodoeff_raw
+
+
+
+

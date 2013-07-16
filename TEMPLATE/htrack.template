@@ -1,0 +1,56 @@
+*****************************
+* HMS TRACKING EFFICIENCIES *
+*****************************
+htrig                          :{htrig.scaler:%7d}
+hhitslt = passed hits/cham     :{hhitslt.scaler:%7d}
+hhitsplanes = +planes >= 5/6   :{hhitsplanes.scaler:%7d}
+hhitsplanessps = + sps         :{hhitsplanessps.scaler:%7d}
+hhitsplanesspsstubs +stub      :{hhitsplanesspsstubs.scaler:%7d}
+hsfoundtrack                   :{hsfoundtrack.scaler:%7d}
+hscleantrack                   :{hscleantrack.scaler:%7d}
+hstublt = passed stub tests    :{hstublt.scaler:%7d}
+h1hitslt                       :{h1hitslt.scaler:%7d}
+h2hitslt                       :{h2hitslt.scaler:%7d}
+h1planesgt                     :{h1planesgt.scaler:%7d}
+h2planesgt                     :{h2planesgt.scaler:%7d}
+hplanesgt = gt 5 planes/cham   :{hplanesgt.scaler:%7d}
+f1hspacepoints                 :{f1hspacepoints.scaler:%7d}
+f2hspacepoints                 :{f2hspacepoints.scaler:%7d}
+htest1=p hits/planes, f sp     :{htest1.scaler:%7d}
+htest2=p sp, f stubs           :{htest2.scaler:%7d}
+hdid			       :{hdid.scaler:%7d}
+hdide			       :{hdide.scaler:%7d}
+hdidh			       :{hdidh.scaler:%7d}
+hscinshould		       :{hscinshould.scaler:%7d}
+hscinshoulde		       :{hscinshoulde.scaler:%7d}
+hscinshouldh		       :{hscinshouldh.scaler:%7d}
+SING FID TRACK EFFIC           :{hdid.scaler/(hscinshould.scaler+.0001):%8.4f} +-{(sqrt(hscinshould.scaler-hdid.scaler)/(hscinshould.scaler+.0001)):%8.4f}
+E SING FID TRACK EFFIC         :{hdide.scaler/(hscinshoulde.scaler+.0001):%8.4f} +-{(sqrt(hscinshoulde.scaler-hdide.scaler)/(hscinshoulde.scaler+.0001)):%8.4f}
+HADRON SING FID TRACK EFFI     :{hdidh.scaler/(hscinshouldh.scaler+.0001):%8.4f} +-{(sqrt(hscinshouldh.scaler-hdidh.scaler)/(hscinshouldh.scaler+.0001)):%8.4f}
+* hms coincidences...
+ctrig                          :{ctrig.scaler:%7d}
+bhhitslt = passed hits/cham    :{bhhitslt.scaler:%7d}
+bhhitsplanes = +planes >= 5/6  :{bhhitsplanes.scaler:%7d}
+bhhitsplanessps = + sps        :{bhhitsplanessps.scaler:%7d}
+bhhitsplanesspsstubs +stub     :{bhhitsplanesspsstubs.scaler:%7d}
+found track and ctrig          :{bhfoundtrack.scaler:%7d}
+bhstublt = passed stub tests   :{bhstublt.scaler:%7d}
+bh1hitslt                      :{bh1hitslt.scaler:%7d}
+bh2hitslt                      :{bh2hitslt.scaler:%7d}
+bh1planesgt                    :{bh1planesgt.scaler:%7d}
+bh2planesgt                    :{bh2planesgt.scaler:%7d}
+bhplanesgt = gt 5 planes/cham  :{bhplanesgt.scaler:%7d}
+f1bhspacepoints                :{f1bhspacepoints.scaler:%7d}
+f2bhspacepoints                :{f2bhspacepoints.scaler:%7d}
+bhtest1=p hits/planes, f sp    :{bhtest1.scaler:%7d}
+bhtest2=p sp, f stubs          :{bhtest2.scaler:%7d}
+bhdid			       :{bhdid.scaler:%7d}
+bhdide			       :{bhdide.scaler:%7d}
+bhdidh			       :{bhdidh.scaler:%7d}
+bhscinshould		       :{bhscinshould.scaler:%7d}
+bhscinshoulde		       :{bhscinshoulde.scaler:%7d}
+bhscinshouldh		       :{bhscinshouldh.scaler:%7d}
+  COIN FID TRACK EFFIC         :{bhdid.scaler/(bhscinshould.scaler+.0001):%8.4f} +-{(sqrt(bhscinshould.scaler-bhdid.scaler)/(bhscinshould.scaler+.0001)):%8.4f}
+  E COIN FID TRACK EFFIC       :{bhdide.scaler/(bhscinshoulde.scaler+.0001):%8.4f} +-{(sqrt(bhscinshoulde.scaler-bhdide.scaler)/(bhscinshoulde.scaler+.0001)):%8.4f}
+  HADRON COIN FID TRACK EFFIC  :{bhdidh.scaler/(bhscinshouldh.scaler+.0001):%8.4f} +-{(sqrt(bhscinshouldh.scaler-bhdidh.scaler)/(bhscinshouldh.scaler+.0001)):%8.4f}
+********************************************************************

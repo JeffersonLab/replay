@@ -1,0 +1,54 @@
+begin hist sos_pid_other group=sos group=both
+
+rf25ps,gmisc_dec_data(116),1,0,1 $### SOS PID DEDX & TOF
+
+ssdedx1-,ssdedx(1),100,-50,950,scleantrack        $SOS s1xdedx  t=scleantrack
+ssmass2-,ssmass2,100,-1,1.5,scleantrack            $SOS TOFmass2 t=scleantrack
+;sbeta_1,sbeta(1),200,-1.5,1.5,sfoundtrack         $sbeta        t=sfoundtrack
+;schisq_1,sbeta_chisq(1),100,-3.1,14.9,sfoundtrack $sbeta chi2   t=sfoundtrack
+ssbeta-,ssbeta,200,-1.5,1.5,scleantrack           $sbeta        t=scleantrack
+selbeta,ssbeta,100,0.5,1.2,scleantrack            $sbeta (zoom) t=scleantrack
+schisq,ssbeta_chisq,100,-3.1,14.9,scleantrack     $sbeta chi2   t=scleantrack
+sbeta_notrk,sbeta_notrk,200,-1.5,1.5              $sbeta notrk  t=strig
+selbeta_notrk,sbeta_notrk,100,0.5,1.2             $sbeta notrk (zoom) t=strig
+schisq_notrk,sbeta_chisq_notrk,100,-3.1,14.9      $sbeta chi2 notrk   t=strig
+sbetavssp,ssbeta,ssdelta,100,0.5,1.2,100,-25,25,scleantrack $SOS delta vs beta t=scleantrack
+
+rf25ps,gmisc_dec_data(116),1,0,1 $### SOS PID CALORIMETER
+
+scaltothits,scal_tot_hits,45,-0.5,44.5              $scal tot hits t=strig
+snhits_cal,snhits_cal,45,-0.5,44.5                  $scal nhits    t=strig
+;scalraw_e1 already defined in hist.SOS_cal_rawadcs
+;scalraw_e1,scal_e1,100,-.1,1.5*spcentral            $scal raw E1   t=strig
+ssprsum_prlo,scal_e1,100,-.1,1.5*spcentral,sprlo    $scal raw E1   t=sprlo
+ssprsum_prhi,scal_e1,100,-.1,1.5*spcentral,sprhi    $scal raw E1   t=sprhi
+scalraw_e123,scal_e123,100,-.1,1.8*spcentral        $scal raw E123 t=strig
+ssshsum_shlo3,scal_e123,100,-.1,1.8*spcentral,sshlo $scal raw E123 t=sshlo
+ssshsum_shlo,scal_et,100,-.1,1.8*spcentral,sshlo    $scal raw Etot t=sshlo
+strackraw_e1,sstrack_preshower_e,100,0.01,1.5*spcentral,scleantrack  $scal raw E1   ontrack t=scleantrack
+strackraw_et_1,strack_et(1),100,0.,1.8*spcentral,sfoundtrack         $scal raw Etot ontrack t=sfoundtrack
+strackraw_et,sstrack_et,100,0.01,1.8*spcentral,scleantrack           $scal raw Etot ontrack t=scleantrack
+strackraw_et_el,sstrack_et,100,0.01,1.8*spcentral,selec_cercut  $scal raw Etot ontrack t=selec-cercut
+strackraw_et_pi,sstrack_et,100,0.01,1.8*spcentral,spion_cercut  $scal raw Etot ontrack t=spion-cercut
+scal_e1,sscal_suma,100,-.1,1.5,scleantrack   $scal E1 notrack t=scleantrack
+scal_e2,sscal_sumb,100,-.1,1.5,scleantrack   $scal E2 notrack t=scleantrack
+scal_e3,sscal_sumc,100,-.1,1.5,scleantrack   $scal E3 notrack t=scleantrack
+scal_e4,sscal_sumd,100,-.1,1.5,scleantrack   $scal E4 notrack t=scleantrack
+scal_et,ssshsum,100,-.1,1.8,scleantrack      $scal Etot notrack t=scleantrack
+ssprtrk-,ssprtrk,100,0.01,1.5,scleantrack    $scal E1 track t=scleantrack
+ssshtrk-,ssshtrk,100,0.01,1.8,scleantrack    $scal Etot track t=scleantrack
+ssshtrk_el,ssshtrk,100,0.01,1.8,selec_cercut $scal Etot track t=selec-cercut
+ssshtrk_pi,ssshtrk,100,0.01,1.8,spion_cercut $scal Etot track t=spion-cercut
+
+scervssh,scer_npe_sum,ssshtrk,62,-1,30,32,0.01,2.0,scer_fid    $scal Etot track vs scer npe t=scer fid
+sshtrkvsx,ssshtrk,ssx_cal,30,0.01,1.8,54,-70,70,scleantrack    $scal x vs Etot track t=scleantrack
+sshtrkvsy,ssshtrk,ssy_cal,30,0.01,1.8,15,-30,30,scleantrack    $scal y vs Etot track t=scleantrack
+
+sprtrkvsx,ssprtrk,ssx_cal,30,0.01,1.5,24,-70,70,scleantrack    $scal x vs E1 track t=scleantrack
+
+scale1vsx,sscal_suma,ssx_cal,30,0.01,1.5,24,-70,70,scleantrack $scal x vs E1 t=scleantrack
+scale2vsx,sscal_sumb,ssx_cal,30,0.01,1.0,24,-70,70,scleantrack $scal x vs E2 t=scleantrack
+scale3vsx,sscal_sumc,ssx_cal,30,0.01,0.5,24,-70,70,scleantrack $scal x vs E3 t=scleantrack 
+scale4vsx,sscal_sumd,ssx_cal,30,0.01,0.2,24,-70,70,scleantrack $scal x vs E4 t=scleantrack
+
+end   hist sos_pid_other

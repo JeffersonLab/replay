@@ -1,0 +1,111 @@
+ begin hist hms_decoded_cal  group=hms group=both
+
+rf25ps,gmisc_dec_data(116),1,0,1 $### HMS CALORIMETER RAW ADC's 
+
+hcalraw_e1,  hcal_e1,100,-.1,1.0*hpcentral $hcal raw E1   t=htrig
+hcalraw_e2,  hcal_e2,100,-.1,1.0*hpcentral $hcal raw E2   t=htrig
+hcalraw_e3,  hcal_e3,100,-.1,1.0*hpcentral $hcal raw E3   t=htrig
+hcalraw_e4,  hcal_e4,100,-.1,1.0*hpcentral $hcal raw E4   t=htrig
+hcalraw_et,  hcal_et,100,-.1,1.8*hpcentral $hcal raw ET   t=htrig
+;
+; these are duplicated in hist.HMS_rawadcs, so I'm commenting them out.
+; HCAL_ADC_A1p,HCAL_REALADC(1),150,0,600     $HCAL ADC A1p -ped t=htrig
+; HCAL_ADC_A2p,HCAL_REALADC(2),150,0,600     $HCAL ADC A2p -ped t=htrig
+; HCAL_ADC_A3p,HCAL_REALADC(3),150,0,600     $HCAL ADC A3p -ped t=htrig
+; HCAL_ADC_A4p,HCAL_REALADC(4),150,0,600     $HCAL ADC A4p -ped t=htrig
+; HCAL_ADC_A5p,HCAL_REALADC(5),150,0,600     $HCAL ADC A5p -ped t=htrig
+; HCAL_ADC_A6p,HCAL_REALADC(6),150,0,600     $HCAL ADC A6p -ped t=htrig
+; HCAL_ADC_A7p,HCAL_REALADC(7),150,0,600     $HCAL ADC A7p -ped t=htrig
+; HCAL_ADC_A8p,HCAL_REALADC(8),150,0,600     $HCAL ADC A8p -ped t=htrig
+; HCAL_ADC_A9p,HCAL_REALADC(9),150,0,600     $HCAL ADC A9p -ped t=htrig
+; HCAL_ADC_A10p,HCAL_REALADC(10),150,0,600   $HCAL ADC A10p -ped t=htrig
+; HCAL_ADC_A11p,HCAL_REALADC(11),150,0,600   $HCAL ADC A11p -ped t=htrig
+; HCAL_ADC_A12p,HCAL_REALADC(12),150,0,600   $HCAL ADC A12p -ped t=htrig
+; HCAL_ADC_A13p,HCAL_REALADC(13),150,0,600   $HCAL ADC A13p -ped t=htrig
+;;  
+; HCAL_ADC_A1n,hcal_realadc_neg(1),150,0,600     $HCAL ADC A1n -ped t=htrig
+; HCAL_ADC_A2n,hcal_realadc_neg(2),150,0,600     $HCAL ADC A2n -ped t=htrig
+; HCAL_ADC_A3n,hcal_realadc_neg(3),150,0,600     $HCAL ADC A3n -ped t=htrig
+; HCAL_ADC_A4n,hcal_realadc_neg(4),150,0,600     $HCAL ADC A4n -ped t=htrig
+; HCAL_ADC_A5n,hcal_realadc_neg(5),150,0,600     $HCAL ADC A5n -ped t=htrig
+; HCAL_ADC_A6n,hcal_realadc_neg(6),150,0,600     $HCAL ADC A6n -ped t=htrig
+; HCAL_ADC_A7n,hcal_realadc_neg(7),150,0,600     $HCAL ADC A7n -ped t=htrig
+; HCAL_ADC_A8n,hcal_realadc_neg(8),150,0,600     $HCAL ADC A8n -ped t=htrig
+; HCAL_ADC_A9n,hcal_realadc_neg(9),150,0,600     $HCAL ADC A9n -ped t=htrig
+; HCAL_ADC_A10n,hcal_realadc_neg(10),150,0,600   $HCAL ADC A10n -ped t=htrig
+; HCAL_ADC_A11n,hcal_realadc_neg(11),150,0,600   $HCAL ADC A11n -ped t=htrig
+; HCAL_ADC_A12n,hcal_realadc_neg(12),150,0,600   $HCAL ADC A12n -ped t=htrig
+; HCAL_ADC_A13n,hcal_realadc_neg(13),150,0,600   $HCAL ADC A13n -ped t=htrig
+;;
+; HCAL_ADC_B1p,HCAL_REALADC(14),150,0,600   $HCAL ADC B1p -ped t=htrig
+; HCAL_ADC_B2p,HCAL_REALADC(15),150,0,600   $HCAL ADC B2p -ped t=htrig
+; HCAL_ADC_B3p,HCAL_REALADC(16),150,0,600   $HCAL ADC B3p -ped t=htrig
+; HCAL_ADC_B4p,HCAL_REALADC(17),150,0,600   $HCAL ADC B4p -ped t=htrig
+; HCAL_ADC_B5p,HCAL_REALADC(18),150,0,600   $HCAL ADC B5p -ped t=htrig
+; HCAL_ADC_B6p,HCAL_REALADC(19),150,0,600   $HCAL ADC B6p -ped t=htrig
+; HCAL_ADC_B7p,HCAL_REALADC(20),150,0,600   $HCAL ADC B7p -ped t=htrig
+; HCAL_ADC_B8p,HCAL_REALADC(21),150,0,600   $HCAL ADC B8p -ped t=htrig
+; HCAL_ADC_B9p,HCAL_REALADC(22),150,0,600   $HCAL ADC B9p -ped t=htrig
+; HCAL_ADC_B10p,HCAL_REALADC(23),150,0,600   $HCAL ADC B10p -ped t=htrig
+; HCAL_ADC_B11p,HCAL_REALADC(24),150,0,600   $HCAL ADC B11p -ped t=htrig
+; HCAL_ADC_B12p,HCAL_REALADC(25),150,0,600   $HCAL ADC B12p -ped t=htrig
+; HCAL_ADC_B13p,HCAL_REALADC(26),150,0,600   $HCAL ADC B13p -ped t=htrig
+;;
+; HCAL_ADC_B1n,hcal_realadc_neg(14),150,0,600   $HCAL ADC B1n -ped t=htrig
+; HCAL_ADC_B2n,hcal_realadc_neg(15),150,0,600   $HCAL ADC B2n -ped t=htrig
+; HCAL_ADC_B3n,hcal_realadc_neg(16),150,0,600   $HCAL ADC B3n -ped t=htrig
+; HCAL_ADC_B4n,hcal_realadc_neg(17),150,0,600   $HCAL ADC B4n -ped t=htrig
+; HCAL_ADC_B5n,hcal_realadc_neg(18),150,0,600   $HCAL ADC B5n -ped t=htrig
+; HCAL_ADC_B6n,hcal_realadc_neg(19),150,0,600   $HCAL ADC B6n -ped t=htrig
+; HCAL_ADC_B7n,hcal_realadc_neg(20),150,0,600   $HCAL ADC B7n -ped t=htrig
+; HCAL_ADC_B8n,hcal_realadc_neg(21),150,0,600   $HCAL ADC B8n -ped t=htrig
+; HCAL_ADC_B9n,hcal_realadc_neg(22),150,0,600   $HCAL ADC B9n -ped t=htrig
+; HCAL_ADC_B10n,hcal_realadc_neg(23),150,0,600   $HCAL ADC B10n -ped t=htrig
+; HCAL_ADC_B11n,hcal_realadc_neg(24),150,0,600   $HCAL ADC B11n -ped t=htrig
+; HCAL_ADC_B12n,hcal_realadc_neg(25),150,0,600   $HCAL ADC B12n -ped t=htrig
+; HCAL_ADC_B13n,hcal_realadc_neg(26),150,0,600   $HCAL ADC B13n -ped t=htrig
+;; 
+; HCAL_ADC_C1p,HCAL_REALADC(27),150,0,600   $HCAL ADC C1p -ped t=htrig
+; HCAL_ADC_C2p,HCAL_REALADC(28),150,0,600   $HCAL ADC C2p -ped t=htrig
+; HCAL_ADC_C3p,HCAL_REALADC(29),150,0,600   $HCAL ADC C3p -ped t=htrig
+; HCAL_ADC_C4p,HCAL_REALADC(30),150,0,600   $HCAL ADC C4p -ped t=htrig
+; HCAL_ADC_C5p,HCAL_REALADC(31),150,0,600   $HCAL ADC C5p -ped t=htrig
+; HCAL_ADC_C6p,HCAL_REALADC(32),150,0,600   $HCAL ADC C6p -ped t=htrig
+; HCAL_ADC_C7p,HCAL_REALADC(33),150,0,600   $HCAL ADC C7p -ped t=htrig
+; HCAL_ADC_C8p,HCAL_REALADC(34),150,0,600   $HCAL ADC C8p -ped t=htrig
+; HCAL_ADC_C9p,HCAL_REALADC(35),150,0,600   $HCAL ADC C9p -ped t=htrig
+; HCAL_ADC_C10p,HCAL_REALADC(36),150,0,600   $HCAL ADC C10p -ped t=htrig
+; HCAL_ADC_C11p,HCAL_REALADC(37),150,0,600   $HCAL ADC C11p -ped t=htrig
+; HCAL_ADC_C12p,HCAL_REALADC(38),150,0,600   $HCAL ADC C12p -ped t=htrig
+; HCAL_ADC_C13p,HCAL_REALADC(39),150,0,600   $HCAL ADC C13p -ped t=htrig
+;; 
+; HCAL_ADC_D1p,HCAL_REALADC(40),150,0,600   $HCAL ADC D1p -ped t=htrig
+; HCAL_ADC_D2p,HCAL_REALADC(41),150,0,600   $HCAL ADC D2p -ped t=htrig
+; HCAL_ADC_D3p,HCAL_REALADC(42),150,0,600   $HCAL ADC D3p -ped t=htrig
+; HCAL_ADC_D4p,HCAL_REALADC(43),150,0,600   $HCAL ADC D4p -ped t=htrig
+; HCAL_ADC_D5p,HCAL_REALADC(44),150,0,600   $HCAL ADC D5p -ped t=htrig
+; HCAL_ADC_D6p,HCAL_REALADC(45),150,0,600   $HCAL ADC D6p -ped t=htrig
+; HCAL_ADC_D7p,HCAL_REALADC(46),150,0,600   $HCAL ADC D7p -ped t=htrig
+; HCAL_ADC_D8p,HCAL_REALADC(47),150,0,600   $HCAL ADC D8p -ped t=htrig
+; HCAL_ADC_D9p,HCAL_REALADC(48),150,0,600   $HCAL ADC D9p -ped t=htrig
+; HCAL_ADC_D10p,HCAL_REALADC(49),150,0,600   $HCAL ADC D10p -ped t=htrig
+; HCAL_ADC_D11p,HCAL_REALADC(50),150,0,600   $HCAL ADC D11p -ped t=htrig
+; HCAL_ADC_D12p,HCAL_REALADC(51),150,0,600   $HCAL ADC D12p -ped t=htrig
+; HCAL_ADC_D13p,HCAL_REALADC(52),150,0,600   $HCAL ADC D13p -ped t=htrig
+;
+ end   hist hms_decoded_cal
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

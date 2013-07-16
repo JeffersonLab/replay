@@ -1,0 +1,64 @@
+begin hist hms_decoded_scin_and_cal group=hms group=both
+
+rf25ps,gmisc_dec_data(116),1,0,1 $### HMS CALORIMETERS
+
+hcaldpos,80,-15.,15.            $hcal delta x t=user
+hcalsumadc,100,-100,200         $hcal ADCs t=user
+hcalaposhits,13,0.5,13.5        $hcal layer A+ hits t=user
+hcalbposhits,13,0.5,13.5        $hcal layer B+ hits t=user
+hcalcposhits,13,0.5,13.5        $hcal layer C+ hits t=user
+hcaldposhits,13,0.5,13.5        $hcal layer D+ hits t=user
+hcalaneghits,13,0.5,13.5        $hcal layer A- hits t=user
+hcalbneghits,13,0.5,13.5        $hcal layer B- hits t=user
+
+rf25ps,gmisc_dec_data(116),1,0,1 $### HMS SCINTILLATORS
+
+hmisctdcs,100,0,5000         $HMS misc tdcs t=user
+hscinalltimes,100,0,100      $HMS scinalltimes t=user
+hscintimes,100,0,100         $HMS scintimes t=user
+hscindpos1,60,-6,6           $HMS s1x delta x t=user
+hscindpos2,60,-6,6           $HMS s1y delta y t=user
+hscindpos3,60,-6,6           $HMS s2x delta x t=user
+hscindpos4,60,-6,6           $HMS s2y delta y t=user
+
+hpostdc1,16,0.5,16.5         $HMS s1x+ TDC hits t=user
+hnegtdc1,16,0.5,16.5         $HMS s1x- TDC hits t=user
+hpostdc2,10,0.5,10.5         $HMS s1y+ TDC hits t=user
+hnegtdc2,10,0.5,10.5         $HMS s1y- TDC hits t=user
+hpostdc3,16,0.5,16.5         $HMS s2x+ TDC hits t=user
+hnegtdc3,16,0.5,16.5         $HMS s2x- TDC hits t=user
+hpostdc4,10,0.5,10.5         $HMS s2y+ TDC hits t=user
+hnegtdc4,10,0.5,10.5         $HMS s2y- TDC hits t=user
+
+hsumpostdc1,128,0,4096       $HMS s1x+ TDC t=user
+hsumnegtdc1,128,0,4096       $HMS s1x- TDC t=user
+hsumpostdc2,128,0,4096       $HMS s1y+ TDC t=user
+hsumnegtdc2,128,0,4096       $HMS s1y- TDC t=user
+hsumpostdc3,128,0,4096       $HMS s2x+ TDC t=user
+hsumnegtdc3,128,0,4096       $HMS s2x- TDC t=user
+hsumpostdc4,128,0,4096       $HMS s2y+ TDC t=user
+hsumnegtdc4,128,0,4096       $HMS s2y- TDC t=user
+
+hposadc1,16,0.5,16.5         $HMS s1x+ ADC hits t=user
+hnegadc1,16,0.5,16.5         $HMS s1x- ADC hits t=user
+hposadc2,10,0.5,10.5         $HMS s1y+ ADC hits t=user
+hnegadc2,10,0.5,10.5         $HMS s1y- ADC hits t=user
+hposadc3,16,0.5,16.5         $HMS s2x+ ADC hits t=user
+hnegadc3,16,0.5,16.5         $HMS s2x- ADC hits t=user
+hposadc4,10,0.5,10.5         $HMS s2y+ ADC hits t=user
+hnegadc4,10,0.5,10.5         $HMS s2y- ADC hits t=user
+
+hsumposadc1,100,-50,50       $HMS s1x+ ADC Ped Check t=user
+hsumnegadc1,100,-50,50       $HMS s1x- ADC Ped Check t=user
+hsumposadc2,100,-50,50       $HMS s1y+ ADC Ped Check t=user
+hsumnegadc2,100,-50,50       $HMS s1y- ADC Ped Check t=user
+hsumposadc3,100,-50,50       $HMS s2x+ ADC Ped Check t=user
+hsumnegadc3,100,-50,50       $HMS s2x- ADC Ped Check t=user
+hsumposadc4,100,-50,50       $HMS s2y+ ADC Ped Check t=user
+hsumnegadc4,100,-50,50       $HMS s2y- ADC Ped Check t=user
+
+hscinplane1,16,0.5,16.5      $HMS scinplane1 t=user
+hscinplane2,10,0.5,10.5      $HMS scinplane2 t=user
+hscinplane3,16,0.5,16.5      $HMS scinplane3 t=user
+hscinplane4,10,0.5,10.5      $HMS scinplane4 t=user
+end   hist hms_decoded_scin_and_cal

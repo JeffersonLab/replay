@@ -1,0 +1,163 @@
+begin parm treefilename
+#string hmstreefile[100]
+#string sostreefile[100]
+#string cointreefile[100]
+hmstreefile="hms.tree"
+sostreefile="sos.tree"
+cointreefile="coin.tree"
+end parm treefilename
+
+begin test sostree group=sos group=both
+#real wsq
+wsq=SINVMASS*SINVMASS
+end test sosmisc
+
+begin tree hms group=hms group=both file=hmstreefile test=hsnum_fptrack
+pid=hcer_npe_sum,hinvmass,hstrack_preshower_e,hsbeta,hsdedx(1)
+recon=hsp,hsenergy,hsdelta,hstheta,hsphi,hszbeam,hsshtrk
+	hsy_tar,hsxp_tar,hsyp_tar,hstart_time,hsnu,hsx_bj,hsbigq2
+	y_scale,xsi_scale
+beam=gbcm1_charge,gfrx_raw_adc,gfry_raw_adc,gbeam_x,gbeam_y,gbpm_x(1)
+	gbpm_y(1),gbpm_x(2),gbpm_y(2),gbpm_x(3),gbpm_y(3)
+misc=gen_event_id_number,gen_event_type
+end tree hms
+
+begin tree sos group=sos group=both file=sostreefile test=ssnum_fptrack
+fp=ssx_fp,ssy_fp,ssxp_fp,ssyp_fp
+pid=scer_npe_sum,sinvmass,sstrack_preshower_e,ssbeta,ssdedx(1)
+	saer_npe_sum,scer_adc(1),scer_adc(2),scer_adc(3),scer_adc(4)
+recon=ssp,ssenergy,ssdelta,sstheta,ssphi,sszbeam,ssshtrk
+	ssy_tar,ssxp_tar,ssyp_tar,sstart_time,ssx_bj,ssbigq2
+	ssomega,ssq3,wsq,ssthet_gamma
+beam=gbcm1_charge,gfrx_raw_adc,gfry_raw_adc,gbeam_x,gbeam_y,gbpm_x(1)
+	gbpm_y(1),gbpm_x(2),gbpm_y(2),gbpm_x(3),gbpm_y(3)
+misc=gen_event_id_number,gen_event_type
+
+;;      s_Ntuple_contents(m)= smisc_dec_data(2,2)
+;;      s_Ntuple_contents(m)= smisc_dec_data(3,2) 
+;;      s_Ntuple_contents(m)= smisc_dec_data(4,2) 
+end tree sos
+
+begin test cointree group=both
+#integer tracksinboth
+tracksinboth= (HSNUM_FPTRACK > 0) && (SSNUM_FPTRACK > 0)
+
+#real pathdiff_cor
+pathdiff_corr= sspath_cor - hspath_cor
+
+#real hsztar, ssztar, ztard1, ztard2
+ztard1=abs(htheta_lab)*0.0174533
+ztard2=ztard1-HSYP_TAR
+hsztar=HSY_TAR*(sin(ztard1)+cos(ztard1)/tan(ztard2))
+
+ztard1=abs(stheta_lab)*0.0174533
+ztard2=ztard1+SSYP_TAR
+hsztar=SSY_TAR*(sin(ztard1)+cos(ztard1)/tan(ztard2))
+
+
+end test coinmisc
+
+begin tree coin group=both file=cointreefile test=tracksinboth
+original=ccointime_hms ; Corrected Coincidence time
+	gbpm_beam_x   ; Mean Beam X Position
+	gbpm_beam_y   ; Mean Beam Y Position
+	gbpm_x(2)   ; Beam X Position bei BPM 2 (gut=1.8)
+	gbpm_y(2)   ; Beam Y Position bei BPM 2 (gut=0.0)
+	gfrx_raw_adc ; Fast Raster X
+	gfry_raw_adc ; Fast Raster Y
+	gbeam_x ; Berechnete StrahlpositionX
+	gbeam_y ; Berechnete StrahlpositionY
+	hsx_fp      ; HMS focal plane
+	hsy_fp      ; 
+	hsxp_fp     ; 
+	hsyp_fp     ; 
+	ssx_fp      ; SOS focal plane
+	ssy_fp      ; 
+	ssxp_fp     ; 
+	ssyp_fp     ; 
+	hsy_tar     ; HMS target
+	ssx_cal
+	ssy_cal
+	hsmass2
+	haero_pos_npe_sum
+	haero_neg_npe_sum
+	hcer_adc(1)
+	hcer_adc(2)
+	hsx_cer
+	pathdiff_corr ; (sspath_cor - hspath_cor)
+	sszbeam
+	hszbeam      
+	ctphix
+	ctphiy
+	hbeta_notrk 
+	hsp	        ; Lab momentum
+	hsxp_tar    ; 
+	hsyp_tar    ; 
+	hsdelta     ;
+	ssy_tar     ; SOS Target
+	ssp	; Lab momentum of chosen track in GeV/c
+	ssxp_tar    ; 
+	ssyp_tar    ; 
+	ssdelta     ;
+	hcer_npe_sum ; HMS Particle Id.
+	hsshsum  ;  xucc what's wrong with this?
+	hsshtrk  ;
+	hsprtrk ;
+	hsbeta_p ;
+	hsbeta      ;
+	hsdedx(1)   ;
+	scer_npe_sum ; SOS Particle Id.
+	ssshsum  ; xucc what's wrong with this again?
+	ssshtrk  ;
+	ssprtrk ;
+	ssbeta_p      ;
+	ssbeta      ;
+	ssdedx(1)   ;
+	gbcm2_charge ; Charge of last scaler event
+	gen_event_ID_number
+	gen_event_type
+	cmissing_e  ; missing energy
+ 	cmissing_mass ; missing mass
+	cmex  ; missing energy
+	cmmx ; missing mass
+	cmissing_mom ; Missing Momentum
+	cmissing_mom_par ; pm parallel to q
+	cmissing_mom_perp ; pm perp tp q
+	cmissing_mom_oop ; pm out of plane
+	c_omega 
+      	c_bigq2  ; q2?
+	c_w2
+      	X_bj
+	qabs
+	z_m
+	pt2
+	cmin_t
+	cthetapq 
+ 	cphipi ; originally cphipq 
+xucc=	hsztar
+	ssztar
+      	c_invmass
+ 	c_epsilon
+	c_gamma_v
+xempt=	hstheta ; Lab Scattering angle in radians
+      	hsphi	; Lab Scattering angle in radians
+ 	sstheta	; Lab Scattering angle in radians
+	ssphi	; Lab Azymuthal angle in radians
+;* 
+;*    xucc added begin
+;*      c_Ntuple_contents(m)= ce_exc ! Excitation Energy
+;*      m= m+1
+;*      c_Ntuple_contents(m)= ce_excx ! Excitation Energy
+;*      m= m+1
+;*     xucc added end
+;*    xucc added begin
+
+;*    ! Azimuthal angle of hadron about q, but in original code it never calculate it 
+;*    ! anywhere so I change it to be cphipi
+;*    !         cphipi = acos(p_new_x/sqrt(p_new_x**2+p_new_y**2))
+;*    !         It is an angel about pi particle
+;*    !         why is it p_new_x? p_new_y? not yet know. 
+
+
+end tree coin
+

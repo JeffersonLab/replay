@@ -1,0 +1,31 @@
+begin hist hms_physics_finaltracks group=hms group=both
+
+; duplicated in coin and elast_coin. 
+;dummy1,gmisc_dec_data(116),1,0,1 $### HMS TGT VARS RECON
+
+;djm chosen scales preserve aspect ratio of collimator. binning is 2 mrad. 
+hsxptarvshsyptar,hsyp_tar,hsxp_tar,75,-.075,.075,75,-.075,.075,hcleantrack $HMS xptar vs yptar t=hcleantrack
+;djm chosen scale preserves aspect ratio of collimator. binning is 2mm even though an electron is not required.
+hsxcolvshsycol,hms_y_collim,hms_x_collim,120,-12.,12.,120,-12.,12.,hcleantrack $HMS collim recon t=hcleantrack
+;djm chosen scale preserves aspect ratio of collimator. binning is 2mm. an electron is required.
+hsxcolvshsycole,hms_y_collim,hms_x_collim,120,-12.,12.,120,-12.,12.,helec_cercut  $HMS collim recon t=helec_cercut
+
+hsy_tar,hsy_tar,320,-8.,8.,hcleantrack                   $HMS ytar t=hcleantrack
+hsy_tarpi,hsy_tar,320,-8.,8.,coincut_e_pi                $HMS ytar `pions' t=coincut_e_pi 
+hsy_tarprot,hsy_tar,320,-8.,8.,coincut_e_p               $HMS ytar `protons' t=coincut_e_p 
+hsz_tar,hszbeam,100,-8.,8.,hcleantrack                   $HMS ztar t=hcleantrack
+;
+hsxp_tar,hsxp_tar,200,-.2,.2,hcleantrack                   $HMS xptar t=hcleantrack
+hsyp_tar,hsyp_tar,200,-.1,.1,hcleantrack                   $HMS yptar t=hcleantrack
+hsdelta_tar,hsdelta,200,-12.,12.,hcleantrack               $HMS delta  t=hcleantrack
+;hsdelta_tarfine,hsdelta,1000,-12.,12.,hcleantrack         $HMS delta fine t=hcleantrack
+hsp_tar,hp_tar,200,0.88*hpcentral,1.12*hpcentral,hcleantrack  $HMS momentum t=hcleantrack
+
+;histograms for Henk's optics check
+; gh - 03.03.18
+hswxptar_H,hinvmass,hsxp_tar,50,0.90,1.0,50,-0.2,0.2,hcleantrack $HMS W(1H) vs xptar t=hcleantrack
+hswxptar_C,hinvmass,hsxp_tar,50,11.170,11.185,50,-0.2,0.2,hcleantrack $HMS W(12C) vs xptar t=hcleantrack
+hswyptar_H,hinvmass,hsyp_tar,50,0.90,1.0,50,-0.1,0.1,hcleantrack $HMS W(1H) vs yptar t=hcleantrack
+hswyptar_C,hinvmass,hsyp_tar,50,11.170,11.185,50,-0.1,0.1,hcleantrack $HMS W(12C) vs yptar t=hcleantrack
+
+end   hist hms_physics_finaltracks

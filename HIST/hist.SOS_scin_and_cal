@@ -1,0 +1,70 @@
+begin hist sos_decoded_scin group=sos group=both
+
+rf25ps,gmisc_dec_data(116),1,0,1 $### SOS - SCINTILLATOR
+
+scaldpos,80,-15.,15.        $scal delta x t=user
+scalsumadc,100,-100,200     $scal ADCs t=user
+scalaposhits,11,0.5,11.5    $scal layer A+ hits t=user
+scalbposhits,11,0.5,11.5    $scal layer B+ hits t=user
+scalcposhits,11,0.5,11.5    $scal layer C+ hits t=user
+scaldposhits,11,0.5,11.5    $scal layer D+ hits t=user
+scalaneghits,11,0.5,11.5    $scal layer A- hits t=user
+scalbneghits,11,0.5,11.5    $scal layer B- hits t=user
+scalcneghits,11,0.5,11.5    $scal layer C- hits t=user
+scaldneghits,11,0.5,11.5    $scal layer D- hits t=user
+
+rf25ps,gmisc_dec_data(116),1,0,1 $### SOS SCINTILLATORS
+
+smisctdcs,200,0,8000     $smisctdcs t=user
+sscinalltimes,100,0,100  $SOS scinalltimes t=user
+sscintimes,100,0,100     $SOS scintimes t=user
+sscindpos1,80,-8,8       $SOS s1x delta x t=user
+sscindpos2,80,-8,8       $SOS s1y delta y t=user
+sscindpos3,80,-8,8       $SOS s2x delta x t=user
+sscindpos4,80,-8,8       $SOS s2y delta y t=user
+sscindpos_pid1,80,-8,8   $SOS s1x delta x t=user(electron)
+sscindpos_pid2,80,-8,8   $SOS s1y delta y t=user(electron)
+sscindpos_pid3,80,-8,8   $SOS s2x delta x t=user(electron)
+sscindpos_pid4,80,-8,8   $SOS s2y delta y t=user(electron)
+
+spostdc1, 9,0.5, 9.5     $SOS s1x+ TDC hits t=user
+snegtdc1, 9,0.5, 9.5     $SOS s1x- TDC hits t=user
+spostdc2, 9,0.5, 9.5     $SOS s1y+ TDC hits t=user
+snegtdc2, 9,0.5, 9.5     $SOS s1y- TDC hits t=user
+spostdc3,16,0.5,16.5     $SOS s2x+ TDC hits t=user
+snegtdc3,16,0.5,16.5     $SOS s2x- TDC hits t=user
+spostdc4, 9,0.5, 9.5     $SOS s2y+ TDC hits t=user
+snegtdc4, 9,0.5, 9.5     $SOS s2y- TDC hits t=user
+
+ssumpostdc1,128,0,4096   $SOS s1x+ TDC t=user
+ssumnegtdc1,128,0,4096   $SOS s1x- TDC t=user
+ssumpostdc2,128,0,4096   $SOS s1y+ TDC t=user
+ssumnegtdc2,128,0,4096   $SOS s1y- TDC t=user
+ssumpostdc3,128,0,4096   $SOS s2x+ TDC t=user
+ssumnegtdc3,128,0,4096   $SOS s2x- TDC t=user
+ssumpostdc4,128,0,4096   $SOS s2y+ TDC t=user
+ssumnegtdc4,128,0,4096   $SOS s2y- TDC t=user
+
+sposadc1, 9,0.5, 9.5     $SOS s1x+ ADC hits t=user
+snegadc1, 9,0.5, 9.5     $SOS s1x- ADC hits t=user
+sposadc2, 9,0.5, 9.5     $SOS s1y+ ADC hits t=user
+snegadc2, 9,0.5, 9.5     $SOS s1y- ADC hits t=user
+sposadc3,16,0.5,16.5     $SOS s2x+ ADC hits t=user
+snegadc3,16,0.5,16.5     $SOS s2x- ADC hits t=user
+sposadc4, 9,0.5, 9.5     $SOS s2y+ ADC hits t=user
+snegadc4, 9,0.5, 9.5     $SOS s2y- ADC hits t=user
+
+ssumposadc1,100,-50,50   $SOS s1x+ ADC Ped Check t=user
+ssumnegadc1,100,-50,50   $SOS s1x- ADC Ped Check t=user
+ssumposadc2,100,-50,50   $SOS s1y+ ADC Ped Check t=user
+ssumnegadc2,100,-50,50   $SOS s1y- ADC Ped Check t=user
+ssumposadc3,100,-50,50   $SOS s2x+ ADC Ped Check t=user
+ssumnegadc3,100,-50,50   $SOS s2x- ADC Ped Check t=user
+ssumposadc4,100,-50,50   $SOS s2y+ ADC Ped Check t=user
+ssumnegadc4,100,-50,50   $SOS s2y- ADC Ped Check t=user
+
+sscinplane1, 9,0.5, 9.5  $SOS scinplane1 t=user
+sscinplane2, 9,0.5, 9.5  $SOS scinplane2 t=user
+sscinplane3,16,0.5,16.5  $SOS scinplane3 t=user
+sscinplane4, 9,0.5, 9.5  $SOS scinplane4 t=user
+end   hist sos_decoded_scin

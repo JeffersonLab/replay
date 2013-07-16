@@ -1,0 +1,83 @@
+ve/del *
+
+* eto programma dlia zasovivania calibrovovhnix
+* filov s calorimetra v standartnix calibrovochnij
+* file
+
+ve/cr run(54) r
+
+ve/read run temp.list
+
+
+do i=1,54
+
+num=run([i])
+mess Run Number is = [num]
+
+sh rm hcal.param.vt.[num]
+
+sh cat empty_cal_calibrovka > hcal.param.vt.[num]
+sh cat hcal.param.[num] >> hcal.param.vt.[num]
+
+
+if ([i] = 50) then
+* wait
+endif 
+
+if ([i] = 100) then
+* wait
+endif 
+
+if ([i] = 150) then
+* wait
+endif 
+
+if ([i] = 200) then
+ wait
+endif 
+
+if ([i] = 250) then
+* wait
+endif 
+
+if ([i] = 300) then
+ wait
+endif 
+
+if ([i] = 350) then
+* wait
+endif 
+
+if ([i] = 400) then
+ wait
+endif 
+
+if ([i] = 450) then 
+* wait
+endif 
+
+if ([i] = 500) then
+* wait
+endif 
+
+if ([i] = 550) then
+* wait
+endif 
+
+if ([i] = 600) then
+ wait
+endif 
+
+if ([i] = 650) then
+* wait
+endif 
+
+if ([i] = 700) then
+* wait
+endif 
+
+
+enddo
+
+
+mess Finished !

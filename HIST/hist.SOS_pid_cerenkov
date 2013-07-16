@@ -1,0 +1,24 @@
+begin hist sos_pid_cerenkov group=sos group=both
+
+rf25ps,gmisc_dec_data(116),1,0,1 $### SOS CERENKOV (PID)
+
+scer_adc_1,scer_adc(1),650,-1200,100          $scer adc top-l  t=strig
+scer_adc_2,scer_adc(2),650,-100,1200          $scer adc top-r  t=strig
+scer_adc_3,scer_adc(3),650,-100,1200          $scer adc bot-r  t=strig
+scer_adc_4,scer_adc(4),650,-100,1200          $scer adc bot-l  t=strig
+
+scer_adc_1e,scer_adc(1),650,-100,1200,selec_calcut          $scer adc top-l  t=selec_calcut
+scer_adc_2e,scer_adc(2),650,-100,1200,selec_calcut          $scer adc top-r  t=selec_calcut
+scer_adc_3e,scer_adc(3),650,-100,1200,selec_calcut          $scer adc bot-r  t=selec_calcut
+scer_adc_4e,scer_adc(4),650,-100,1200,selec_calcut          $scer adc bot-l  t=selec_calcut
+
+
+scer_npe_1,scer_npe(1),155,-1,30              $scer npe top-l t=strig
+scer_npe_2,scer_npe(2),155,-1,30              $scer npe top-r t=strig
+scer_npe_3,scer_npe(3),155,-1,30              $scer npe bot-r t=strig
+scer_npe_4,scer_npe(4),155,-1,30              $scer npe bot-l t=strig
+scer_npe_sum,scer_npe_sum,155,-1,60,strig     $scer npe sum t=strig
+scer_sum_cut,scer_npe_sum,155,-1,60,scerlat   $scer sum t=scerlat
+scervssx,scer_npe_sum,ssx_cer,61,-1,60,40,-50,50,scleantrack  $xcer vs scer-npe t=sclean
+scervssy,scer_npe_sum,ssy_cer,61,-1,60,40,-20,20,scleantrack  $ycer vs scer-npe t=sclean
+end   hist sos_pid_cerenkov

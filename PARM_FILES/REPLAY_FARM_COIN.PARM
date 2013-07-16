@@ -1,0 +1,76 @@
+; Setup file for engine
+begin parm engine
+
+;CODA EVENT FILE.
+   gen_run_number = 1
+
+g_data_source_filename = '/cache/mss/hallc/daq04/raw/daq04_%d.log'
+;g_data_source_filename = '|/w/work2201/Tvaskis/E02-109_E04-001/Linux/bin/syncfilter <WORKDIR>/daq04_%d.log'
+
+
+ 
+;PREPROCESSOR FLAGS. Uncomment and change g_preproc_event.f to make reduced data files.
+;                    should also disable unnecessary analysis in gdebug.param file.
+;  g_preproc_on=1
+;  g_preproc_filename='%d_short.log'
+
+ 
+;INPUT FILES.
+  g_ctp_database_filename =   'standard.database'    ; pointers to map/param files.
+  g_ctp_test_filename =       'TEST/standard.test_neznau'       ; ctp test definitions.
+  g_ctp_hist_filename =       'HIST/standard.hist'        ; ctp histogram definitions.
+  h_recon_coeff_filename =    'DATFILES/hms_recon_coeff.dat'  ;hms optics matrix
+  h_recon_cosy_filename =     'DATFILES/hms_cosy_coeff.dat'  ;hms optics matrix
+  s_recon_coeff_filename =    'DATFILES/sos_recon_coeff.dat'  ;sos optics matrix
+;RUN FLAGS.
+   gen_run_enable(1) = 1            ;(0=disabled) - HMS triggers
+   gen_run_enable(2) = 1            ;(0=disabled) - SOS triggers
+   gen_run_enable(3) = 1            ;(0=disabled) - COIN triggers
+   gen_run_enable(4) = 1            ;(0=disabled) - PED triggers(disable may not work)
+
+;   h_ntuple_max_segmentevents = 1500000
+
+;   rpc_on = 1
+;   rpc_control = 0
+    gdebugdumpepics = 1;
+
+;TEMPLATES.
+  h_report_template_filename = 'TEMPLATE/hreport.template'    ; HMS scalers.
+  s_report_template_filename = 'TEMPLATE/sreport.template'    ; SOS scalers.
+  g_report_template_filename = 'TEMPLATE/greport.template'    ; Summary report.
+  g_stats_template_filename  = 'TEMPLATE/gstats.template'     ; Short Statistics report.
+
+;OUTPUT FILE NAMES.
+  g_report_output_filename = 'scalers/gen%d.txt'
+  h_report_output_filename = 'scalers/hms%d.txt'
+  s_report_output_filename = 'scalers/sos%d.txt'
+  g_bad_output_filename =    'scalers/bad%d.txt'
+  g_stats_output_filename  = 'scalers/stats%d.txt'
+  g_epics_output_filename  = 'scalers/epics%d.txt'
+;  h_threshold_output_filename='peds/hms_thresholds.%d'
+;  s_threshold_output_filename='peds/sos_thresholds.%d'
+;  g_pedestal_output_filename ='peds/gen_pedestals.%d'
+;  h_pedestal_output_filename ='peds/hms_pedestals.%d'
+;  s_pedestal_output_filename ='peds/sos_pedestals.%d'
+;  h_angle_output_filename ='angles/hmsangle%d.jpg'
+;  s_angle_output_filename ='angles/sosangle%d.jpg'
+;  g_charge_scaler_filename = 'scalers/charge%d.txt'
+  g_alias_filename =   'paw/paw%d.kumac'
+; PAW alias file (output file)
+  g_histout_filename = 'paw/%d.hbook'     
+; ***** section for ntup files ****
+; output file for histograms.
+ sos_ntuple =          'paw/sos%d.rzdat'  
+; output for (LARGE) ntuple file.
+ hms_ntuple =         'paw/hms%d.rzdat'  
+; output for (LARGE) ntuple file.
+; keep coincidence ntuples around for a while
+; coin_ntuple =        'paw/coin%d.rzdat' 
+; output for (LARGE) ntuple file.
+; sos_sieve_ntuple =    'paw/sievesos%d.rzdat'
+;sos sieve slit data.
+; hms_sieve_ntuple =    'paw/sievehms%d.rzdat'   
+;hms sieve slit data.
+
+
+end parm engine

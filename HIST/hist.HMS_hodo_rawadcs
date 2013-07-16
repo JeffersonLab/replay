@@ -1,0 +1,129 @@
+ begin hist hms_hodo_rawadcs  group=hms group=both
+
+; must set hturnon_scin_raw_hist=1 in hdebug.param to fill these
+
+rf25ps,gmisc_dec_data(116),1,0,1 $### HMS HODOSCOPE RAW ADC's 
+
+; Most of these are also in hist.HMS_rawadcs
+;
+;hscin1x1posadc,160,-50,750  $ hS1X1+ ADC t=user
+;hscin1x2posadc,160,-50,750  $ hS1X2+ ADC t=user
+;hscin1x3posadc,160,-50,750  $ hS1X3+ ADC t=user
+;hscin1x4posadc,160,-50,750  $ hS1X4+ ADC t=user
+;hscin1x5posadc,160,-50,750  $ hS1X5+ ADC t=user
+;hscin1x6posadc,160,-50,750  $ hS1X6+ ADC t=user
+;hscin1x7posadc,160,-50,750  $ hS1X7+ ADC t=user
+;hscin1x8posadc,160,-50,750  $ hS1X8+ ADC t=user
+;hscin1x9posadc,160,-50,750  $ hS1X9+ ADC t=user
+;hscin1x10posadc,160,-50,750 $ hS1X10+ ADC t=user
+;hscin1x11posadc,160,-50,750 $ hS1X11+ ADC t=user
+;hscin1x12posadc,160,-50,750 $ hS1X12+ ADC t=user
+;hscin1x13posadc,160,-50,750 $ hS1X13+ ADC t=user
+;hscin1x14posadc,160,-50,750 $ hS1X14+ ADC t=user
+;hscin1x15posadc,160,-50,750 $ hS1X15+ ADC t=user
+;hscin1x16posadc,160,-50,750 $ hS1X16+ ADC t=user
+;hscin1y1posadc,160,-50,750  $ hS1Y1+ ADC t=user
+;hscin1y2posadc,160,-50,750  $ hS1Y2+ ADC t=user
+;hscin1y3posadc,160,-50,750  $ hS1Y3+ ADC t=user
+;hscin1y4posadc,160,-50,750  $ hS1Y4+ ADC t=user
+;hscin1y5posadc,160,-50,750  $ hS1Y5+ ADC t=user
+;hscin1y6posadc,160,-50,750  $ hS1Y6+ ADC t=user
+;hscin1y7posadc,160,-50,750  $ hS1Y7+ ADC t=user
+;hscin1y8posadc,160,-50,750  $ hS1Y8+ ADC t=user
+;hscin1y9posadc,160,-50,750  $ hS1Y9+ ADC t=user
+;hscin1y10posadc,160,-50,750 $ hS1Y10+ ADC t=user
+;hscin2x1posadc,160,-50,750  $ hS2X1+ ADC t=user
+;hscin2x2posadc,160,-50,750  $ hS2X2+ ADC t=user
+;hscin2x3posadc,160,-50,750  $ hS2X3+ ADC t=user
+;hscin2x4posadc,160,-50,750  $ hS2X4+ ADC t=user
+;hscin2x5posadc,160,-50,750  $ hS2X5+ ADC t=user
+;hscin2x6posadc,160,-50,750  $ hS2X6+ ADC t=user
+;hscin2x7posadc,160,-50,750  $ hS2X7+ ADC t=user
+;hscin2x8posadc,160,-50,750  $ hS2X8+ ADC t=user
+;hscin2x9posadc,160,-50,750  $ hS2X9+ ADC t=user
+;hscin2x10posadc,160,-50,750 $ hS2X10+ ADC t=user
+;hscin2x11posadc,160,-50,750 $ hS2X11+ ADC t=user
+;hscin2x12posadc,160,-50,750 $ hS2X12+ ADC t=user
+;hscin2x13posadc,160,-50,750 $ hS2X13+ ADC t=user
+;hscin2x14posadc,160,-50,750 $ hS2X14+ ADC t=user
+;hscin2x15posadc,160,-50,750 $ hS2X15+ ADC t=user
+;hscin2x16posadc,160,-50,750 $ hS2X16+ ADC t=user
+;hscin2y1posadc,160,-50,750  $ hS2Y1+ ADC t=user
+;hscin2y2posadc,160,-50,750  $ hS2Y2+ ADC t=user
+;hscin2y3posadc,160,-50,750  $ hS2Y3+ ADC t=user
+;hscin2y4posadc,160,-50,750  $ hS2Y4+ ADC t=user
+;hscin2y5posadc,160,-50,750  $ hS2Y5+ ADC t=user
+;hscin2y6posadc,160,-50,750  $ hS2Y6+ ADC t=user
+;hscin2y7posadc,160,-50,750  $ hS2Y7+ ADC t=user
+;hscin2y8posadc,160,-50,750  $ hS2Y8+ ADC t=user
+;hscin2y9posadc,160,-50,750  $ hS2Y9+ ADC t=user
+;hscin2y10posadc,160,-50,750 $ hS2Y10+ ADC t=user
+;hscin1x1negadc,160,-50,750  $ hS1X1- ADC t=user
+;hscin1x2negadc,160,-50,750  $ hS1X2- ADC t=user
+;hscin1x3negadc,160,-50,750  $ hS1X3- ADC t=user
+;hscin1x4negadc,160,-50,750  $ hS1X4- ADC t=user
+;hscin1x5negadc,160,-50,750  $ hS1X5- ADC t=user
+;hscin1x6negadc,160,-50,750  $ hS1X6- ADC t=user
+;hscin1x7negadc,160,-50,750  $ hS1X7- ADC t=user
+;hscin1x8negadc,160,-50,750  $ hS1X8- ADC t=user
+;hscin1x9negadc,160,-50,750  $ hS1X9- ADC t=user
+;hscin1x10negadc,160,-50,750 $ hS1X10- ADC t=user
+;hscin1x11negadc,160,-50,750 $ hS1X11- ADC t=user
+;hscin1x12negadc,160,-50,750 $ hS1X12- ADC t=user
+;hscin1x13negadc,160,-50,750 $ hS1X13- ADC t=user
+;hscin1x14negadc,160,-50,750 $ hS1X14- ADC t=user
+;hscin1x15negadc,160,-50,750 $ hS1X15- ADC t=user
+;hscin1x16negadc,160,-50,750 $ hS1X16- ADC t=user
+;hscin1y1negadc,160,-50,750  $ hS1Y1- ADC t=user
+;hscin1y2negadc,160,-50,750  $ hS1Y2- ADC t=user
+;hscin1y3negadc,160,-50,750  $ hS1Y3- ADC t=user
+;hscin1y4negadc,160,-50,750  $ hS1Y4- ADC t=user
+;hscin1y5negadc,160,-50,750  $ hS1Y5- ADC t=user
+;hscin1y6negadc,160,-50,750  $ hS1Y6- ADC t=user
+;hscin1y7negadc,160,-50,750  $ hS1Y7- ADC t=user
+;hscin1y8negadc,160,-50,750  $ hS1Y8- ADC t=user
+;hscin1y9negadc,160,-50,750  $ hS1Y9- ADC t=user
+;hscin1y10negadc,160,-50,750 $ hS1Y10- ADC t=user
+;hscin2x1negadc,160,-50,750  $ hS2X1- ADC t=user
+;hscin2x2negadc,160,-50,750  $ hS2X2- ADC t=user
+;hscin2x3negadc,160,-50,750  $ hS2X3- ADC t=user
+;hscin2x4negadc,160,-50,750  $ hS2X4- ADC t=user
+;hscin2x5negadc,160,-50,750  $ hS2X5- ADC t=user
+;hscin2x6negadc,160,-50,750  $ hS2X6- ADC t=user
+;hscin2x7negadc,160,-50,750  $ hS2X7- ADC t=user
+;hscin2x8negadc,160,-50,750  $ hS2X8- ADC t=user
+;hscin2x9negadc,160,-50,750  $ hS2X9- ADC t=user
+;hscin2x10negadc,160,-50,750 $ hS2X10- ADC t=user
+;hscin2x11negadc,160,-50,750 $ hS2X11- ADC t=user
+;hscin2x12negadc,160,-50,750 $ hS2X12- ADC t=user
+;hscin2x13negadc,160,-50,750 $ hS2X13- ADC t=user
+;hscin2x14negadc,160,-50,750 $ hS2X14- ADC t=user
+;hscin2x15negadc,160,-50,750 $ hS2X15- ADC t=user
+;hscin2x16negadc,160,-50,750 $ hS2X16- ADC t=user
+;hscin2y1negadc,160,-50,750  $ hS2Y1- ADC t=user
+;hscin2y2negadc,160,-50,750  $ hS2Y2- ADC t=user
+;hscin2y3negadc,160,-50,750  $ hS2Y3- ADC t=user
+;hscin2y4negadc,160,-50,750  $ hS2Y4- ADC t=user
+;hscin2y5negadc,160,-50,750  $ hS2Y5- ADC t=user
+;hscin2y6negadc,160,-50,750  $ hS2Y6- ADC t=user
+;hscin2y7negadc,160,-50,750  $ hS2Y7- ADC t=user
+;hscin2y8negadc,160,-50,750  $ hS2Y8- ADC t=user
+;hscin2y9negadc,160,-50,750  $ hS2Y9- ADC t=user
+;hscin2y10negadc,160,-50,750 $ hS2Y10- ADC t=user
+;
+ end   hist hms_hodo_rawadcs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

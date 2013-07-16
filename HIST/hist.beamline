@@ -1,0 +1,61 @@
+begin hist beamline_hists group=both group=hms group=sos
+
+rf25ps,gmisc_dec_data(116),1,0,1 $### BEAMLINE DIAGN-BPM FR
+
+;rf25ps,smisc_dec_data(65),200,0,8000   $rf-25ps TDC t=strig
+
+axp,gmisc_dec_data(105),100,0.,4000. $bpm003A X+ t=atrig
+axm,gmisc_dec_data(106),100,0.,4000. $bpm003A X- t=atrig
+ayp,gmisc_dec_data(107),100,0.,4000. $bpm003A Y+ t=atrig
+aym,gmisc_dec_data(108),100,0.,4000. $bpm003A Y- t=atrig
+bxp,gmisc_dec_data(109),100,0.,4000. $bpm003B X+ t=atrig
+bxm,gmisc_dec_data(110),100,0.,4000. $bpm003B X- t=atrig
+byp,gmisc_dec_data(111),100,0.,4000. $bpm003B Y+ t=atrig
+bym,gmisc_dec_data(112),100,0.,4000. $bpm003B Y- t=atrig
+cxp,gmisc_dec_data(117),100,0.,4000. $bpm003C X+ t=atrig
+cxm,gmisc_dec_data(118),100,0.,4000. $bpm003C X- t=atrig
+cyp,gmisc_dec_data(119),100,0.,4000. $bpm003C Y+ t=atrig
+cym,gmisc_dec_data(120),100,0.,4000. $bpm003C Y- t=atrig
+
+axbpm,gbpm_x(1),100,-0.6,0.6       $bpm003A X (cm)  t=atrig
+aybpm,gbpm_y(1),100,-0.6,0.6       $bpm003A Y (cm)  t=atrig
+bxbpm,gbpm_x(2),100,-0.6,0.6       $bpm003B X (cm)  t=atrig
+bybpm,gbpm_y(2),100,-0.6,0.6       $bpm003B Y (cm)  t=atrig
+cxbpm,gbpm_x(3),100,-0.6,0.6       $bpm003C X (cm)  t=atrig
+cybpm,gbpm_y(3),100,-0.6,0.6       $bpm003C Y (cm)  t=atrig
+
+axbpmmn,gbpm_meanx(1),100,-0.35,0.35       $bpm003A X mean (cm)  t=atrig
+aybpmmn,gbpm_meany(1),100,-0.35,0.35       $bpm003A Y mean (cm)  t=atrig
+bxbpmmn,gbpm_meanx(2),100,-0.35,0.35       $bpm003B X mean (cm)  t=atrig
+bybpmmn,gbpm_meany(2),100,-0.35,0.35       $bpm003B Y mean (cm)  t=atrig
+cxbpmmn,gbpm_meanx(3),100,-0.35,0.35       $bpm003C X mean (cm)  t=atrig
+cybpmmn,gbpm_meany(3),100,-0.35,0.35       $bpm003C Y mean (cm)  t=atrig
+
+abpm,gbpm_x(1),gbpm_y(1),100,-0.6,0.6,100,-0.5,0.5  $bpm003A Y vs X (cm)  t=atrig
+bbpm,gbpm_x(2),gbpm_y(2),100,-0.6,0.6,100,-0.5,0.5  $bpm003B Y vs X (cm)  t=atrig
+cbpm,gbpm_x(3),gbpm_y(3),100,-0.6,0.6,100,-0.5,0.5  $bpm003C Y vs X (cm)  t=atrig
+
+abpmmean,gbpm_meanx(1),gbpm_meany(1),100,-0.35,0.35,100,-0.35,0.35 $bpm003A Y vs X mean (cm)  t=atrig
+bbpmmean,gbpm_meanx(2),gbpm_meany(2),100,-0.35,0.35,100,-0.35,0.35 $bpm003B Y vs X mean (cm)  t=atrig
+cbpmmean,gbpm_meanx(3),gbpm_meany(3),100,-0.35,0.35,100,-0.35,0.35 $bpm003C Y vs X mean (cm)  t=atrig
+
+axbpmvsbxbpm,gbpm_x(1),gbpm_x(2),100,-0.6,0.6,100,-0.6,0.6 $ abpm X vs bbpm X
+aybpmvsbybpm,gbpm_y(1),gbpm_y(2),100,-0.6,0.6,100,-0.6,0.6 $ abpm Y vs bbpm Y
+axbpmvscxbpm,gbpm_x(1),gbpm_x(3),100,-0.6,0.6,100,-0.6,0.6 $ abpm X vs cbpm X
+aybpmvscybpm,gbpm_y(1),gbpm_y(3),100,-0.6,0.6,100,-0.6,0.6 $ abpm Y vs cbpm Y
+
+axbpmvsfrx,gbpm_x(1),gmisc_dec_data(114),100,-0.35,-0.2,200,0,8000 $FR X vs abpm X
+axbpmvsfry,gbpm_x(1),gmisc_dec_data(116),100,-0.35,-0.2,200,0,8000 $FR Y vs abpm X
+
+frx_sync,gmisc_dec_data(113),200,0,2000   $fast raster X slope  t=atrig
+frx_i,gmisc_dec_data(114),200,0,8000      $fast raster X current t=atrig
+frxcal,gfrx,100,-.2,.2,atrig              $fast raster X (cm) t=atrig
+fry_sync,gmisc_dec_data(115),200,0,2000   $fast raster Y slope t=atrig
+fry_i,gmisc_dec_data(116),200,0,8000      $fast raster Y current t=atrig
+frycal,gfry,100,-.2,.2,atrig              $fast raster Y (cm) t=atrig
+frxcalycal,gfrx,gfry,50,-.2,.2,50,-.2,.2,atrig $FR Y vs X (cm-if calibrated) t=atrig
+frxcalycal2,gfrx,gfry,40,-1.,1.,40,-1.,1.,atrig $FR Y vs X (cm-if calibrated) t=atrig
+
+bcmratio,evnumber,bcmratio,200,-0.5,49999.5,200,-0.006,0.006 $ 1-bcm1/bcm2 vs. event number 
+
+end   hist beamline_hists

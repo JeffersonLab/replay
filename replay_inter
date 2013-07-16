@@ -1,0 +1,7 @@
+#!/bin/tcsh -f
+setenv OSNAME `/bin/uname -s`
+setenv ENGINE_CONFIG_FILE PARM_FILES/REPLAY_FARM_COIN.PARM
+echo $ENGINE_CONFIG_FILE
+#../../inclusive/Linux/bin/engine_replay  $* 
+../engine_git/Linux/bin/engine_replay  $* 
+#../Linux/bin/engine_replay  $* 

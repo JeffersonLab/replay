@@ -1,0 +1,500 @@
+begin parm srep
+
+s_report_blockname = 'srep'
+
+end parm srep
+
+begin report srep
+The name of this report template file is {s_report_template_filename}.
+
+All efficiencies are normalized to "strig".
+Values in parenthesis are rates ( Hz ).
+hardware scalers have rates in square brackets [ Hz ].
+
+Run #: {gen_run_number}
+Time of run = {g_run_time:%7.1f} sec (at most recent scaler event)
+first event = {gen_run_starting_event:%7d}
+last event  = {gen_event_id_number:%7d}
+
+dmytst      = {dmytst.scaler:%8d} ( {dmytst.scaler/g_run_time:%7.1f} )
+atrig       = {atrig.scaler:%8d} ( {atrig.scaler/g_run_time:%7.1f} )
+htrig       = {htrig.scaler:%8d} ( {htrig.scaler/g_run_time:%7.1f} )
+strig       = {strig.scaler:%8d} ( {strig.scaler/g_run_time:%7.1f} )
+ctrig       = {ctrig.scaler:%8d} ( {ctrig.scaler/g_run_time:%7.1f} )
+hms adcgates= {gscaler(176):%8d} [ {gscaler(176)/g_run_time:%7.1f} ]
+sos adcgates= {gscaler(336):%8d} [ {gscaler(336)/g_run_time:%7.1f} ]
+all adcgates= {gscaler(175):%8d} [ {gscaler(175)/g_run_time:%7.1f} ]
+
+#include TEMPLATE/strack.template
+
+*****************************
+* RAW SOFTWARE EFFICIENCIES *
+*****************************
+"raw"  means one or more hits per dc plane.
+"Good" means one or two  hits per dc plane.
+
+rawsdc1x1   = {sdc_events(1):%7d}   eff = {sdc_plane_eff(1):%5.3f}  BAD = .95
+rawsdc1y1   = {sdc_events(2):%7d}   eff = {sdc_plane_eff(2):%5.3f}  BAD = .95
+rawsdc1u1   = {sdc_events(3):%7d}   eff = {sdc_plane_eff(3):%5.3f}  BAD = .95
+rawsdc1v1   = {sdc_events(4):%7d}   eff = {sdc_plane_eff(4):%5.3f}  BAD = .95
+rawsdc1y2   = {sdc_events(5):%7d}   eff = {sdc_plane_eff(5):%5.3f}  BAD = .95
+rawsdc1x2   = {sdc_events(6):%7d}   eff = {sdc_plane_eff(6):%5.3f}  BAD = .95
+rawsdc1     = {sdc_cham_hits(1):%7d}   eff = {sdc_cham_eff(1):%5.3f}  BAD = .99
+rawsdc2x1   = {sdc_events(7):%7d}   eff = {sdc_plane_eff(7):%5.3f}  BAD = .95
+rawsdc2y1   = {sdc_events(8):%7d}   eff = {sdc_plane_eff(8):%5.3f}  BAD = .95
+rawsdc2u1   = {sdc_events(9):%7d}   eff = {sdc_plane_eff(9):%5.3f}  BAD = .95
+rawsdc2v1   = {sdc_events(10):%7d}   eff = {sdc_plane_eff(10):%5.3f}  BAD = .95
+rawsdc2y2   = {sdc_events(11):%7d}   eff = {sdc_plane_eff(11):%5.3f}  BAD = .95
+rawsdc2x2   = {sdc_events(12):%7d}   eff = {sdc_plane_eff(12):%5.3f}  BAD = .95
+rawsdc2     = {sdc_cham_hits(2):%7d}   eff = {sdc_cham_eff(2):%5.3f}  BAD = .99
+
+goodsdc1u1  = {goodsdc1u1.scaler:%7d}   eff = {goodsdc1u1.scaler/(strig.scaler+.0001):%5.3f}  BAD = .95
+goodsdc1u2  = {goodsdc1u2.scaler:%7d}   eff = {goodsdc1u2.scaler/(strig.scaler+.0001):%5.3f}  BAD = .95
+goodsdc1x1  = {goodsdc1x1.scaler:%7d}   eff = {goodsdc1x1.scaler/(strig.scaler+.0001):%5.3f}  BAD = .95
+goodsdc1x2  = {goodsdc1x2.scaler:%7d}   eff = {goodsdc1x2.scaler/(strig.scaler+.0001):%5.3f}  BAD = .95
+goodsdc1v1  = {goodsdc1v1.scaler:%7d}   eff = {goodsdc1v1.scaler/(strig.scaler+.0001):%5.3f}  BAD = .95
+goodsdc1v2  = {goodsdc1v2.scaler:%7d}   eff = {goodsdc1v2.scaler/(strig.scaler+.0001):%5.3f}  BAD = .95
+goodsdc1    = {goodsdc1.scaler:%7d}   eff = {goodsdc1.scaler/(strig.scaler+.0001):%5.3f}  BAD = .90
+goodsdc2u1  = {goodsdc2u1.scaler:%7d}   eff = {goodsdc2u1.scaler/(strig.scaler+.0001):%5.3f}  BAD = .95
+goodsdc2u2  = {goodsdc2u2.scaler:%7d}   eff = {goodsdc2u2.scaler/(strig.scaler+.0001):%5.3f}  BAD = .95
+goodsdc2x1  = {goodsdc2x1.scaler:%7d}   eff = {goodsdc2x1.scaler/(strig.scaler+.0001):%5.3f}  BAD = .95
+goodsdc2x2  = {goodsdc2x2.scaler:%7d}   eff = {goodsdc2x2.scaler/(strig.scaler+.0001):%5.3f}  BAD = .95
+goodsdc2v1  = {goodsdc2v1.scaler:%7d}   eff = {goodsdc2v1.scaler/(strig.scaler+.0001):%5.3f}  BAD = .95
+goodsdc2v2  = {goodsdc2v2.scaler:%7d}   eff = {goodsdc2v2.scaler/(strig.scaler+.0001):%5.3f}  BAD = .95
+goodsdc2    = {goodsdc2.scaler:%7d}   eff = {goodsdc2.scaler/(strig.scaler+.0001):%5.3f}  BAD = .90
+bothgoodsdc = {bothgoodsdc.scaler:%7d}   eff = {bothgoodsdc.scaler/(strig.scaler+.0001):%5.3f}  BAD = .80
+
+"sfoundtrack" based on analyzer variable SNTRACKS_FP.
+"scleantrack" based on analyzer variable SSNUM_FPTRACK (=foundtrack+chi2+PID).
+
+sfoundtrack = {sfoundtrack.scaler:%7d}   eff = {sfoundtrack.scaler/(strig.scaler+.0001):%5.3f}  BAD = .95
+sfound1track= {sfound1track.scaler:%7d}   eff = {sfound1track.scaler/(strig.scaler+.0001):%5.3f}
+sfound2track= {sfound2track.scaler:%7d}   eff = {sfound2track.scaler/(strig.scaler+.0001):%5.3f}
+sfound3track= {sfound3track.scaler:%7d}   eff = {sfound3track.scaler/(strig.scaler+.0001):%5.3f}
+sfound4track= {sfound4track.scaler:%7d}   eff = {sfound4track.scaler/(strig.scaler+.0001):%5.3f}
+
+scleantrack = {scleantrack.scaler:%7d}   eff = {scleantrack.scaler/(strig.scaler+.0001):%5.3f}  BAD = .95
+sclean1track= {sclean1track.scaler:%7d}   eff = {sclean1track.scaler/(strig.scaler+.0001):%5.3f}
+sclean2track= {sclean2track.scaler:%7d}   eff = {sclean2track.scaler/(strig.scaler+.0001):%5.3f}
+sclean3track= {sclean3track.scaler:%7d}   eff = {sclean3track.scaler/(strig.scaler+.0001):%5.3f}
+sclean4track= {sclean4track.scaler:%7d}   eff = {sclean4track.scaler/(strig.scaler+.0001):%5.3f}
+
+"Any"  means one or more hits per scint plane.
+"Good" means one or two  hits per scint plane.
+
+anyss1x     = {anyss1x.scaler:%7d}   eff = {anyss1x.scaler/(strig.scaler+.0001):%5.3f}  BAD = .99
+anyss1y     = {anyss1y.scaler:%7d}   eff = {anyss1y.scaler/(strig.scaler+.0001):%5.3f}  BAD = .99
+anyss2x     = {anyss2x.scaler:%7d}   eff = {anyss2x.scaler/(strig.scaler+.0001):%5.3f}  BAD = .99
+anyss2y     = {anyss2y.scaler:%7d}   eff = {anyss2y.scaler/(strig.scaler+.0001):%5.3f}  BAD = .99
+
+goodss1x    = {goodss1x.scaler:%7d}   eff = {goodss1x.scaler/(strig.scaler+.0001):%5.3f}  BAD = .98
+goodss1y    = {goodss1y.scaler:%7d}   eff = {goodss1y.scaler/(strig.scaler+.0001):%5.3f}  BAD = .98
+goodss1     = {goodss1.scaler:%7d}   eff = {goodss1.scaler/(strig.scaler+.0001):%5.3f}  BAD = .96
+goodss2x    = {goodss2x.scaler:%7d}   eff = {goodss2x.scaler/(strig.scaler+.0001):%5.3f}  BAD = .98
+goodss2y    = {goodss2y.scaler:%7d}   eff = {goodss2y.scaler/(strig.scaler+.0001):%5.3f}  BAD = .98
+goodss2     = {goodss2.scaler:%7d}   eff = {goodss2.scaler/(strig.scaler+.0001):%5.3f}  BAD = .96
+goodss1s2   = {goodss1s2.scaler:%7d}   eff = {goodss1s2.scaler/(strig.scaler+.0001):%5.3f}
+
+********************
+* HARDWARE SCALERS *
+********************
+General Format:
+signal   =   counts (  rate-Hz )
+
+Time of run = {g_run_time:%7.1f} sec
+
+sS1X+
+sS1X1+   = {gscaler(289):%8d} [ {gscaler(289)/g_run_time:%7.1f} ]
+sS1X2+   = {gscaler(213):%8d} [ {gscaler(213)/g_run_time:%7.1f} ]
+sS1X3+   = {gscaler(209):%8d} [ {gscaler(209)/g_run_time:%7.1f} ]
+sS1X4+   = {gscaler(214):%8d} [ {gscaler(214)/g_run_time:%7.1f} ]
+sS1X5+   = {gscaler(210):%8d} [ {gscaler(210)/g_run_time:%7.1f} ]
+sS1X6+   = {gscaler(215):%8d} [ {gscaler(215)/g_run_time:%7.1f} ]
+sS1X7+   = {gscaler(211):%8d} [ {gscaler(211)/g_run_time:%7.1f} ]
+sS1X8+   = {gscaler(216):%8d} [ {gscaler(216)/g_run_time:%7.1f} ]
+sS1X9+   = {gscaler(212):%8d} [ {gscaler(212)/g_run_time:%7.1f} ]
+
+sS1X-
+sS1X1-   = {gscaler(290):%8d} [ {gscaler(290)/g_run_time:%7.1f} ]
+sS1X2-   = {gscaler(221):%8d} [ {gscaler(221)/g_run_time:%7.1f} ]
+sS1X3-   = {gscaler(217):%8d} [ {gscaler(217)/g_run_time:%7.1f} ]
+sS1X4-   = {gscaler(222):%8d} [ {gscaler(222)/g_run_time:%7.1f} ]
+sS1X5-   = {gscaler(218):%8d} [ {gscaler(218)/g_run_time:%7.1f} ]
+sS1X6-   = {gscaler(223):%8d} [ {gscaler(223)/g_run_time:%7.1f} ]
+sS1X7-   = {gscaler(219):%8d} [ {gscaler(219)/g_run_time:%7.1f} ]
+sS1X8-   = {gscaler(224):%8d} [ {gscaler(224)/g_run_time:%7.1f} ]
+sS1X9-   = {gscaler(220):%8d} [ {gscaler(220)/g_run_time:%7.1f} ]
+
+sS1Y+
+sS1Y1+   = {gscaler(291):%8d} [ {gscaler(291)/g_run_time:%7.1f} ]
+sS1Y2+   = {gscaler(229):%8d} [ {gscaler(229)/g_run_time:%7.1f} ]
+sS1Y3+   = {gscaler(225):%8d} [ {gscaler(225)/g_run_time:%7.1f} ]
+sS1Y4+   = {gscaler(230):%8d} [ {gscaler(230)/g_run_time:%7.1f} ]
+sS1Y5+   = {gscaler(226):%8d} [ {gscaler(226)/g_run_time:%7.1f} ]
+sS1Y6+   = {gscaler(231):%8d} [ {gscaler(231)/g_run_time:%7.1f} ]
+sS1Y7+   = {gscaler(227):%8d} [ {gscaler(227)/g_run_time:%7.1f} ]
+sS1Y8+   = {gscaler(232):%8d} [ {gscaler(232)/g_run_time:%7.1f} ]
+sS1Y9+   = {gscaler(228):%8d} [ {gscaler(228)/g_run_time:%7.1f} ]
+
+sS1Y-
+sS1Y1-   = {gscaler(292):%8d} [ {gscaler(292)/g_run_time:%7.1f} ]
+sS1Y2-   = {gscaler(237):%8d} [ {gscaler(237)/g_run_time:%7.1f} ]
+sS1Y3-   = {gscaler(233):%8d} [ {gscaler(233)/g_run_time:%7.1f} ]
+sS1Y4-   = {gscaler(238):%8d} [ {gscaler(238)/g_run_time:%7.1f} ]
+sS1Y5-   = {gscaler(234):%8d} [ {gscaler(234)/g_run_time:%7.1f} ]
+sS1Y6-   = {gscaler(239):%8d} [ {gscaler(239)/g_run_time:%7.1f} ]
+sS1Y7-   = {gscaler(235):%8d} [ {gscaler(235)/g_run_time:%7.1f} ]
+sS1Y8-   = {gscaler(240):%8d} [ {gscaler(240)/g_run_time:%7.1f} ]
+sS1Y9-   = {gscaler(236):%8d} [ {gscaler(236)/g_run_time:%7.1f} ]
+
+sS2X+
+sS2X1+   = {gscaler(241):%8d} [ {gscaler(241)/g_run_time:%7.1f} ]
+sS2X2+   = {gscaler(249):%8d} [ {gscaler(249)/g_run_time:%7.1f} ]
+sS2X3+   = {gscaler(242):%8d} [ {gscaler(242)/g_run_time:%7.1f} ]
+sS2X4+   = {gscaler(250):%8d} [ {gscaler(250)/g_run_time:%7.1f} ]
+sS2X5+   = {gscaler(243):%8d} [ {gscaler(243)/g_run_time:%7.1f} ]
+sS2X6+   = {gscaler(251):%8d} [ {gscaler(251)/g_run_time:%7.1f} ]
+sS2X7+   = {gscaler(244):%8d} [ {gscaler(244)/g_run_time:%7.1f} ]
+sS2X8+   = {gscaler(252):%8d} [ {gscaler(252)/g_run_time:%7.1f} ]
+sS2X9+   = {gscaler(245):%8d} [ {gscaler(245)/g_run_time:%7.1f} ]
+sS2X10+  = {gscaler(253):%8d} [ {gscaler(253)/g_run_time:%7.1f} ]
+sS2X11+  = {gscaler(246):%8d} [ {gscaler(246)/g_run_time:%7.1f} ]
+sS2X12+  = {gscaler(254):%8d} [ {gscaler(254)/g_run_time:%7.1f} ]
+sS2X13+  = {gscaler(247):%8d} [ {gscaler(247)/g_run_time:%7.1f} ]
+sS2X14+  = {gscaler(255):%8d} [ {gscaler(255)/g_run_time:%7.1f} ]
+sS2X15+  = {gscaler(248):%8d} [ {gscaler(248)/g_run_time:%7.1f} ]
+sS2X16+  = {gscaler(256):%8d} [ {gscaler(256)/g_run_time:%7.1f} ]
+
+sS2X-
+sS2X1-   = {gscaler(257):%8d} [ {gscaler(257)/g_run_time:%7.1f} ]
+sS2X2-   = {gscaler(265):%8d} [ {gscaler(265)/g_run_time:%7.1f} ]
+sS2X3-   = {gscaler(258):%8d} [ {gscaler(258)/g_run_time:%7.1f} ]
+sS2X4-   = {gscaler(266):%8d} [ {gscaler(266)/g_run_time:%7.1f} ]
+sS2X5-   = {gscaler(259):%8d} [ {gscaler(259)/g_run_time:%7.1f} ]
+sS2X6-   = {gscaler(267):%8d} [ {gscaler(267)/g_run_time:%7.1f} ]
+sS2X7-   = {gscaler(260):%8d} [ {gscaler(260)/g_run_time:%7.1f} ]
+sS2X8-   = {gscaler(268):%8d} [ {gscaler(268)/g_run_time:%7.1f} ]
+sS2X9-   = {gscaler(261):%8d} [ {gscaler(261)/g_run_time:%7.1f} ]
+sS2X10-  = {gscaler(269):%8d} [ {gscaler(269)/g_run_time:%7.1f} ]
+sS2X11-  = {gscaler(262):%8d} [ {gscaler(262)/g_run_time:%7.1f} ]
+sS2X12-  = {gscaler(270):%8d} [ {gscaler(270)/g_run_time:%7.1f} ]
+sS2X13-  = {gscaler(263):%8d} [ {gscaler(263)/g_run_time:%7.1f} ]
+sS2X14-  = {gscaler(271):%8d} [ {gscaler(271)/g_run_time:%7.1f} ]
+sS2X15-  = {gscaler(264):%8d} [ {gscaler(264)/g_run_time:%7.1f} ]
+sS2X16-  = {gscaler(272):%8d} [ {gscaler(272)/g_run_time:%7.1f} ]
+
+sS2Y+
+sS2Y1+   = {gscaler(293):%8d} [ {gscaler(293)/g_run_time:%7.1f} ]
+sS2Y2+   = {gscaler(277):%8d} [ {gscaler(277)/g_run_time:%7.1f} ]
+sS2Y3+   = {gscaler(273):%8d} [ {gscaler(273)/g_run_time:%7.1f} ]
+sS2Y4+   = {gscaler(278):%8d} [ {gscaler(278)/g_run_time:%7.1f} ]
+sS2Y5+   = {gscaler(274):%8d} [ {gscaler(274)/g_run_time:%7.1f} ]
+sS2Y6+   = {gscaler(279):%8d} [ {gscaler(279)/g_run_time:%7.1f} ]
+sS2Y7+   = {gscaler(275):%8d} [ {gscaler(275)/g_run_time:%7.1f} ]
+sS2Y8+   = {gscaler(280):%8d} [ {gscaler(280)/g_run_time:%7.1f} ]
+sS2Y9+   = {gscaler(276):%8d} [ {gscaler(276)/g_run_time:%7.1f} ]
+
+sS2Y-
+sS2Y1-   = {gscaler(294):%8d} [ {gscaler(294)/g_run_time:%7.1f} ]
+sS2Y2-   = {gscaler(285):%8d} [ {gscaler(285)/g_run_time:%7.1f} ]
+sS2Y3-   = {gscaler(281):%8d} [ {gscaler(281)/g_run_time:%7.1f} ]
+sS2Y4-   = {gscaler(286):%8d} [ {gscaler(286)/g_run_time:%7.1f} ]
+sS2Y5-   = {gscaler(282):%8d} [ {gscaler(282)/g_run_time:%7.1f} ]
+sS2Y6-   = {gscaler(287):%8d} [ {gscaler(287)/g_run_time:%7.1f} ]
+sS2Y7-   = {gscaler(283):%8d} [ {gscaler(283)/g_run_time:%7.1f} ]
+sS2Y8-   = {gscaler(288):%8d} [ {gscaler(288)/g_run_time:%7.1f} ]
+sS2Y9-   = {gscaler(284):%8d} [ {gscaler(284)/g_run_time:%7.1f} ]
+
+DA0C
+sCALA    = {gscaler(201):%8d} [ {gscaler(201)/g_run_time:%7.1f} ]
+sCALB    = {gscaler(202):%8d} [ {gscaler(202)/g_run_time:%7.1f} ]
+sCALC    = {gscaler(203):%8d} [ {gscaler(203)/g_run_time:%7.1f} ]
+sCALD    = {gscaler(204):%8d} [ {gscaler(204)/g_run_time:%7.1f} ]
+
+DA15                             SOFTWARE SCALERS ('efficiency')
+sS1X     = {gscaler(337):%8d} [ {gscaler(337)/g_run_time:%7.1f} ] {smisc_scaler(1):%11d} ( {smisc_scaler(3)/(strig.scaler+.0001):%5.3f} )
+sS1Y     = {gscaler(338):%8d} [ {gscaler(338)/g_run_time:%7.1f} ] {smisc_scaler(2):%11d} ( {smisc_scaler(4)/(strig.scaler+.0001):%5.3f} )
+sS2X     = {gscaler(339):%8d} [ {gscaler(339)/g_run_time:%7.1f} ] {smisc_scaler(3):%11d} ( {smisc_scaler(5)/(strig.scaler+.0001):%5.3f} )
+sS2Y     = {gscaler(340):%8d} [ {gscaler(340)/g_run_time:%7.1f} ] {smisc_scaler(4):%11d} ( {smisc_scaler(6)/(strig.scaler+.0001):%5.3f} )
+sS1      = {gscaler(341):%8d} [ {gscaler(341)/g_run_time:%7.1f} ] {smisc_scaler(5):%11d} ( {smisc_scaler(1)/(strig.scaler+.0001):%5.3f} )
+sS2      = {gscaler(342):%8d} [ {gscaler(342)/g_run_time:%7.1f} ] {smisc_scaler(6):%11d} ( {smisc_scaler(2)/(strig.scaler+.0001):%5.3f} )
+----     = {gscaler(343):%8d} [ {gscaler(343)/g_run_time:%7d} ] {smisc_scaler(7):%11d} ( {smisc_scaler(7)/(strig.scaler+.0001):%5.3f} )
+RF??     =         [ {gscaler(344)/g_run_time:%8d} ] {smisc_scaler(8):%11d} ( {smisc_scaler(8)/(strig.scaler+.0001):%5.3f} )
+HMSPRE   = {gscaler(345):%8d} [ {gscaler(345)/g_run_time:%7.1f} ] {smisc_scaler(9):%11d} ( {smisc_scaler(9)/(strig.scaler+.0001):%5.3f} )
+SOSPRE   = {gscaler(346):%8d} [ {gscaler(346)/g_run_time:%7.1f} ] {smisc_scaler(10):%11d} ( {smisc_scaler(10)/(strig.scaler+.0001):%5.3f} )
+COINPRE  = {gscaler(347):%8d} [ {gscaler(347)/g_run_time:%7.1f} ] {smisc_scaler(11):%11d} ( {smisc_scaler(11)/(strig.scaler+.0001):%5.3f} )
+PEDPRE   = {gscaler(348):%8d} [ {gscaler(348)/g_run_time:%7.1f} ] {smisc_scaler(12):%11d} ( {smisc_scaler(12)/(strig.scaler+.0001):%5.3f} )
+HMSTRG   = {gscaler(349):%8d} [ {gscaler(349)/g_run_time:%7.1f} ] {smisc_scaler(13):%11d} ( {smisc_scaler(13)/(strig.scaler+.0001):%5.3f} )
+SOSTRG   = {gscaler(350):%8d} [ {gscaler(350)/g_run_time:%7.1f} ] {smisc_scaler(14):%11d} ( {smisc_scaler(14)/(strig.scaler+.0001):%5.3f} )
+COINTRG  = {gscaler(351):%8d} [ {gscaler(351)/g_run_time:%7.1f} ] {smisc_scaler(15):%11d} ( {smisc_scaler(15)/(strig.scaler+.0001):%5.3f} )
+PEDTRG   = {gscaler(352):%8d} [ {gscaler(352)/g_run_time:%7.1f} ] {smisc_scaler(16):%11d} ( {smisc_scaler(16)/(strig.scaler+.0001):%5.3f} )
+
+The above coinpre/cointrg miss a few % of the random coincidences
+
+DA13
+sS1      = {gscaler(305):%8d} [ {gscaler(305)/g_run_time:%7.1f} ] {smisc_scaler(17):%11d} ( {smisc_scaler(17)/(strig.scaler+.0001):%5.3f} )
+sS2      = {gscaler(313):%8d} [ {gscaler(313)/g_run_time:%7.1f} ] {smisc_scaler(25):%11d} ( {smisc_scaler(25)/(strig.scaler+.0001):%5.3f} )
+sS1X     = {gscaler(309):%8d} [ {gscaler(309)/g_run_time:%7.1f} ] {smisc_scaler(21):%11d} ( {smisc_scaler(21)/(strig.scaler+.0001):%5.3f} )
+sS1Y     = {gscaler(312):%8d} [ {gscaler(312)/g_run_time:%7.1f} ] {smisc_scaler(24):%11d} ( {smisc_scaler(24)/(strig.scaler+.0001):%5.3f} )
+sS2X     = {gscaler(307):%8d} [ {gscaler(307)/g_run_time:%7.1f} ] {smisc_scaler(19):%11d} ( {smisc_scaler(19)/(strig.scaler+.0001):%5.3f} )
+sS2Y     = {gscaler(310):%8d} [ {gscaler(310)/g_run_time:%7.1f} ] {smisc_scaler(22):%11d} ( {smisc_scaler(22)/(strig.scaler+.0001):%5.3f} )
+sPRE50   = {gscaler(306):%8d} [ {gscaler(306)/g_run_time:%7.1f} ] {smisc_scaler(18):%11d} ( {smisc_scaler(18)/(strig.scaler+.0001):%5.3f} )
+sPRE100  = {gscaler(311):%8d} [ {gscaler(311)/g_run_time:%7.1f} ] {smisc_scaler(23):%11d} ( {smisc_scaler(23)/(strig.scaler+.0001):%5.3f} )
+sPRE150  = {gscaler(308):%8d} [ {gscaler(308)/g_run_time:%7.1f} ] {smisc_scaler(20):%11d} ( {smisc_scaler(20)/(strig.scaler+.0001):%5.3f} )
+sPRE200  = {gscaler(314):%8d} [ {gscaler(314)/g_run_time:%7.1f} ] {smisc_scaler(26):%11d} ( {smisc_scaler(26)/(strig.scaler+.0001):%5.3f} )
+sSTOF    = {gscaler(315):%8d} [ {gscaler(315)/g_run_time:%7.1f} ] {smisc_scaler(27):%11d} ( {smisc_scaler(27)/(strig.scaler+.0001):%5.3f} )
+sSCIN    = {gscaler(316):%8d} [ {gscaler(316)/g_run_time:%7.1f} ] {smisc_scaler(28):%11d} ( {smisc_scaler(28)/(strig.scaler+.0001):%5.3f} )
+sELREAL  = {gscaler(317):%8d} [ {gscaler(317)/g_run_time:%7.1f} ] {smisc_scaler(29):%11d} ( {smisc_scaler(29)/(strig.scaler+.0001):%5.3f} )
+sPIPRE   = {gscaler(318):%8d} [ {gscaler(318)/g_run_time:%7.1f} ] {smisc_scaler(30):%11d} ( {smisc_scaler(30)/(strig.scaler+.0001):%5.3f} )
+sELBOTH  = {gscaler(319):%8d} [ {gscaler(319)/g_run_time:%7.1f} ] {smisc_scaler(31):%11d} ( {smisc_scaler(31)/(strig.scaler+.0001):%5.3f} )
+sPRETRG  = {gscaler(320):%8d} [ {gscaler(320)/g_run_time:%7.1f} ] {smisc_scaler(32):%11d} ( {smisc_scaler(32)/(strig.scaler+.0001):%5.3f} )
+
+DA14
+BCM1     =          [ {gscaler(321)/g_run_time:%7d} ] {smisc_scaler(33):%11d} ( {smisc_scaler(33)/(strig.scaler+.0001):%5.3f} )
+BCM2     =          [ {gscaler(322)/g_run_time:%7d} ] {smisc_scaler(34):%11d} ( {smisc_scaler(34)/(strig.scaler+.0001):%5.3f} )
+BCM3     =          [ {gscaler(323)/g_run_time:%7d} ] {smisc_scaler(35):%11d} ( {smisc_scaler(35)/(strig.scaler+.0001):%5.3f} )
+UNZER    =          [ {gscaler(324)/g_run_time:%7d} ] {smisc_scaler(36):%11d} ( {smisc_scaler(36)/(strig.scaler+.0001):%5.3f} )
+1 MHz    =          [ {gscaler(325)/g_run_time:%7d} ] {smisc_scaler(37):%11d} ( {smisc_scaler(37)/(strig.scaler+.0001):%5.3f} )
+MHz&BG   =          [ {gscaler(326)/g_run_time:%7d} ] {smisc_scaler(38):%11d} ( {smisc_scaler(38)/(strig.scaler+.0001):%5.3f} )
+sPIONSCAL= {gscaler(327):%8d} [ {gscaler(327)/g_run_time:%7.1f} ] {smisc_scaler(39):%11d} ( {smisc_scaler(39)/(strig.scaler+.0001):%5.3f} )
+sELECSCAL= {gscaler(328):%8d} [ {gscaler(328)/g_run_time:%7.1f} ] {smisc_scaler(40):%11d} ( {smisc_scaler(40)/(strig.scaler+.0001):%5.3f} )
+sPION    = {gscaler(329):%8d} [ {gscaler(329)/g_run_time:%7.1f} ] {smisc_scaler(41):%11d} ( {smisc_scaler(41)/(strig.scaler+.0001):%5.3f} )
+sCER     = {gscaler(330):%8d} [ {gscaler(330)/g_run_time:%7.1f} ] {smisc_scaler(42):%11d} ( {smisc_scaler(42)/(strig.scaler+.0001):%5.3f} )
+sELHI    = {gscaler(331):%8d} [ {gscaler(331)/g_run_time:%7.1f} ] {smisc_scaler(43):%11d} ( {smisc_scaler(43)/(strig.scaler+.0001):%5.3f} )
+sELLO    = {gscaler(332):%8d} [ {gscaler(332)/g_run_time:%7.1f} ] {smisc_scaler(44):%11d} ( {smisc_scaler(44)/(strig.scaler+.0001):%5.3f} )
+sPRHI    = {gscaler(333):%8d} [ {gscaler(333)/g_run_time:%7.1f} ] {smisc_scaler(45):%11d} ( {smisc_scaler(45)/(strig.scaler+.0001):%5.3f} )
+sPRLO    = {gscaler(334):%8d} [ {gscaler(334)/g_run_time:%7.1f} ] {smisc_scaler(46):%11d} ( {smisc_scaler(46)/(strig.scaler+.0001):%5.3f} )
+sSHLO    = {gscaler(335):%8d} [ {gscaler(335)/g_run_time:%7.1f} ] {smisc_scaler(47):%11d} ( {smisc_scaler(47)/(strig.scaler+.0001):%5.3f} )
+sADCGATES= {gscaler(336):%8d} [ {gscaler(336)/g_run_time:%7.1f} ] {smisc_scaler(48):%11d} ( {smisc_scaler(48)/(strig.scaler+.0001):%5.3f} )
+
+RF(25ps)?=(software scaler only){smisc_scaler(65):%11d} ( {smisc_scaler(65)/(strig.scaler+.0001):%5.3f} )
+
+**********
+*SUMMARY *
+**********
+time         = {g_run_time} sec
+
+goodsdc1 eff = {goodsdc1.scaler:%7d}   eff = {goodsdc1.scaler/(strig.scaler+.0001):%5.3f}  BAD = .90
+goodsdc2 eff = {goodsdc2.scaler:%7d}   eff = {goodsdc2.scaler/(strig.scaler+.0001):%5.3f}  BAD = .90
+ss1x 1/2 eff = {anyss1x.scaler/(strig.scaler+.0001):%5.3f}  BAD = .99
+ss1y 1/2 eff = {anyss1y.scaler/(strig.scaler+.0001):%5.3f}  BAD = .99
+ss2x 1/2 eff = {anyss2x.scaler/(strig.scaler+.0001):%5.3f}  BAD = .99
+ss2y 1/2 eff = {anyss2y.scaler/(strig.scaler+.0001):%5.3f}  BAD = .99
+
+         I_avg           Q_tot             Q_tot
+      (microAmps)   (microCoulombs)   (microAmp-hours)
+BCM1 {gbcm1_charge/g_run_time:%10.3f}        {gbcm1_charge:%10.3f}      {gbcm1_charge/3600:%10.3f}
+BCM2 {gbcm2_charge/g_run_time:%10.3f}        {gbcm2_charge:%10.3f}      {gbcm2_charge/3600:%10.3f}
+BCM3 {gbcm3_charge/g_run_time:%10.3f}        {gbcm3_charge:%10.3f}      {gbcm3_charge/3600:%10.3f}
+
+spretriggers = {gscaler(346):%8d} [ {gscaler(346)/g_run_time:%7.1f} ]
+striggers    = {gscaler(350):%8d} [ {gscaler(350)/g_run_time:%7.1f} ]
+sadcgates    = {gscaler(336):%8d} [ {gscaler(336)/g_run_time:%7.1f} ] ! real # of triggers
+Computer D.T.= {100.*scompdts:%6.2f}%
+Elec. D.T.   = {100.*selecdt:%6.2f}%
+
+**************************
+* Hodoscope Efficiencies * 
+**************************
+Efficiencies for hodoscopes is the fraction of times scin. was hit when track
+with chisquared/dof < {sstat_maxchisq:%5.1f} came within {sstat_slop:%4.1f} cm of the center.
+
+Events examined = strig       = {strig.scaler:%7d}
+Tracks found    = scleantrack = {scleantrack.scaler:%7d}
+Tracks passing chisquared cut = {sstat_numevents:%7d}
+
+Scint  POS eff NEG eff  OR eff AND eff  Hits
+-----  ------- -------  ------ -------  ----
+sS1X1  {sstat_peff(1):%6.3f}  {sstat_neff(1):%6.3f}  {sstat_oeff(1):%6.3f}  {sstat_aeff(1):%6.3f} {sstat_trk(1):%6d}
+sS1X2  {sstat_peff(5):%6.3f}  {sstat_neff(5):%6.3f}  {sstat_oeff(5):%6.3f}  {sstat_aeff(5):%6.3f} {sstat_trk(5):%6d}
+sS1X3  {sstat_peff(9):%6.3f}  {sstat_neff(9):%6.3f}  {sstat_oeff(9):%6.3f}  {sstat_aeff(9):%6.3f} {sstat_trk(9):%6d}
+sS1X4  {sstat_peff(13):%6.3f}  {sstat_neff(13):%6.3f}  {sstat_oeff(13):%6.3f}  {sstat_aeff(13):%6.3f} {sstat_trk(13):%6d}
+sS1X5  {sstat_peff(17):%6.3f}  {sstat_neff(17):%6.3f}  {sstat_oeff(17):%6.3f}  {sstat_aeff(17):%6.3f} {sstat_trk(17):%6d}
+sS1X6  {sstat_peff(21):%6.3f}  {sstat_neff(21):%6.3f}  {sstat_oeff(21):%6.3f}  {sstat_aeff(21):%6.3f} {sstat_trk(21):%6d}
+sS1X7  {sstat_peff(25):%6.3f}  {sstat_neff(25):%6.3f}  {sstat_oeff(25):%6.3f}  {sstat_aeff(25):%6.3f} {sstat_trk(25):%6d}
+sS1X8  {sstat_peff(29):%6.3f}  {sstat_neff(29):%6.3f}  {sstat_oeff(29):%6.3f}  {sstat_aeff(29):%6.3f} {sstat_trk(29):%6d}
+sS1X9  {sstat_peff(33):%6.3f}  {sstat_neff(33):%6.3f}  {sstat_oeff(33):%6.3f}  {sstat_aeff(33):%6.3f} {sstat_trk(33):%6d}
+
+sS1Y1  {sstat_peff(2):%6.3f}  {sstat_neff(2):%6.3f}  {sstat_oeff(2):%6.3f}  {sstat_aeff(2):%6.3f} {sstat_trk(2):%6d}
+sS1Y2  {sstat_peff(6):%6.3f}  {sstat_neff(6):%6.3f}  {sstat_oeff(6):%6.3f}  {sstat_aeff(6):%6.3f} {sstat_trk(6):%6d}
+sS1Y3  {sstat_peff(10):%6.3f}  {sstat_neff(10):%6.3f}  {sstat_oeff(10):%6.3f}  {sstat_aeff(10):%6.3f} {sstat_trk(10):%6d}
+sS1Y4  {sstat_peff(14):%6.3f}  {sstat_neff(14):%6.3f}  {sstat_oeff(14):%6.3f}  {sstat_aeff(14):%6.3f} {sstat_trk(14):%6d}
+sS1Y5  {sstat_peff(18):%6.3f}  {sstat_neff(18):%6.3f}  {sstat_oeff(18):%6.3f}  {sstat_aeff(18):%6.3f} {sstat_trk(18):%6d}
+sS1Y6  {sstat_peff(22):%6.3f}  {sstat_neff(22):%6.3f}  {sstat_oeff(22):%6.3f}  {sstat_aeff(22):%6.3f} {sstat_trk(22):%6d}
+sS1Y7  {sstat_peff(26):%6.3f}  {sstat_neff(26):%6.3f}  {sstat_oeff(26):%6.3f}  {sstat_aeff(26):%6.3f} {sstat_trk(26):%6d}
+sS1Y8  {sstat_peff(30):%6.3f}  {sstat_neff(30):%6.3f}  {sstat_oeff(30):%6.3f}  {sstat_aeff(30):%6.3f} {sstat_trk(30):%6d}
+sS1Y9  {sstat_peff(34):%6.3f}  {sstat_neff(34):%6.3f}  {sstat_oeff(34):%6.3f}  {sstat_aeff(34):%6.3f} {sstat_trk(34):%6d}
+
+sS2X1  {sstat_peff(3):%6.3f}  {sstat_neff(3):%6.3f}  {sstat_oeff(3):%6.3f}  {sstat_aeff(3):%6.3f} {sstat_trk(3):%6d}
+sS2X2  {sstat_peff(7):%6.3f}  {sstat_neff(7):%6.3f}  {sstat_oeff(7):%6.3f}  {sstat_aeff(7):%6.3f} {sstat_trk(7):%6d}
+sS2X3  {sstat_peff(11):%6.3f}  {sstat_neff(11):%6.3f}  {sstat_oeff(11):%6.3f}  {sstat_aeff(11):%6.3f} {sstat_trk(11):%6d}
+sS2X4  {sstat_peff(15):%6.3f}  {sstat_neff(15):%6.3f}  {sstat_oeff(15):%6.3f}  {sstat_aeff(15):%6.3f} {sstat_trk(15):%6d}
+sS2X5  {sstat_peff(19):%6.3f}  {sstat_neff(19):%6.3f}  {sstat_oeff(19):%6.3f}  {sstat_aeff(19):%6.3f} {sstat_trk(19):%6d}
+sS2X6  {sstat_peff(23):%6.3f}  {sstat_neff(23):%6.3f}  {sstat_oeff(23):%6.3f}  {sstat_aeff(23):%6.3f} {sstat_trk(23):%6d}
+sS2X7  {sstat_peff(27):%6.3f}  {sstat_neff(27):%6.3f}  {sstat_oeff(27):%6.3f}  {sstat_aeff(27):%6.3f} {sstat_trk(27):%6d}
+sS2X8  {sstat_peff(31):%6.3f}  {sstat_neff(31):%6.3f}  {sstat_oeff(31):%6.3f}  {sstat_aeff(31):%6.3f} {sstat_trk(31):%6d}
+sS2X9  {sstat_peff(35):%6.3f}  {sstat_neff(35):%6.3f}  {sstat_oeff(35):%6.3f}  {sstat_aeff(35):%6.3f} {sstat_trk(35):%6d}
+sS2X10 {sstat_peff(39):%6.3f}  {sstat_neff(39):%6.3f}  {sstat_oeff(39):%6.3f}  {sstat_aeff(39):%6.3f} {sstat_trk(39):%6d}
+sS2X11 {sstat_peff(43):%6.3f}  {sstat_neff(43):%6.3f}  {sstat_oeff(43):%6.3f}  {sstat_aeff(43):%6.3f} {sstat_trk(43):%6d}
+sS2X12 {sstat_peff(47):%6.3f}  {sstat_neff(47):%6.3f}  {sstat_oeff(47):%6.3f}  {sstat_aeff(47):%6.3f} {sstat_trk(47):%6d}
+sS2X13 {sstat_peff(51):%6.3f}  {sstat_neff(51):%6.3f}  {sstat_oeff(51):%6.3f}  {sstat_aeff(51):%6.3f} {sstat_trk(51):%6d}
+sS2X14 {sstat_peff(55):%6.3f}  {sstat_neff(55):%6.3f}  {sstat_oeff(55):%6.3f}  {sstat_aeff(55):%6.3f} {sstat_trk(55):%6d}
+sS2X15 {sstat_peff(59):%6.3f}  {sstat_neff(59):%6.3f}  {sstat_oeff(59):%6.3f}  {sstat_aeff(59):%6.3f} {sstat_trk(59):%6d}
+sS2X16 {sstat_peff(63):%6.3f}  {sstat_neff(63):%6.3f}  {sstat_oeff(63):%6.3f}  {sstat_aeff(63):%6.3f} {sstat_trk(63):%6d}
+
+sS2Y1  {sstat_peff(4):%6.3f}  {sstat_neff(4):%6.3f}  {sstat_oeff(4):%6.3f}  {sstat_aeff(4):%6.3f} {sstat_trk(4):%6d}
+sS2Y2  {sstat_peff(8):%6.3f}  {sstat_neff(8):%6.3f}  {sstat_oeff(8):%6.3f}  {sstat_aeff(8):%6.3f} {sstat_trk(8):%6d}
+sS2Y3  {sstat_peff(12):%6.3f}  {sstat_neff(12):%6.3f}  {sstat_oeff(12):%6.3f}  {sstat_aeff(12):%6.3f} {sstat_trk(12):%6d}
+sS2Y4  {sstat_peff(16):%6.3f}  {sstat_neff(16):%6.3f}  {sstat_oeff(16):%6.3f}  {sstat_aeff(16):%6.3f} {sstat_trk(16):%6d}
+sS2Y5  {sstat_peff(20):%6.3f}  {sstat_neff(20):%6.3f}  {sstat_oeff(20):%6.3f}  {sstat_aeff(20):%6.3f} {sstat_trk(20):%6d}
+sS2Y6  {sstat_peff(24):%6.3f}  {sstat_neff(24):%6.3f}  {sstat_oeff(24):%6.3f}  {sstat_aeff(24):%6.3f} {sstat_trk(24):%6d}
+sS2Y7  {sstat_peff(28):%6.3f}  {sstat_neff(28):%6.3f}  {sstat_oeff(28):%6.3f}  {sstat_aeff(28):%6.3f} {sstat_trk(28):%6d}
+sS2Y8  {sstat_peff(32):%6.3f}  {sstat_neff(32):%6.3f}  {sstat_oeff(32):%6.3f}  {sstat_aeff(32):%6.3f} {sstat_trk(32):%6d}
+sS2Y9  {sstat_peff(36):%6.3f}  {sstat_neff(36):%6.3f}  {sstat_oeff(36):%6.3f}  {sstat_aeff(36):%6.3f} {sstat_trk(36):%6d}
+
+all sS1X{sstat_poseff(1):%6.3f}  {sstat_negeff(1):%6.3f}  {sstat_oreff(1):%6.3f}  {sstat_andeff(1):%6.3f} {sstat_trksum(1):%6d}
+all sS1Y{sstat_poseff(2):%6.3f}  {sstat_negeff(2):%6.3f}  {sstat_oreff(2):%6.3f}  {sstat_andeff(2):%6.3f} {sstat_trksum(2):%6d}
+all sS2X{sstat_poseff(3):%6.3f}  {sstat_negeff(3):%6.3f}  {sstat_oreff(3):%6.3f}  {sstat_andeff(3):%6.3f} {sstat_trksum(3):%6d}
+all sS2Y{sstat_poseff(4):%6.3f}  {sstat_negeff(4):%6.3f}  {sstat_oreff(4):%6.3f}  {sstat_andeff(4):%6.3f} {sstat_trksum(4):%6d}
+
+Calculted Trigger efficiencies:
+sS1   : {seff_s1:%6.3f}
+sS2   : {seff_s2:%6.3f}
+sSTOF : {seff_stof:%6.3f}
+3/4   : {seff_3_of_4:%6.3f}
+4/4   : {seff_4_of_4:%6.3f}
+
+*************************
+* Cerenkov Efficiencies *
+*************************
+Good Track Requirements:
+   1. Only one track found in the focal plane
+   2. chisq/dof < {scer_chi2max:%5.1f}
+   3. {scer_beta_min:%5.3f} < beta < {scer_beta_max:%5.3f}
+   4. {scer_et_min:%5.3f} < calorimeter energy < {scer_et_max:%5.3f}
+Threshold set at {scer_threshold:%4.1f}
+
+Mirror 1 Efficiency = {scer_region_eff(1):%5.3f} = {scer_fired_counter(1):%6d} of {scer_track_counter(1):%6d} good tracks.
+Mirror 2 Efficiency = {scer_region_eff(2):%5.3f} = {scer_fired_counter(2):%6d} of {scer_track_counter(2):%6d} good tracks.
+Mirror 3 Efficiency = {scer_region_eff(3):%5.3f} = {scer_fired_counter(3):%6d} of {scer_track_counter(3):%6d} good tracks.
+Mirror 4 Efficiency = {scer_region_eff(4):%5.3f} = {scer_fired_counter(4):%6d} of {scer_track_counter(4):%6d} good tracks.
+Overall  Efficiency = {scer_region_eff(5):%5.3f} = {scer_fired_counter(5):%6d} of {scer_track_counter(5):%6d} good tracks.
+
+****************************
+* Calorimeter Efficiencies *
+****************************
+Efficiencies for calorimeter is the fraction of times block was hit when track
+with chisquared/dof < {sstat_cal_maxchisq:%5.1f} came within {sstat_cal_slop:%4.1f} cm of the center.
+and scal_npe_sum > 3.0 (hardwired).
+
+Events examined = strig       = {strig.scaler:%7d}
+Tracks found    = scleantrack = {scleantrack.scaler:%7d}
+Tracks passing chisquared cut = {sstat_cal_numevents:%7d}
+
+Block   eff    Hits
+-----   ---    ----
+sA1   {sstat_cal_eff(1):%6.3f} {sstat_cal_trk(1):%6d}
+sA2   {sstat_cal_eff(5):%6.3f} {sstat_cal_trk(5):%6d}
+sA3   {sstat_cal_eff(9):%6.3f} {sstat_cal_trk(9):%6d}
+sA4   {sstat_cal_eff(13):%6.3f} {sstat_cal_trk(13):%6d}
+sA5   {sstat_cal_eff(17):%6.3f} {sstat_cal_trk(17):%6d}
+sA6   {sstat_cal_eff(21):%6.3f} {sstat_cal_trk(21):%6d}
+sA7   {sstat_cal_eff(25):%6.3f} {sstat_cal_trk(25):%6d}
+sA8   {sstat_cal_eff(29):%6.3f} {sstat_cal_trk(29):%6d}
+sA9   {sstat_cal_eff(33):%6.3f} {sstat_cal_trk(33):%6d}
+sA10  {sstat_cal_eff(37):%6.3f} {sstat_cal_trk(37):%6d}
+sA11  {sstat_cal_eff(41):%6.3f} {sstat_cal_trk(41):%6d}
+
+sB1   {sstat_cal_eff(2):%6.3f} {sstat_cal_trk(2):%6d}
+sB2   {sstat_cal_eff(6):%6.3f} {sstat_cal_trk(6):%6d}
+sB3   {sstat_cal_eff(10):%6.3f} {sstat_cal_trk(10):%6d}
+sB4   {sstat_cal_eff(14):%6.3f} {sstat_cal_trk(14):%6d}
+sB5   {sstat_cal_eff(18):%6.3f} {sstat_cal_trk(18):%6d}
+sB6   {sstat_cal_eff(22):%6.3f} {sstat_cal_trk(22):%6d}
+sB7   {sstat_cal_eff(26):%6.3f} {sstat_cal_trk(26):%6d}
+sB8   {sstat_cal_eff(30):%6.3f} {sstat_cal_trk(30):%6d}
+sB9   {sstat_cal_eff(34):%6.3f} {sstat_cal_trk(34):%6d}
+sB10  {sstat_cal_eff(38):%6.3f} {sstat_cal_trk(38):%6d}
+sB11  {sstat_cal_eff(42):%6.3f} {sstat_cal_trk(42):%6d}
+
+sC1   {sstat_cal_eff(3):%6.3f} {sstat_cal_trk(3):%6d}
+sC2   {sstat_cal_eff(7):%6.3f} {sstat_cal_trk(7):%6d}
+sC3   {sstat_cal_eff(11):%6.3f} {sstat_cal_trk(11):%6d}
+sC4   {sstat_cal_eff(15):%6.3f} {sstat_cal_trk(15):%6d}
+sC5   {sstat_cal_eff(19):%6.3f} {sstat_cal_trk(19):%6d}
+sC6   {sstat_cal_eff(23):%6.3f} {sstat_cal_trk(23):%6d}
+sC7   {sstat_cal_eff(27):%6.3f} {sstat_cal_trk(27):%6d}
+sC8   {sstat_cal_eff(31):%6.3f} {sstat_cal_trk(31):%6d}
+sC9   {sstat_cal_eff(35):%6.3f} {sstat_cal_trk(35):%6d}
+sC10  {sstat_cal_eff(39):%6.3f} {sstat_cal_trk(39):%6d}
+sC11  {sstat_cal_eff(43):%6.3f} {sstat_cal_trk(43):%6d}
+
+sD1   {sstat_cal_eff(4):%6.3f} {sstat_cal_trk(4):%6d}
+sD2   {sstat_cal_eff(8):%6.3f} {sstat_cal_trk(8):%6d}
+sD3   {sstat_cal_eff(12):%6.3f} {sstat_cal_trk(12):%6d}
+sD4   {sstat_cal_eff(16):%6.3f} {sstat_cal_trk(16):%6d}
+sD5   {sstat_cal_eff(20):%6.3f} {sstat_cal_trk(20):%6d}
+sD6   {sstat_cal_eff(24):%6.3f} {sstat_cal_trk(24):%6d}
+sD7   {sstat_cal_eff(28):%6.3f} {sstat_cal_trk(28):%6d}
+sD8   {sstat_cal_eff(32):%6.3f} {sstat_cal_trk(32):%6d}
+sD9   {sstat_cal_eff(36):%6.3f} {sstat_cal_trk(36):%6d}
+sD10  {sstat_cal_eff(40):%6.3f} {sstat_cal_trk(40):%6d}
+sD11  {sstat_cal_eff(44):%6.3f} {sstat_cal_trk(44):%6d}
+
+sA    {sstat_cal_effsum(1):%6.3f} {sstat_cal_trksum(1):%6d}
+sB    {sstat_cal_effsum(2):%6.3f} {sstat_cal_trksum(2):%6d}
+sC    {sstat_cal_effsum(3):%6.3f} {sstat_cal_trksum(3):%6d}
+sD    {sstat_cal_effsum(4):%6.3f} {sstat_cal_trksum(4):%6d}
+end report srep
+
+;pos/neg/both efficiencies
+
+; Scin.  POS only NEG only #/Both
+;------  -------- -------- ------
+
+;sS1X1   {sposgood(1)/(.001+sbothgood(1)):%6.3f}  {sneggood(1)/(.001+sbothgood(1)):%6.3f}  {sbothgood(1):%6d}
+;sS1X2   {sposgood(5)/(.001+sbothgood(5)):%6.3f}  {sneggood(5)/(.001+sbothgood(5)):%6.3f}  {sbothgood(5):%6d}
+;sS1X3   {sposgood(9)/(.001+sbothgood(9)):%6.3f}  {sneggood(9)/(.001+sbothgood(9)):%6.3f}  {sbothgood(9):%6d}
+;sS1X4   {sposgood(13)/(.001+sbothgood(13)):%6.3f}  {sneggood(13)/(.001+sbothgood(13)):%6.3f}  {sbothgood(13):%6d}
+;sS1X5   {sposgood(17)/(.001+sbothgood(17)):%6.3f}  {sneggood(17)/(.001+sbothgood(17)):%6.3f}  {sbothgood(17):%6d}
+;sS1X6   {sposgood(21)/(.001+sbothgood(21)):%6.3f}  {sneggood(21)/(.001+sbothgood(21)):%6.3f}  {sbothgood(21):%6d}
+;sS1X7   {sposgood(25)/(.001+sbothgood(25)):%6.3f}  {sneggood(25)/(.001+sbothgood(25)):%6.3f}  {sbothgood(25):%6d}
+;sS1X8   {sposgood(29)/(.001+sbothgood(29)):%6.3f}  {sneggood(29)/(.001+sbothgood(29)):%6.3f}  {sbothgood(29):%6d}
+;sS1X9   {sposgood(33)/(.001+sbothgood(33)):%6.3f}  {sneggood(33)/(.001+sbothgood(33)):%6.3f}  {sbothgood(33):%6d}
+
+;sS1Y1   {sposgood(2)/(.001+sbothgood(2)):%6.3f}  {sneggood(2)/(.001+sbothgood(2)):%6.3f}  {sbothgood(2):%6d}
+;sS1Y2   {sposgood(6)/(.001+sbothgood(6)):%6.3f}  {sneggood(6)/(.001+sbothgood(6)):%6.3f}  {sbothgood(6):%6d}
+;sS1Y3   {sposgood(10)/(.001+sbothgood(10)):%6.3f}  {sneggood(10)/(.001+sbothgood(10)):%6.3f}  {sbothgood(10):%6d}
+;sS1Y4   {sposgood(14)/(.001+sbothgood(14)):%6.3f}  {sneggood(14)/(.001+sbothgood(14)):%6.3f}  {sbothgood(14):%6d}
+;sS1Y5   {sposgood(18)/(.001+sbothgood(18)):%6.3f}  {sneggood(18)/(.001+sbothgood(18)):%6.3f}  {sbothgood(18):%6d}
+;sS1Y6   {sposgood(22)/(.001+sbothgood(22)):%6.3f}  {sneggood(22)/(.001+sbothgood(22)):%6.3f}  {sbothgood(22):%6d}
+;sS1Y7   {sposgood(26)/(.001+sbothgood(26)):%6.3f}  {sneggood(26)/(.001+sbothgood(26)):%6.3f}  {sbothgood(26):%6d}
+;sS1Y8   {sposgood(30)/(.001+sbothgood(30)):%6.3f}  {sneggood(30)/(.001+sbothgood(30)):%6.3f}  {sbothgood(30):%6d}
+;sS1Y9   {sposgood(34)/(.001+sbothgood(34)):%6.3f}  {sneggood(34)/(.001+sbothgood(34)):%6.3f}  {sbothgood(34):%6d}
+
+;sS2X1   {sposgood(3)/(.001+sbothgood(3)):%6.3f}  {sneggood(3)/(.001+sbothgood(3)):%6.3f}  {sbothgood(3):%6d}
+;sS2X2   {sposgood(7)/(.001+sbothgood(7)):%6.3f}  {sneggood(7)/(.001+sbothgood(7)):%6.3f}  {sbothgood(7):%6d}
+;sS2X3   {sposgood(11)/(.001+sbothgood(11)):%6.3f}  {sneggood(11)/(.001+sbothgood(11)):%6.3f}  {sbothgood(11):%6d}
+;sS2X4   {sposgood(15)/(.001+sbothgood(15)):%6.3f}  {sneggood(15)/(.001+sbothgood(15)):%6.3f}  {sbothgood(15):%6d}
+;sS2X5   {sposgood(19)/(.001+sbothgood(19)):%6.3f}  {sneggood(19)/(.001+sbothgood(19)):%6.3f}  {sbothgood(19):%6d}
+;sS2X6   {sposgood(23)/(.001+sbothgood(23)):%6.3f}  {sneggood(23)/(.001+sbothgood(23)):%6.3f}  {sbothgood(23):%6d}
+;sS2X7   {sposgood(27)/(.001+sbothgood(27)):%6.3f}  {sneggood(27)/(.001+sbothgood(27)):%6.3f}  {sbothgood(27):%6d}
+;sS2X8   {sposgood(31)/(.001+sbothgood(31)):%6.3f}  {sneggood(31)/(.001+sbothgood(31)):%6.3f}  {sbothgood(31):%6d}
+;sS2X9   {sposgood(35)/(.001+sbothgood(35)):%6.3f}  {sneggood(35)/(.001+sbothgood(35)):%6.3f}  {sbothgood(35):%6d}
+;sS2X10  {sposgood(39)/(.001+sbothgood(39)):%6.3f}  {sneggood(39)/(.001+sbothgood(39)):%6.3f}  {sbothgood(39):%6d}
+;sS2X11  {sposgood(43)/(.001+sbothgood(43)):%6.3f}  {sneggood(43)/(.001+sbothgood(43)):%6.3f}  {sbothgood(43):%6d}
+;sS2X12  {sposgood(47)/(.001+sbothgood(47)):%6.3f}  {sneggood(47)/(.001+sbothgood(47)):%6.3f}  {sbothgood(47):%6d}
+;sS2X13  {sposgood(51)/(.001+sbothgood(51)):%6.3f}  {sneggood(51)/(.001+sbothgood(51)):%6.3f}  {sbothgood(51):%6d}
+;sS2X14  {sposgood(55)/(.001+sbothgood(55)):%6.3f}  {sneggood(55)/(.001+sbothgood(55)):%6.3f}  {sbothgood(55):%6d}
+;sS2X15  {sposgood(59)/(.001+sbothgood(59)):%6.3f}  {sneggood(59)/(.001+sbothgood(59)):%6.3f}  {sbothgood(59):%6d}
+;sS2X16  {sposgood(63)/(.001+sbothgood(63)):%6.3f}  {sneggood(63)/(.001+sbothgood(63)):%6.3f}  {sbothgood(63):%6d}
+
+;sS2Y1   {sposgood(4)/(.001+sbothgood(4)):%6.3f}  {sneggood(4)/(.001+sbothgood(4)):%6.3f}  {sbothgood(4):%6d}
+;sS2Y2   {sposgood(8)/(.001+sbothgood(8)):%6.3f}  {sneggood(8)/(.001+sbothgood(8)):%6.3f}  {sbothgood(8):%6d}
+;sS2Y3   {sposgood(12)/(.001+sbothgood(12)):%6.3f}  {sneggood(12)/(.001+sbothgood(12)):%6.3f}  {sbothgood(12):%6d}
+;sS2Y4   {sposgood(16)/(.001+sbothgood(16)):%6.3f}  {sneggood(16)/(.001+sbothgood(16)):%6.3f}  {sbothgood(16):%6d}
+;sS2Y5   {sposgood(20)/(.001+sbothgood(20)):%6.3f}  {sneggood(20)/(.001+sbothgood(20)):%6.3f}  {sbothgood(20):%6d}
+;sS2Y6   {sposgood(24)/(.001+sbothgood(24)):%6.3f}  {sneggood(24)/(.001+sbothgood(24)):%6.3f}  {sbothgood(24):%6d}
+;sS2Y7   {sposgood(28)/(.001+sbothgood(28)):%6.3f}  {sneggood(28)/(.001+sbothgood(28)):%6.3f}  {sbothgood(28):%6d}
+;sS2Y8   {sposgood(32)/(.001+sbothgood(32)):%6.3f}  {sneggood(32)/(.001+sbothgood(32)):%6.3f}  {sbothgood(32):%6d}
+;sS2Y9   {sposgood(36)/(.001+sbothgood(36)):%6.3f}  {sneggood(36)/(.001+sbothgood(36)):%6.3f}  {sbothgood(36):%6d}

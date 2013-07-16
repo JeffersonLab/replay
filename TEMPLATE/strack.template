@@ -1,0 +1,62 @@
+*****************************
+* SOS TRACKING EFFICIENCIES *
+*****************************
+strig                          :{strig.scaler:%7d}
+shitslt = passed hits/cham     :{shitslt.scaler:%7d}
+shitsplanes =+ planes >= 5/6   :{shitsplanes.scaler:%7d}
+shtsplanessps = + sps          :{shitsplanessps.scaler:%7d}
+shitsplanesspsstubs =+stub     :{shitsplanesspsstubs.scaler:%7d}
+ssfoundtrack                   :{ssfoundtrack.scaler:%7d}
+sscleantrack                   :{sscleantrack.scaler:%7d}
+sstublt = passed stub tests    :{sstublt.scaler:%7d}
+s1hitslt                       :{s1hitslt.scaler:%7d}
+s2hitslt                       :{s2hitslt.scaler:%7d}
+s1planesgt                     :{s1planesgt.scaler:%7d}
+s2planesgt                     :{s2planesgt.scaler:%7d}
+splanesgt = gt 5 planes/cham   :{splanesgt.scaler:%7d}
+f1sspacepoints                 :{f1sspacepoints.scaler:%7d}
+f2sspacepoints                 :{f2sspacepoints.scaler:%7d}
+stest1=p hits/planes, f sp     :{stest1.scaler:%7d}
+stest2=p sp, f stubs           :{stest2.scaler:%7d}
+sdid			       :{sdid.scaler:%7d}
+sdidp			       :{sdidp.scaler:%7d}
+sdide			       :{sdide.scaler:%7d}
+sdidh			       :{sdidh.scaler:%7d}
+sscinshould		       :{sscinshould.scaler:%7d}
+sscinshouldp		       :{sscinshouldh.scaler:%7d}
+sscinshoulde		       :{sscinshoulde.scaler:%7d}
+sscinshouldh		       :{sscinshouldh.scaler:%7d}
+'CLEAN' SING TRACK EFF         :{sdid.scaler/(sscinshould.scaler+.0001):%8.4f} +-{(sqrt(sscinshould.scaler-sdid.scaler)/(sscinshould.scaler+.0001)):%8.4f}
+'CLEAN' P SING TRACK EFF       :{sdidp.scaler/(sscinshouldp.scaler+.0001):%8.4f} +-{(sqrt(sscinshouldp.scaler-sdidp.scaler)/(sscinshouldp.scaler+.0001)):%8.4f}
+'CLEAN' E SING TRACK EFF       :{sdide.scaler/(sscinshoulde.scaler+.0001):%8.4f} +-{(sqrt(sscinshoulde.scaler-sdide.scaler)/(sscinshoulde.scaler+.0001)):%8.4f}
+'CLEAN' PI SING TRACK EFF      :{sdidh.scaler/(sscinshouldh.scaler+.0001):%8.4f} +-{(sqrt(sscinshouldh.scaler-sdidh.scaler)/(sscinshouldh.scaler+.0001)):%8.4f}
+* sos coincidences...
+ctrig                          :{ctrig.scaler:%7d}
+bshitslt = passed hits/cham    :{bshitslt.scaler:%7d}
+bshitsplanes =+ planes >= 5/6  :{bshitsplanes.scaler:%7d}
+bshitsplanessps = + sps        :{bshitsplanessps.scaler:%7d}
+bshitsplanesspsstubs =+stub    :{bshitsplanesspsstubs.scaler:%7d}
+found track and ctrig          :{bsfoundtrack.scaler:%7d}
+bsstublt = passed stub tests   :{bsstublt.scaler:%7d}
+bs1hitslt                      :{bs1hitslt.scaler:%7d}
+bs2hitslt                      :{bs2hitslt.scaler:%7d}
+bs1planesgt                    :{bs1planesgt.scaler:%7d}
+bs2planesgt                    :{bs2planesgt.scaler:%7d}
+bsplanesgt = gt 5 planes/cham  :{bsplanesgt.scaler:%7d}
+f1bsspacepoints                :{f1bsspacepoints.scaler:%7d}
+f2bsspacepoints                :{f2bsspacepoints.scaler:%7d}
+bstest1=p hits/planes, f sp    :{bstest1.scaler:%7d}
+bstest2=p sp, f stubs          :{bstest2.scaler:%7d}
+bsdid			       :{bsdid.scaler:%7d}
+bsdidp			       :{bsdidp.scaler:%7d}
+bsdide			       :{bsdide.scaler:%7d}
+bsdidh			       :{bsdidh.scaler:%7d}
+bsscinshould		       :{bsscinshould.scaler:%7d}
+bsscinshouldp		       :{bsscinshouldp.scaler:%7d}
+bsscinshoulde		       :{bsscinshoulde.scaler:%7d}
+bsscinshouldh		       :{bsscinshouldh.scaler:%7d}
+'CLEAN' COIN TRACK EFF         :{bsdid.scaler/(bsscinshould.scaler+.0001):%8.4f} +-{(sqrt(bsscinshould.scaler-bsdid.scaler)/(bsscinshould.scaler+.0001)):%8.4f}
+'CLEAN' P COIN TRACK EFF       :{bsdidp.scaler/(bsscinshouldp.scaler+.0001):%8.4f} +-{(sqrt(bsscinshouldp.scaler-bsdidp.scaler)/(bsscinshouldp.scaler+.0001)):%8.4f}
+'CLEAN' E COIN TRACK EFF       :{bsdide.scaler/(bsscinshoulde.scaler+.0001):%8.4f} +-{(sqrt(bsscinshoulde.scaler-bsdide.scaler)/(bsscinshoulde.scaler+.0001)):%8.4f}
+'CLEAN' PI COIN TRACK EFF      :{bsdidh.scaler/(bsscinshouldh.scaler+.0001):%8.4f} +-{(sqrt(bsscinshouldh.scaler-bsdidh.scaler)/(bsscinshouldh.scaler+.0001)):%8.4f}
+********************************************************************

@@ -1,0 +1,29 @@
+begin hist hms_pid_cerenkov group=hms group=both
+
+rf25ps,gmisc_dec_data(116),1,0,1 $### HMS CERENKOV (PID)
+hcer_adc_1,hcer_adc(1),2100,-100,4100         $hcer adc bottom  t=htrig
+hcer_adc_2,hcer_adc(2),2100,-100,4100         $hcer adc top     t=htrig
+;hcer_adc_highX,hcer_adc(1),840,-100,4100,hcer_fid_highX         $hcer adc bottom  t=hcer_fid_highX
+;hcer_adc_lowX,hcer_adc(2),840,-100,4100,hcer_fid_lowX          $hcer adc top     t=hcer_fid_lowX
+
+
+hcer_npe_1,hcer_npe(1),150,-1,29             $hcer npe bottom  t=htrig
+hcer_npe_1e,hcer_npe(1),150,-1,29,helec_calcut   $hcer npe bottom helec_calcut   t=helec_calcut
+
+hcer_npe_2,hcer_npe(2),150,-1,29             $hcer npe top    t=htrig
+hcer_npe_2e,hcer_npe(2),150,-1,29,helec_calcut  $hcer npe top helec_calcut    t=helec_calcut
+
+hcer_npe_sum,hcer_npe_sum,150,-1,29          $hcer npe sum    t=htrig
+hcer_npe_sume,hcer_npe_sum,150,-1,29,helec_calcut  $hcer npe sum helec_calcut    t=helec_calcut
+
+hcer_sum_cut,hcer_npe_sum,150,-1,29,hcerlat  $hcer npe sum    t=hcerlat
+hcer_sum_cuthi,hcer_npe_sum,150,-1,29,hcerhi  $hcer npe sum    t=hcerhi
+hcervssx,hcer_npe_sum,hsx_cer,31,-1,30,70,-70,70,hcleantrack  $xcer vs hcer-npe t=hclean
+hcervssy,hcer_npe_sum,hsy_cer,31,-1,30,30,-30,30,hcleantrack  $ycer vs hcer-npe t=hclean
+
+;cerenkov from pipre triggers only, to monitor threshold.
+hcer_npe_pipre,hcer_npe_sum,150,-1,29,hpipre          $hcer npe sum    t=hpipre
+hcer_npe_piprecer,hcer_npe_sum,150,-1,29,hpipre_cer   $hcer npe sum    t=hpipre_cer
+hcer_npe_piprecerhi,hcer_npe_sum,150,-1,29,hpipre_cerhi   $hcer npe sum    t=hpipre_cerhi
+
+end   hist hms_pid_cerenkov

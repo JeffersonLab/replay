@@ -1,0 +1,31 @@
+begin hist coin_physics group=hms group=sos group=both
+
+dummy1,gmisc_dec_data(116),1,0,1 $### COINC PHYSICS
+
+
+ccointime_sos,ccointime_sos,1000,-60,-20,ccleantrack $SOS ccointime t=ccleantrack
+ccointime_hms,ccointime_hms,1000,-20,20,ccleantrack $HMS ccointime t=ccleantrack
+
+;hspathcor,hspath_cor,200,-2.,2.,hfoundtrack           $HMS path corr (ns) t=hfndtrk
+;sspathcor,sspath_cor,200,-2.,2.,sfoundtrack           $SOS path corr (ns) t=sfndtrk
+;cpathcor,cpath_cor,200,-2.,2.,ctrig             $SOS-HMS path corr (ns) t=ctrig
+
+
+h_hmstrig, hmisc_dec_data(9), 200,500,5000,htrig  $h_hmstrg  t=htrig
+h_sostrig, hmisc_dec_data(10),200,500,5000,ctrig  $h_sostrg (raw ctime) t=ctrig
+h_sostrig2, hmisc_dec_data(10),400,1800,2200,ctrig  $h_sostrg (raw ctime) ZOOM t=ctrig
+h_cointrig,hmisc_dec_data(11),200,500,3500,ctrig  $h_cointrg t=ctrig
+h_pedtrig, hmisc_dec_data(12),200,500,3500,atrig  $h_pedtrg  t=atrig
+
+
+s_hmstrig, smisc_dec_data(9), 200,100,3500,ctrig $s_hmstrg  (raw ctime) t=ctrig
+s_hmstrig2, smisc_dec_data(9),400,1800,2200,ctrig $s_hmstrg  (raw ctime) ZOOM t=ctrig
+s_sostrig, smisc_dec_data(10),200,100,5000,strig $s_sostrg  t=strig
+s_cointrig,smisc_dec_data(11),200,100,5000,ctrig $s_cointrg t=ctrig
+s_pedtrig, smisc_dec_data(12),200,100,5000,atrig $s_pedtrg  t=atrig
+
+hrft1,hmisc_dec_data(53),200,300,4000,htrig $hrft1 49.9 MHZ  t=htrig
+hrft2,hmisc_dec_data(49),200,350,4000,htrig $hrft2 49.9 MHZ  t=htrig
+hrft3,hmisc_dec_data(51),200,400,4000,htrig $hrft3 49.9 MHZ  t=htrig
+
+end   hist coin_physics

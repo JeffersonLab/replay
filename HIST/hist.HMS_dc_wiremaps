@@ -1,0 +1,20 @@
+begin hist hms_decoded_dc group=hms group=both
+rf25ps,gmisc_dec_data(116),1,0,1 $### HMS DC WIREMAPS
+
+hdcrawtdc,400,0,5000   $hdc raw tdcs t=user
+hdccuttdc,400,0,5000   $hdc cut tdcs t=user
+
+; wiremaps
+hdc1x1_wiremap,hdc_nrwire(1),0.5,hdc_nrwire(1)+0.5   $hdc1x1 wiremap t=user
+hdc1y1_wiremap,hdc_nrwire(2),0.5,hdc_nrwire(2)+0.5   $hdc1y1 wiremap t=user
+hdc1u1_wiremap,hdc_nrwire(3),0.5,hdc_nrwire(3)+0.5   $hdc1u1 wiremap t=user
+hdc1v1_wiremap,hdc_nrwire(4),0.5,hdc_nrwire(4)+0.5   $hdc1v1 wiremap t=user
+hdc1y2_wiremap,hdc_nrwire(5),0.5,hdc_nrwire(5)+0.5   $hdc1y2 wiremap t=user
+hdc1x2_wiremap,hdc_nrwire(6),0.5,hdc_nrwire(6)+0.5   $hdc1x2 wiremap t=user
+hdc2x1_wiremap,hdc_nrwire(7),0.5,hdc_nrwire(7)+0.5   $hdc2x1 wiremap t=user
+hdc2y1_wiremap,hdc_nrwire(8),0.5,hdc_nrwire(8)+0.5   $hdc2y1 wiremap t=user
+hdc2u1_wiremap,hdc_nrwire(9),0.5,hdc_nrwire(9)+0.5   $hdc2u1 wiremap t=user
+hdc2v1_wiremap,hdc_nrwire(10),0.5,hdc_nrwire(10)+0.5 $hdc2v1 wiremap t=user
+hdc2y2_wiremap,hdc_nrwire(11),0.5,hdc_nrwire(11)+0.5 $hdc2y2 wiremap t=user
+hdc2x2_wiremap,hdc_nrwire(12),0.5,hdc_nrwire(12)+0.5 $hdc2x2 wiremap t=user
+end   hist hms_decoded_dc

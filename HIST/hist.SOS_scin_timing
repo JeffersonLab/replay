@@ -1,0 +1,20 @@
+begin hist sos_decoded_scin_timing group=sos group=both
+
+rf25ps,gmisc_dec_data(116),1,0,1 $### SOS SCINTILLATOR TIMING
+
+snallscinhits,sscin_all_tot_hits,53,-0.5,52.5     $raw total scint hits t=strig
+snscinhits,sscin_tot_hits,20,0.5,20.5             $total scint hits t=strig
+ssnum_scin,ssnum_scin_hit,20,0.5,20.5,scleantrack $scint hits on track t=sclean
+sstart_time1,sstart_time,60,0,80                  $start time t=strig
+sstart_time2,sstart_time,60,0,80,scleantrack      $start time t=sclean
+sfptime1,s_fptime(1),40,0,80,sfoundtrack          $ss1xfptime t=sfound
+sfptime2,s_fptime(2),40,0,80,sfoundtrack          $ss1yfptime t=sfound
+sfptime3,s_fptime(3),40,0,80,sfoundtrack          $ss2xfptime t=sfound
+sfptime4,s_fptime(4),40,0,80,sfoundtrack          $ss2yfptime t=sfound
+sfptimdif1,s_fptimedif(1),60,-3,3,sfoundtrack     $sfptime diff (1-2) t=sfound
+sfptimdif2,s_fptimedif(2),60,-3,3,sfoundtrack     $sfptime diff (1-3) t=sfound
+sfptimdif3,s_fptimedif(3),60,-3,3,sfoundtrack     $sfptime diff (1-4) t=sfound
+sfptimdif4,s_fptimedif(4),60,-3,3,sfoundtrack     $sfptime diff (2-3) t=sfound
+sfptimdif5,s_fptimedif(5),60,-3,3,sfoundtrack     $sfptime diff (2-4) t=sfound
+sfptimdif6,s_fptimedif(6),60,-3,3,sfoundtrack     $sfptime diff (3-4) t=sfound
+end   hist sos_decoded_scin_timing

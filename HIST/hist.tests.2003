@@ -1,0 +1,14 @@
+; The tests from hist.tests.1999 that were needed for the
+; 'standard' histograms
+
+begin test coin_path_corr group=both
+#real cpath_cor
+cpath_cor = sspath_cor - hspath_cor
+end test coin_path_corr
+
+begin test coin_timing group=both
+#real cchecksum
+cchecksum = hmisc_dec_data(10)+smisc_dec_data(9)
+end test coin_timing
+
+

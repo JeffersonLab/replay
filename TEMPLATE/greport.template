@@ -1,0 +1,1127 @@
+begin parm grep
+
+g_report_blockname = 'grep'
+
+end parm grep
+
+begin report grep
+The name of this report template file is {g_report_template_filename}.
+All efficiencies are normalized to "htrig" or "strig".
+Values in parenthesis are rates ( Hz )
+hardware scalers have rates in square brackets [ Hz ].
+
+******************************************
+*NEW, IMPORTANT NUCR STUFF:
+*
+*       raw physics pi/e ratio from scalers: {gscaler(163)/(gscaler(164)+.0000001):%8.2f}
+*
+*   % of TRIGGERS coming from pion prescale: {100*gscaler(158)/(gscaler(185)+.0000001):%7.1f}%
+*
+* electron fraction (e/(pi+e)) for the DATA: {hmisc_scaler(36)/(htrig.scaler+.0001):%8.3f}
+*
+******************************************
+
+Run #: {gen_run_number}
+Time of run = {g_run_time:%8.2f} sec.
+first event = {gen_run_starting_event:%7d}
+last event  = {gen_event_id_number:%7d}
+
+Prescale Factors: PS1: {gps1}  PS2: {gps2}  PS3: {gps3} 
+
+dmytst      = {dmytst.scaler:%8d} ( {dmytst.scaler/g_run_time:%7.1f} )
+atrig       = {atrig.scaler:%8d} ( {atrig.scaler/g_run_time:%7.1f} )
+htrig       = {htrig.scaler:%8d} ( {htrig.scaler/g_run_time:%7.1f} )
+strig       = {strig.scaler:%8d} ( {strig.scaler/g_run_time:%7.1f} )
+ctrig       = {ctrig.scaler:%8d} ( {ctrig.scaler/g_run_time:%7.1f} )
+all adcgates= {gscaler(175):%8d} [ {gscaler(175)/g_run_time:%7.1f} ]
+hms adcgates= {gscaler(176):%8d} [ {gscaler(176)/g_run_time:%7.1f} ]
+sos adcgates= {gscaler(336):%8d} [ {gscaler(336)/g_run_time:%7.1f} ]
+==> coin adc= {(gscaler(176)+gscaler(336)-gscaler(175)):%8d} [ {(gscaler(176)+gscaler(336)-gscaler(175))/g_run_time:%7.1f} ]
+
+***********
+* SUMMARY *
+***********
+E_beam     = {gebeam:%8.4f} GeV (after energy loss in target)
+P_mom HMS  = { hpcentral:%8.4f} GeV/c
+Theta HMS  = {htheta_lab:%8.3f} degrees
+HMS prtmss = { hpartmass:%8.6f} GeV
+P SOS      = { spcentral:%8.4f} GeV/c
+Theta SOS  = {stheta_lab:%8.3f} degrees
+SOS prtmss = { spartmass:%8.6f} GeV
+targ num   = {gtarg_num:%8d}
+tgt Z:A:M  = {  gtarg_z(gtarg_num):%8d} : {gtarg_a(gtarg_num):%4d} : {gtarg_mass(gtarg_num):%8.4f}
+thickness  = {gtarg_lrad(gtarg_num):%8.3f} % r.l, {(gtarg_thick(gtarg_num)/gtarg_dens(gtarg_num)):%7.4f} cm, {gtarg_thick(gtarg_num):%6.4f} g/cm^2
+gtarg_theta= {gtarg_theta*180/3.14159265:%8.3f} degrees
+
++++++++++++++++++++
+HMS-PARAMETERS USED
++++++++++++++++++++
+hmomentum_factor     = {hmomentum_factor:%8.2f}
+hdelta_offset        = {hdelta_offset:%12.4e} 
+htheta_offset        = {htheta_offset:%12.4e}
+hphi_offset          = {hphi_offset:%12.4e}
+
+hpcentral_offset     = {hpcentral_offset:%12.4e}
+hthetacentral_offset = {hthetacentral_offset:%12.4e}
+hphicentral_offset   = {h_oopcentral_offset:%12.4e}
+
++++++++++++++++++++
+SOS-PARAMETERS USED
++++++++++++++++++++
+smomentum_factor     = {smomentum_factor:%8.2f}
+sdelta_offset        = {sdelta_offset:%12.4e} 
+stheta_offset        = {stheta_offset:%12.4e}
+sphi_offset          = {sphi_offset:%12.4e}
+
+spcentral_offset     = {spcentral_offset:%12.4e}
+sthetacentral_offset = {sthetacentral_offset:%12.4e}
+sphicentral_offset   = {s_oopcentral_offset:%12.4e}
+
++++++++++++++++++++
+REPLAY FLAGS SET
++++++++++++++++++++
+gen_eloss_enable     = {gen_eloss_enable:%2d}
+genable_hms_satcorr  = {genable_hms_satcorr:%2d}
+genable_hms_fieldcorr= {genable_hms_fieldcorr:%2d}  zero will use the correction
+
+hPRE      = {gscaler(185):%15.1f} [ {gscaler(185)/g_run_time:%7.1f} ]
+hPRE2     = {gscaler(345):%15.1f} [ {gscaler(345)/g_run_time:%7.1f} ] (from SOS scaler)
+hPRE3     = {gscaler(160):%15.1f} [ {gscaler(160)/g_run_time:%7.1f} ] (gscaler(160))
+hTRG      = {gscaler(189):%15.1f} [ {gscaler(189)/g_run_time:%7.1f} ]
+hTRG2     = {gscaler(349):%15.1f} [ {gscaler(349)/g_run_time:%7.1f} ] (from SOS scaler)
+
+aadc-sadc = {(gscaler(175)-gscaler(336)):%15.1f} [ {(gscaler(175)-gscaler(336))/g_run_time:%7.1f} ]
+
+goodhdc1  = {goodhdc1.scaler:%7d}   eff= {goodhdc1.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .90
+goodhdc2  = {goodhdc2.scaler:%7d}        {goodhdc2.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .90
+goodhs1x  = {goodhs1x.scaler:%7d}        {goodhs1x.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .99
+goodhs1y  = {goodhs1y.scaler:%7d}        {goodhs1y.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .99
+goodhs2x  = {goodhs2x.scaler:%7d}        {goodhs2x.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .99
+goodhs2y  = {goodhs2y.scaler:%7d}        {goodhs2y.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .99
+hcer eff  = {hcer_region_eff(3):%7.2f} = {hcer_fired_counter(3):%6d} of {hcer_track_counter(3):%6d} good tracks.
+
+'*'=included in HCORR TOTAL
+ HMS 3/4 effic  = {heff_3_of_4:%9.4f}
+*HMS fid effic  = {hdid.scaler/(hscinshould.scaler+.0001):%9.4f}
+ HMS w/DC cuts  = {hdid_clean.scaler/(hscinshould_clean.scaler+.0001):%9.4f}
+*hcomputer D.T. = {100*(1-gscaler(189)/(gscaler(185)+.0001)):%9.2f} % ( {100*(1-gscaler(349)/(gscaler(345)+.0001)):%6.2f} % from SOS scaler)
+sync hms C.D.T. = {100*(1-gscaler_saved(189)/(gscaler_saved(185)+.0001)):%9.2f} % ( {100*(1-gscaler_saved(349)/(gscaler_saved(345)+.0001)):%6.2f} % from SOS scaler)
+*helect.  D.T.  = {100*(60/50)*(gscaler(151)-gscaler(148))/(gscaler(151)+.0001):%9.2f} %
+sync helect.D.T.= {100*(60/50)*(gscaler_saved(151)-gscaler_saved(148))/(gscaler_saved(151)+.0001):%9.2f} %
+ PS1(calc)      = {((gscaler(189)-gscaler(191))/(gscaler(175)-gscaler(336)+.00001)):%9.1f}
+ sync PS1(calc) = {((gscaler_saved(189)-gscaler_saved(191))/(gscaler_saved(175)-gscaler_saved(336)+.00001)):%9.1f}
+*PS1(programmed)= {gps1:%9.1f}
+HCORR TOTAL     = {gps1*hscinshould.scaler/(hdid.scaler+.01)/(1-gscaler(189)/(gscaler(160)+.0001))/(1-(60./50.)*(gscaler(151)-gscaler(148))/(gscaler(151)+.0001)):%9.4f}
+
+
+ HMS x4 fid effic   = {hdidx4.scaler/(hscinshouldx4.scaler+.0001):%9.4f}   hdid ={hdidx4.scaler:%7d}   should ={hscinshouldx4.scaler:%7d}
+ HMS x5 fid effic   = {hdidx5.scaler/(hscinshouldx5.scaler+.0001):%9.4f}         {hdidx5.scaler:%7d}           {hscinshouldx5.scaler:%7d}
+ HMS x6 fid effic   = {hdidx6.scaler/(hscinshouldx6.scaler+.0001):%9.4f}         {hdidx6.scaler:%7d}           {hscinshouldx6.scaler:%7d}
+ HMS x7 fid effic   = {hdidx7.scaler/(hscinshouldx7.scaler+.0001):%9.4f}         {hdidx7.scaler:%7d}           {hscinshouldx7.scaler:%7d}
+ HMS x8 fid effic   = {hdidx8.scaler/(hscinshouldx8.scaler+.0001):%9.4f}         {hdidx8.scaler:%7d}           {hscinshouldx8.scaler:%7d}
+ HMS x9 fid effic   = {hdidx9.scaler/(hscinshouldx9.scaler+.0001):%9.4f}         {hdidx9.scaler:%7d}           {hscinshouldx9.scaler:%7d}
+ HMS x10 fid effic  = {hdidx10.scaler/(hscinshouldx10.scaler+.0001):%9.4f}         {hdidx10.scaler:%7d}           {hscinshouldx10.scaler:%7d}
+ HMS x11 fid effic  = {hdidx11.scaler/(hscinshouldx11.scaler+.0001):%9.4f}         {hdidx11.scaler:%7d}           {hscinshouldx11.scaler:%7d}
+ HMS x12 fid effic  = {hdidx12.scaler/(hscinshouldx12.scaler+.0001):%9.4f}         {hdidx12.scaler:%7d}           {hscinshouldx12.scaler:%7d}
+ HMS x13 fid effic  = {hdidx13.scaler/(hscinshouldx13.scaler+.0001):%9.4f}         {hdidx13.scaler:%7d}           {hscinshouldx13.scaler:%7d}
+
+
+Calculted 3/4 efficiencies vs. del
+ HMS del1  3/4  = {heff_3_of_4_del(1):%6.3f}
+ HMS del2  3/4  = {heff_3_of_4_del(2):%6.3f}
+ HMS del3  3/4  = {heff_3_of_4_del(3):%6.3f}
+ HMS del4  3/4  = {heff_3_of_4_del(4):%6.3f}
+ HMS del5  3/4  = {heff_3_of_4_del(5):%6.3f}
+ HMS del6  3/4  = {heff_3_of_4_del(6):%6.3f}
+ HMS del7  3/4  = {heff_3_of_4_del(7):%6.3f}
+ HMS del8  3/4  = {heff_3_of_4_del(8):%6.3f}
+ HMS del9  3/4  = {heff_3_of_4_del(9):%6.3f}
+ HMS del10 3/4  = {heff_3_of_4_del(10):%6.3f}
+ HMS del11 3/4  = {heff_3_of_4_del(11):%6.3f}
+ HMS del12 3/4  = {heff_3_of_4_del(12):%6.3f}
+ HMS del13 3/4  = {heff_3_of_4_del(13):%6.3f}
+ HMS del14 3/4  = {heff_3_of_4_del(14):%6.3f}
+ HMS del15 3/4  = {heff_3_of_4_del(15):%6.3f}
+ HMS del16 3/4  = {heff_3_of_4_del(16):%6.3f}
+ HMS del17 3/4  = {heff_3_of_4_del(17):%6.3f}
+ HMS del18 3/4  = {heff_3_of_4_del(18):%6.3f}
+ HMS del19 3/4  = {heff_3_of_4_del(19):%6.3f}
+ HMS del20 3/4  = {heff_3_of_4_del(20):%6.3f}
+
+Calculted tof efficiencies vs. del
+ HMSTOF del1    = {heff_stof_del(1):%6.3f}
+ HMSTOF del2    = {heff_stof_del(2):%6.3f}
+ HMSTOF del3    = {heff_stof_del(3):%6.3f}
+ HMSTOF del4    = {heff_stof_del(4):%6.3f}
+ HMSTOF del5    = {heff_stof_del(5):%6.3f}
+ HMSTOF del6    = {heff_stof_del(6):%6.3f}
+ HMSTOF del7    = {heff_stof_del(7):%6.3f}
+ HMSTOF del8    = {heff_stof_del(8):%6.3f}
+ HMSTOF del9    = {heff_stof_del(9):%6.3f}
+ HMSTOF del10   = {heff_stof_del(10):%6.3f}
+ HMSTOF del11   = {heff_stof_del(11):%6.3f}
+ HMSTOF del12   = {heff_stof_del(12):%6.3f}
+ HMSTOF del13   = {heff_stof_del(13):%6.3f}
+ HMSTOF del14   = {heff_stof_del(14):%6.3f}
+ HMSTOF del15   = {heff_stof_del(15):%6.3f}
+ HMSTOF del16   = {heff_stof_del(16):%6.3f}
+ HMSTOF del17   = {heff_stof_del(17):%6.3f}
+ HMSTOF del18   = {heff_stof_del(18):%6.3f}
+ HMSTOF del19   = {heff_stof_del(19):%6.3f}
+ HMSTOF del20   = {heff_stof_del(20):%6.3f}
+
+
+sPSR      = {gscaler(346):%15.1f} [ {gscaler(346)/g_run_time:%7.1f} ]
+sPSR2     = {gscaler(186):%15.1f} [ {gscaler(186)/g_run_time:%7.1f} ] (from HMS scaler)
+sTRG      = {gscaler(350):%15.1f} [ {gscaler(350)/g_run_time:%7.1f} ]
+sTRG2     = {gscaler(190):%15.1f} [ {gscaler(190)/g_run_time:%7.1f} ] (from HMS scaler)
+
+aadc-hadc = {(gscaler(175)-gscaler(176)):%15.1f} [ {(gscaler(175)-gscaler(176))/g_run_time:%7.1f} ]
+
+goodsdc1  = {goodsdc1.scaler:%7d}   eff= {goodsdc1.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .90
+goodsdc2  = {goodsdc2.scaler:%7d}        {goodsdc2.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .90
+goodss1x  = {goodss1x.scaler:%7d}        {goodss1x.scaler/(strig.scaler+.0001):%5.3f}  BAD = .99
+goodss1y  = {goodss1y.scaler:%7d}        {goodss1y.scaler/(strig.scaler+.0001):%5.3f}  BAD = .99
+goodss2x  = {goodss2x.scaler:%7d}        {goodss2x.scaler/(strig.scaler+.0001):%5.3f}  BAD = .99
+goodss2y  = {goodss2y.scaler:%7d}        {goodss2y.scaler/(strig.scaler+.0001):%5.3f}  BAD = .99
+scer eff  = {scer_region_eff(5):%7.2f} = {scer_fired_counter(5):%6d} of {scer_track_counter(5):%6d} good tracks.
+
+*SOS 3/4 effic  = {seff_3_of_4:%9.4f}
+*SOS fid effic  = {sdid.scaler/(sscinshould.scaler+.0001):%9.4f}
+ SOS w/DC cuts  = {sdid_clean.scaler/(sscinshould_clean.scaler+.0001):%9.4f}
+*scomputer D.T. = {100*(1-gscaler(350)/(gscaler(346)+.0001)):%9.2f} % ( {100*(1-gscaler(190)/(gscaler(186)+.0001)):%9.2f} % from HMS scaler)
+sync sos C.D.T. = {100*(1-gscaler_saved(350)/(gscaler_saved(346)+.0001)):%9.2f} % ( {100*(1-gscaler_saved(190)/(gscaler_saved(186)+.0001)):%9.2f} % from HMS scaler)
+*select    D.T. = {100*(60/50)*(gscaler(311)-gscaler(308))/(gscaler(311)+.0001):%9.2f} %
+sync select D.T.= {100*(60/50)*(gscaler_saved(311)-gscaler_saved(308))/(gscaler_saved(311)+.0001):%9.2f} %
+ PS2(calc)      = {((gscaler(350)-gscaler(351))/(gscaler(175)-gscaler(176)+.00001)):%9.1f}
+sync  PS2(calc) = {((gscaler_saved(350)-gscaler_saved(351))/(gscaler_saved(175)-gscaler_saved(176)+.00001)):%9.1f}
+*PS2(programmed)= {gps2:%9.1f}
+*SCORR TOTAL    = {(gps2/(seff_3_of_4+.00001)*(sscinshould.scaler/(sdid.scaler+.00001))*(gscaler(350)/(gscaler(346)+.00001))*(1+(60./50.*(gscaler(311)-gscaler(308)))/(gscaler(311)+.00001))):%9.4f}
+
+
+cPRE       = {gscaler(187):%15.1f} [ {gscaler(187)/g_run_time:%7.1f} ]
+cPRE2      = {gscaler(347):%15.1f} [ {gscaler(347)/g_run_time:%7.1f} ] (from SOS scaler)
+cTRG       = {gscaler(191):%15.1f} [ {gscaler(191)/g_run_time:%7.1f} ]
+cTRG2      = {gscaler(351):%15.1f} [ {gscaler(351)/g_run_time:%7.1f} ] (from SOS scaler)
+
+PS3(programmed)= {gps3:%6d}
+hms coin  D.T. = {100*(1-gscaler(191)/(gscaler(187)+.0001)):%9.2f} %
+sos coin  D.T. = {100*(1-gscaler(351)/(gscaler(347)+.0001)):%9.2f} %
+NEW coin  D.T. = {100*(1-gscaler(164)/(gscaler(163)+.0001)):%9.2f} %
+
+
+Q_tot(microCoulombs) BCM1:{gbcm1_charge:%8.0f}  BCM2:{gbcm2_charge:%8.0f}  BCM3:{gbcm3_charge:%8.0f}
+
+         I_avg           Q_tot             Q_tot
+      (microAmps)   (microCoulombs)   (microAmp-hours)
+BCM1 {gbcm1_charge/g_run_time:%10.3f}        {gbcm1_charge:%10.3f}      {gbcm1_charge/3600:%10.3f}
+BCM2 {gbcm2_charge/g_run_time:%10.3f}        {gbcm2_charge:%10.3f}      {gbcm2_charge/3600:%10.3f}
+BCM3 {gbcm3_charge/g_run_time:%10.3f}        {gbcm3_charge:%10.3f}      {gbcm3_charge/3600:%10.3f}
+ 
+***********
+* Beam On *
+***********
+Threshold    1  = {g_beam_on_thresh_cur(1):%7.1f}
+Beam on time 1  = {g_beam_on_run_time(1):%8.2f} sec        ( {100*g_beam_on_run_time(1)/g_run_time:%5.1f} % )
+Threshold    2  = {g_beam_on_thresh_cur(2):%7.1f}
+Beam on time 2  = {g_beam_on_run_time(2):%8.2f} sec        ( {100*g_beam_on_run_time(2)/g_run_time:%5.1f} % )
+ 
+         I_avg           Q_tot             Q_tot
+      (microAmps)   (microCoulombs)   (microAmp-hours)
+bocur  {g_beam_on_bcm_charge(1)/(g_beam_on_run_time(1)+.00001):%10.3f}        {g_beam_on_bcm_charge(1):%10.3f}      {g_beam_on_bcm_charge(1)/3600:%10.3f}
+bo2cur {g_beam_on_bcm_charge(2)/(g_beam_on_run_time(2)+.00001):%10.3f}        {g_beam_on_bcm_charge(2):%10.3f}      {g_beam_on_bcm_charge(2)/3600:%10.3f}
+ 
+
+********************
+* Hardware Scalers *
+********************
+General Format:
+signal   =   counts (  rate-Hz )
+
+S1       = {gscaler(145):%15.1f} [ {gscaler(145)/g_run_time:%9.1f} ]
+S2       = {gscaler(153):%15.1f} [ {gscaler(153)/g_run_time:%9.1f} ]
+S1X      = {gscaler(149):%15.1f} [ {gscaler(149)/g_run_time:%9.1f} ]
+S1Y      = {gscaler(152):%15.1f} [ {gscaler(152)/g_run_time:%9.1f} ]
+S2X      = {gscaler(147):%15.1f} [ {gscaler(147)/g_run_time:%9.1f} ]
+S2Y      = {gscaler(150):%15.1f} [ {gscaler(150)/g_run_time:%9.1f} ]
+
+hS1X     = {gscaler(177):%15.1f} [ {gscaler(177)/g_run_time:%9.1f} ]
+hS1Y     = {gscaler(178):%15.1f} [ {gscaler(178)/g_run_time:%9.1f} ]
+hS2X     = {gscaler(179):%15.1f} [ {gscaler(179)/g_run_time:%9.1f} ]
+hS2Y     = {gscaler(180):%15.1f} [ {gscaler(180)/g_run_time:%9.1f} ]
+hS1      = {gscaler(181):%15.1f} [ {gscaler(181)/g_run_time:%9.1f} ]
+hS2      = {gscaler(182):%15.1f} [ {gscaler(182)/g_run_time:%9.1f} ]
+hSTOF    = {gscaler(155):%15.1f} [ {gscaler(155)/g_run_time:%9.1f} ]
+hSCIN    = {gscaler(156):%15.1f} [ {gscaler(156)/g_run_time:%9.1f} ]
+hPRHI    = {gscaler(171):%15.1f} [ {gscaler(171)/g_run_time:%9.1f} ]
+hPRLO    = {gscaler(172):%15.1f} [ {gscaler(172)/g_run_time:%9.1f} ]
+hSHLO    = {gscaler(173):%15.1f} [ {gscaler(173)/g_run_time:%9.1f} ]
+hCER     = {gscaler(162):%15.1f} [ {gscaler(162)/g_run_time:%9.1f} ]
+hELHI    = {gscaler(169):%15.1f} [ {gscaler(169)/g_run_time:%9.1f} ]
+hELLO    = {gscaler(170):%15.1f} [ {gscaler(170)/g_run_time:%9.1f} ]
+hPION    = {gscaler(161):%15.1f} [ {gscaler(161)/g_run_time:%9.1f} ]
+hPIPRE   = {gscaler(158):%15.1f} [ {gscaler(158)/g_run_time:%9.1f} ]
+hELREAL  = {gscaler(157):%15.1f} [ {gscaler(157)/g_run_time:%9.1f} ]
+hELCLEAN = {gscaler(159):%15.1f} [ {gscaler(157)/g_run_time:%9.1f} ]
+hPRETRG  = {gscaler(160):%15.1f} [ {gscaler(160)/g_run_time:%9.1f} ]
+hPIONHI  = {gscaler(163):%15.1f} [ {gscaler(163)/g_run_time:%9.1f} ]
+hCERHI   = {gscaler(154):%15.1f} [ {gscaler(154)/g_run_time:%9.1f} ]
+HMSPRE   = {gscaler(185):%15.1f} [ {gscaler(185)/g_run_time:%9.1f} ]
+HMSTRG   = {gscaler(189):%15.1f} [ {gscaler(189)/g_run_time:%9.1f} ]
+hADCGATES= {gscaler(176):%15.1f} [ {gscaler(176)/g_run_time:%9.1f} ]
+hPRE50   = {gscaler(146):%15.1f} [ {gscaler(146)/g_run_time:%9.1f} ]
+hPRE100  = {gscaler(151):%15.1f} [ {gscaler(151)/g_run_time:%9.1f} ]
+hPRE150  = {gscaler(148):%15.1f} [ {gscaler(148)/g_run_time:%9.1f} ]
+hPRE200  = {gscaler(164):%15.1f} [ {gscaler(164)/g_run_time:%9.1f} ]
+UNSER    = {gscaler(166):%15.1f} [ {gscaler(166)/g_run_time:%9.1f} ]
+BCM1     = {gscaler(167):%15.1f} [ {gscaler(167)/g_run_time:%9.1f} ]
+BCM2     = {gscaler(168):%15.1f} [ {gscaler(168)/g_run_time:%9.1f} ]
+CLOCK    = {gscaler(174):%15.1f} [ {gscaler(174)/g_run_time:%9.1f} ]
+BEAMGATES= {gscaler(175):%15.1f} [ {gscaler(175)/g_run_time:%9.1f} ]
+
+
+
+hcomp L.T= {100*(gscaler(189)/(gscaler(185)+.0001)):%9.2f} %
+helec.D.T= {100*(60/50)*(gscaler(151)-gscaler(148))/(gscaler(151)+.0001):%9.2f} %
+
+sS1X     = {gscaler(337):%15.1f} [ {gscaler(337)/g_run_time:%9.1f} ]
+sS1Y     = {gscaler(338):%15.1f} [ {gscaler(338)/g_run_time:%9.1f} ]
+sS2X     = {gscaler(339):%15.1f} [ {gscaler(339)/g_run_time:%9.1f} ]
+sS2Y     = {gscaler(340):%15.1f} [ {gscaler(340)/g_run_time:%9.1f} ]
+sS1      = {gscaler(341):%15.1f} [ {gscaler(341)/g_run_time:%9.1f} ]
+sS2      = {gscaler(342):%15.1f} [ {gscaler(342)/g_run_time:%9.1f} ]
+sSTOF    = {gscaler(315):%15.1f} [ {gscaler(315)/g_run_time:%9.1f} ]
+sSCIN    = {gscaler(316):%15.1f} [ {gscaler(316)/g_run_time:%9.1f} ]
+sPRHI    = {gscaler(333):%15.1f} [ {gscaler(333)/g_run_time:%9.1f} ]
+sPRLO    = {gscaler(334):%15.1f} [ {gscaler(334)/g_run_time:%9.1f} ]
+sSHLO    = {gscaler(335):%15.1f} [ {gscaler(335)/g_run_time:%9.1f} ]
+sCER     = {gscaler(330):%15.1f} [ {gscaler(330)/g_run_time:%9.1f} ]
+sELHI    = {gscaler(331):%15.1f} [ {gscaler(331)/g_run_time:%9.1f} ]
+sELLO    = {gscaler(332):%15.1f} [ {gscaler(332)/g_run_time:%9.1f} ]
+sPION    = {gscaler(329):%15.1f} [ {gscaler(329)/g_run_time:%9.1f} ]
+sPIPRE   = {gscaler(318):%15.1f} [ {gscaler(318)/g_run_time:%9.1f} ]
+sELREAL  = {gscaler(317):%15.1f} [ {gscaler(317)/g_run_time:%9.1f} ]
+sELCLEAN = {gscaler(319):%15.1f} [ {gscaler(319)/g_run_time:%9.1f} ]
+sPRETRG  = {gscaler(320):%15.1f} [ {gscaler(320)/g_run_time:%9.1f} ]
+SOSPRE   = {gscaler(346):%15.1f} [ {gscaler(346)/g_run_time:%9.1f} ]
+SOSTRG   = {gscaler(350):%15.1f} [ {gscaler(350)/g_run_time:%9.1f} ]
+sADCGATES= {gscaler(336):%15.1f} [ {gscaler(336)/g_run_time:%9.1f} ]
+sPRE50   = {gscaler(306):%15.1f} [ {gscaler(306)/g_run_time:%9.1f} ]
+sPRE100  = {gscaler(311):%15.1f} [ {gscaler(311)/g_run_time:%9.1f} ]
+sPRE150  = {gscaler(308):%15.1f} [ {gscaler(308)/g_run_time:%9.1f} ]
+sPRE200  = {gscaler(314):%15.1f} [ {gscaler(314)/g_run_time:%9.1f} ]
+BCM1     = {gscaler(321):%15.1f} [ {gscaler(321)/g_run_time:%9.1f} ]
+BCM2     = {gscaler(322):%15.1f} [ {gscaler(322)/g_run_time:%9.1f} ]
+CLOCK    = {gscaler(325):%15.1f} [ {gscaler(174)/g_run_time:%9.1f} ]
+
+scomp D.T= {100*(gscaler(350)/(gscaler(346)+.0001)):%9.2f} %
+selec.D.T= {100*(60/50)*(gscaler(311)-gscaler(308))/(gscaler(311)+.0001):%9.2f} %
+
+COINPRE  = {gscaler(187):%15.1f} [ {gscaler(187)/g_run_time:%9.1f} ]
+PEDPRE   = {gscaler(188):%15.1f} [ {gscaler(188)/g_run_time:%9.1f} ]
+COINTRG  = {gscaler(191):%15.1f} [ {gscaler(191)/g_run_time:%9.1f} ]
+PEDTRG   = {gscaler(192):%15.1f} [ {gscaler(192)/g_run_time:%9.1f} ]
+
+
+******************
+* Drift Chambers *
+******************
+rawhdc1     = {hdc_cham_hits(1):%7d}   eff = {hdc_cham_eff(1):%5.3f}  BAD = .99
+rawhdc2     = {hdc_cham_hits(2):%7d}   eff = {hdc_cham_eff(2):%5.3f}  BAD = .99
+goodhdc1    = {goodhdc1.scaler:%7d}   eff = {goodhdc1.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .90
+goodhdc2    = {goodhdc2.scaler:%7d}   eff = {goodhdc2.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .90
+bothgoodhdc = {bothgoodhdc.scaler:%7d}   eff = {bothgoodhdc.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .80
+
+**************
+* Hodoscopes *
+**************
+goodhs1x    = {goodhs1x.scaler:%7d}   eff = {goodhs1x.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .98
+goodhs1y    = {goodhs1y.scaler:%7d}   eff = {goodhs1y.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .98
+goodhs1     = {goodhs1.scaler:%7d}   eff = {goodhs1.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .96
+goodhs2x    = {goodhs2x.scaler:%7d}   eff = {goodhs2x.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .98
+goodhs2y    = {goodhs2y.scaler:%7d}   eff = {goodhs2y.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .98
+goodhs2     = {goodhs2.scaler:%7d}   eff = {goodhs2.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .96
+goodhs1s2   = {goodhs1s2.scaler:%7d}   eff = {goodhs1s2.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .95
+
+goodss1x    = {goodss1x.scaler:%7d}   eff = {goodss1x.scaler/(strig.scaler+.0001):%5.3f}  BAD = .98
+goodss1y    = {goodss1y.scaler:%7d}   eff = {goodss1y.scaler/(strig.scaler+.0001):%5.3f}  BAD = .98
+goodss1     = {goodss1.scaler:%7d}   eff = {goodss1.scaler/(strig.scaler+.0001):%5.3f}  BAD = .96
+goodss2x    = {goodss2x.scaler:%7d}   eff = {goodss2x.scaler/(strig.scaler+.0001):%5.3f}  BAD = .98
+goodss2y    = {goodss2y.scaler:%7d}   eff = {goodss2y.scaler/(strig.scaler+.0001):%5.3f}  BAD = .98
+goodss2     = {goodss2.scaler:%7d}   eff = {goodss2.scaler/(strig.scaler+.0001):%5.3f}  BAD = .96
+goodss1s2   = {goodss1s2.scaler:%7d}   eff = {goodss1s2.scaler/(strig.scaler+.0001):%5.3f}  BAD = .95
+
+************
+* Tracking *
+************
+
+HMS RAW SOFTWARE EFF
+*********************
+
+"raw"  means one or more hits per dc plane.
+"Good" means one or two  hits per dc plane.
+
+rawhdc1x1   = {hdc_events(1):%7d}   eff = {hdc_plane_eff(1):%5.3f}  BAD = .95
+rawhdc1y1   = {hdc_events(2):%7d}   eff = {hdc_plane_eff(2):%5.3f}  BAD = .95
+rawhdc1u1   = {hdc_events(3):%7d}   eff = {hdc_plane_eff(3):%5.3f}  BAD = .95
+rawhdc1v1   = {hdc_events(4):%7d}   eff = {hdc_plane_eff(4):%5.3f}  BAD = .95
+rawhdc1y2   = {hdc_events(5):%7d}   eff = {hdc_plane_eff(5):%5.3f}  BAD = .95
+rawhdc1x2   = {hdc_events(6):%7d}   eff = {hdc_plane_eff(6):%5.3f}  BAD = .95
+rawhdc1     = {hdc_cham_hits(1):%7d}   eff = {hdc_cham_eff(1):%5.3f}  BAD = .99
+rawhdc2x1   = {hdc_events(7):%7d}   eff = {hdc_plane_eff(7):%5.3f}  BAD = .95
+rawhdc2y1   = {hdc_events(8):%7d}   eff = {hdc_plane_eff(8):%5.3f}  BAD = .95
+rawhdc2u1   = {hdc_events(9):%7d}   eff = {hdc_plane_eff(9):%5.3f}  BAD = .95
+rawhdc2v1   = {hdc_events(10):%7d}   eff = {hdc_plane_eff(10):%5.3f}  BAD = .95
+rawhdc2y2   = {hdc_events(11):%7d}   eff = {hdc_plane_eff(11):%5.3f}  BAD = .95
+rawhdc2x2   = {hdc_events(12):%7d}   eff = {hdc_plane_eff(12):%5.3f}  BAD = .95
+rawhdc2     = {hdc_cham_hits(2):%7d}   eff = {hdc_cham_eff(2):%5.3f}  BAD = .99
+
+goodhdc1x1  = {goodhdc1x1.scaler:%7d}   eff = {goodhdc1x1.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .95
+goodhdc1y1  = {goodhdc1y1.scaler:%7d}   eff = {goodhdc1y1.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .95
+goodhdc1u1  = {goodhdc1u1.scaler:%7d}   eff = {goodhdc1u1.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .95
+goodhdc1v1  = {goodhdc1v1.scaler:%7d}   eff = {goodhdc1v1.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .95
+goodhdc1y2  = {goodhdc1y2.scaler:%7d}   eff = {goodhdc1y2.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .95
+goodhdc1x2  = {goodhdc1x2.scaler:%7d}   eff = {goodhdc1x2.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .95
+goodhdc1    = {goodhdc1.scaler:%7d}   eff = {goodhdc1.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .90
+goodhdc2x1  = {goodhdc2x1.scaler:%7d}   eff = {goodhdc2x1.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .95
+goodhdc2y1  = {goodhdc2y1.scaler:%7d}   eff = {goodhdc2y1.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .95
+goodhdc2u1  = {goodhdc2u1.scaler:%7d}   eff = {goodhdc2u1.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .95
+goodhdc2v1  = {goodhdc2v1.scaler:%7d}   eff = {goodhdc2v1.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .95
+goodhdc2y2  = {goodhdc2y2.scaler:%7d}   eff = {goodhdc2y2.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .95
+goodhdc2x2  = {goodhdc2x2.scaler:%7d}   eff = {goodhdc2x2.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .95
+goodhdc2    = {goodhdc2.scaler:%7d}   eff = {goodhdc2.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .90
+bothgoodhdc = {bothgoodhdc.scaler:%7d}   eff = {bothgoodhdc.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .80
+
+"Any"  means one or more hits per scint plane.
+"Good" means one or two  hits per scint plane.
+
+anyhs1x     = {anyhs1x.scaler:%7d}   eff = {anyhs1x.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .99
+anyhs1y     = {anyhs1y.scaler:%7d}   eff = {anyhs1y.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .99
+anyhs2x     = {anyhs2x.scaler:%7d}   eff = {anyhs2x.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .99
+anyhs2y     = {anyhs2y.scaler:%7d}   eff = {anyhs2y.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .99
+
+hs1xshould  = {hs1xshould.scaler:%7d} hs1xdid = {hs1xdid.scaler:%7d}
+hs1yshould  = {hs1yshould.scaler:%7d} hs1ydid = {hs1ydid.scaler:%7d}
+hs2xshould  = {hs2xshould.scaler:%7d} hs2xdid = {hs2xdid.scaler:%7d}
+hs2yshould  = {hs2yshould.scaler:%7d} hs2ydid = {hs2ydid.scaler:%7d}
+
+newhs1xeff = {hs1xdid.scaler/(hs1xshould.scaler+.0001)}
+newhs1yeff = {hs1ydid.scaler/(hs1yshould.scaler+.0001)}
+newhs2xeff = {hs2xdid.scaler/(hs2xshould.scaler+.0001)}
+newhs2yeff = {hs2ydid.scaler/(hs2yshould.scaler+.0001)}
+
+
+goodhs1x    = {goodhs1x.scaler:%7d}   eff = {goodhs1x.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .98
+goodhs1y    = {goodhs1y.scaler:%7d}   eff = {goodhs1y.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .98
+goodhs1     = {goodhs1.scaler:%7d}   eff = {goodhs1.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .96
+goodhs2x    = {goodhs2x.scaler:%7d}   eff = {goodhs2x.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .98
+goodhs2y    = {goodhs2y.scaler:%7d}   eff = {goodhs2y.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .98
+goodhs2     = {goodhs2.scaler:%7d}   eff = {goodhs2.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .96
+goodhs1s2   = {goodhs1s2.scaler:%7d}   eff = {goodhs1s2.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .95
+
+
+"hfoundtrack" based on analyzer variable HNTRACKS_FP.
+"hcleantrack" based on analyzer variable HSNUM_FPTRACK (=foundtrack+chi2+PID).
+
+hfoundtrack = {hfoundtrack.scaler:%7d}   eff = {hfoundtrack.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .95
+hfound1track= {hfound1track.scaler:%7d}   eff = {hfound1track.scaler/(htrig.scaler+.0001):%5.3f}
+hfound2track= {hfound2track.scaler:%7d}   eff = {hfound2track.scaler/(htrig.scaler+.0001):%5.3f}
+hfound3track= {hfound3track.scaler:%7d}   eff = {hfound3track.scaler/(htrig.scaler+.0001):%5.3f}
+hfound4track= {hfound4track.scaler:%7d}   eff = {hfound4track.scaler/(htrig.scaler+.0001):%5.3f}
+
+hcleantrack = {hcleantrack.scaler:%7d}   eff = {hcleantrack.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .95
+1hcleantrack= {hclean1track.scaler:%7d}   eff = {hclean1track.scaler/(htrig.scaler+.0001):%5.3f}
+2hcleantrack= {hclean2track.scaler:%7d}   eff = {hclean2track.scaler/(htrig.scaler+.0001):%5.3f}
+3hcleantrack= {hclean3track.scaler:%7d}   eff = {hclean3track.scaler/(htrig.scaler+.0001):%5.3f}
+4hcleantrack= {hclean4track.scaler:%7d}   eff = {hclean4track.scaler/(htrig.scaler+.0001):%5.3f}
+
+HMS fid eff.=              {hdid.scaler/(hscinshould.scaler+.0001):%8.3f}
+  w/DC cuts =              {hdid_clean.scaler/(hscinshould_clean.scaler+.0001):%8.3f}%
+
+hdc1 6/6 eff = {hdc_cham_eff(1):%5.3f}  BAD = .99
+hdc2 6/6 eff = {hdc_cham_eff(2):%5.3f}  BAD = .99
+hs1x 1/2 eff = {anyhs1x.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .99
+hs1y 1/2 eff = {anyhs1y.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .99
+hs2x 1/2 eff = {anyhs2x.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .99
+hs2y 1/2 eff = {anyhs2y.scaler/(htrig.scaler+.0001):%5.3f}  BAD = .99
+
+hdc1 plane eff = {hdc_plane_eff(1):%5.3f}  BAD = .99
+hdc2 plane eff = {hdc_plane_eff(2):%5.3f}  BAD = .99
+hdc3 plane eff = {hdc_plane_eff(3):%5.3f}  BAD = .99
+hdc4 plane eff = {hdc_plane_eff(4):%5.3f}  BAD = .99
+hdc5 plane eff = {hdc_plane_eff(5):%5.3f}  BAD = .99
+hdc6 plane eff = {hdc_plane_eff(6):%5.3f}  BAD = .99
+hdc7 plane eff = {hdc_plane_eff(7):%5.3f}  BAD = .99
+hdc8 plane eff = {hdc_plane_eff(8):%5.3f}  BAD = .99
+hdc9 plane eff = {hdc_plane_eff(9):%5.3f}  BAD = .99
+hdc10 plane eff = {hdc_plane_eff(10):%5.3f}  BAD = .99
+hdc11 plane eff = {hdc_plane_eff(11):%5.3f}  BAD = .99
+hdc12 plane eff = {hdc_plane_eff(12):%5.3f}  BAD = .99
+
+
+hhitfid1: {hhitfid1.scaler:%7d} {hdc1did.scaler}
+hhitfid2: {hhitfid2.scaler:%7d} {hdc2did.scaler}
+hhitfid3: {hhitfid3.scaler:%7d} {hdc3did.scaler}
+hhitfid4: {hhitfid4.scaler:%7d} {hdc4did.scaler}
+hhitfid5: {hhitfid5.scaler:%7d} {hdc5did.scaler} {anyhdc5.scaler}
+hhitfid6: {hhitfid6.scaler:%7d} {hdc6did.scaler} {anyhdc6.scaler}
+hhitfid7: {hhitfid7.scaler:%7d} {hdc7did.scaler}
+hhitfid8: {hhitfid8.scaler:%7d} {hdc8did.scaler}
+hhitfid9: {hhitfid9.scaler:%7d} {hdc9did.scaler}
+hhitfid10: {hhitfid10.scaler:%7d}   {hdc10did.scaler}
+hhitfid11: {hhitfid11.scaler:%7d}   {hdc11did.scaler}
+hhitfid12: {hhitfid12.scaler:%7d}   {hdc12did.scaler}
+
+neweffhdc1: {hdc1did.scaler} {hhitfid1.scaler/(hdc1did.scaler+.0001)}
+neweffhdc2: {hdc2did.scaler} {hhitfid2.scaler/(hdc2did.scaler+.0001)}
+neweffhdc3: {hdc3did.scaler} {hhitfid3.scaler/(hdc3did.scaler+.0001)}
+neweffhdc4: {hdc4did.scaler} {hhitfid4.scaler/(hdc4did.scaler+.0001)}
+neweffhdc5: {hdc5did.scaler} {hhitfid5.scaler/(hdc5did.scaler+.0001)}
+neweffhdc6: {hdc6did.scaler} {hhitfid6.scaler/(hdc6did.scaler+.0001)}
+neweffhdc7: {hdc7did.scaler} {hhitfid7.scaler/(hdc7did.scaler+.0001)}
+neweffhdc8: {hdc8did.scaler} {hhitfid8.scaler/(hdc8did.scaler+.0001)}
+neweffhdc9: {hdc9did.scaler} {hhitfid9.scaler/(hdc9did.scaler+.0001)}
+neweffhdc10: {hdc10did.scaler} {hhitfid10.scaler/(hdc10did.scaler+.0001)}
+neweffhdc11: {hdc11did.scaler} {hhitfid11.scaler/(hdc11did.scaler+.0001)}
+neweffhdc12: {hdc12did.scaler} {hhitfid12.scaler/(hdc12did.scaler+.0001)}
+
+hpipre_trig = {hpipre.scaler:%15.1f}
+helclean_trig = {helclean.scaler:%15.1f}  {helclean.scaler/(gscaler(159)+0.0001)}
+helreal_trig = {helreal.scaler:%15.1f} 
+
+
+
+SOS RAW SOFTWARE EFF
+********************
+
+rawsdc1x1   = {sdc_events(1):%7d}   eff = {sdc_plane_eff(1):%5.3f}  BAD = .95
+rawsdc1y1   = {sdc_events(2):%7d}   eff = {sdc_plane_eff(2):%5.3f}  BAD = .95
+rawsdc1u1   = {sdc_events(3):%7d}   eff = {sdc_plane_eff(3):%5.3f}  BAD = .95
+rawsdc1v1   = {sdc_events(4):%7d}   eff = {sdc_plane_eff(4):%5.3f}  BAD = .95
+rawsdc1y2   = {sdc_events(5):%7d}   eff = {sdc_plane_eff(5):%5.3f}  BAD = .95
+rawsdc1x2   = {sdc_events(6):%7d}   eff = {sdc_plane_eff(6):%5.3f}  BAD = .95
+rawsdc1     = {sdc_cham_hits(1):%7d}   eff = {sdc_cham_eff(1):%5.3f}  BAD = .99
+rawsdc2x1   = {sdc_events(7):%7d}   eff = {sdc_plane_eff(7):%5.3f}  BAD = .95
+rawsdc2y1   = {sdc_events(8):%7d}   eff = {sdc_plane_eff(8):%5.3f}  BAD = .95
+rawsdc2u1   = {sdc_events(9):%7d}   eff = {sdc_plane_eff(9):%5.3f}  BAD = .95
+rawsdc2v1   = {sdc_events(10):%7d}   eff = {sdc_plane_eff(10):%5.3f}  BAD = .95
+rawsdc2y2   = {sdc_events(11):%7d}   eff = {sdc_plane_eff(11):%5.3f}  BAD = .95
+rawsdc2x2   = {sdc_events(12):%7d}   eff = {sdc_plane_eff(12):%5.3f}  BAD = .95
+rawsdc2     = {sdc_cham_hits(2):%7d}   eff = {sdc_cham_eff(2):%5.3f}  BAD = .99
+
+goodsdc1u1  = {goodsdc1u1.scaler:%7d}   eff = {goodsdc1u1.scaler/(strig.scaler+.0001):%5.3f}  BAD = .95
+goodsdc1u2  = {goodsdc1u2.scaler:%7d}   eff = {goodsdc1u2.scaler/(strig.scaler+.0001):%5.3f}  BAD = .95
+goodsdc1x1  = {goodsdc1x1.scaler:%7d}   eff = {goodsdc1x1.scaler/(strig.scaler+.0001):%5.3f}  BAD = .95
+goodsdc1x2  = {goodsdc1x2.scaler:%7d}   eff = {goodsdc1x2.scaler/(strig.scaler+.0001):%5.3f}  BAD = .95
+goodsdc1v1  = {goodsdc1v1.scaler:%7d}   eff = {goodsdc1v1.scaler/(strig.scaler+.0001):%5.3f}  BAD = .95
+goodsdc1v2  = {goodsdc1v2.scaler:%7d}   eff = {goodsdc1v2.scaler/(strig.scaler+.0001):%5.3f}  BAD = .95
+goodsdc1    = {goodsdc1.scaler:%7d}   eff = {goodsdc1.scaler/(strig.scaler+.0001):%5.3f}  BAD = .90
+goodsdc2u1  = {goodsdc2u1.scaler:%7d}   eff = {goodsdc2u1.scaler/(strig.scaler+.0001):%5.3f}  BAD = .95
+goodsdc2u2  = {goodsdc2u2.scaler:%7d}   eff = {goodsdc2u2.scaler/(strig.scaler+.0001):%5.3f}  BAD = .95
+goodsdc2x1  = {goodsdc2x1.scaler:%7d}   eff = {goodsdc2x1.scaler/(strig.scaler+.0001):%5.3f}  BAD = .95
+goodsdc2x2  = {goodsdc2x2.scaler:%7d}   eff = {goodsdc2x2.scaler/(strig.scaler+.0001):%5.3f}  BAD = .95
+goodsdc2v1  = {goodsdc2v1.scaler:%7d}   eff = {goodsdc2v1.scaler/(strig.scaler+.0001):%5.3f}  BAD = .95
+goodsdc2v2  = {goodsdc2v2.scaler:%7d}   eff = {goodsdc2v2.scaler/(strig.scaler+.0001):%5.3f}  BAD = .95
+goodsdc2    = {goodsdc2.scaler:%7d}   eff = {goodsdc2.scaler/(strig.scaler+.0001):%5.3f}  BAD = .90
+bothgoodsdc = {bothgoodsdc.scaler:%7d}   eff = {bothgoodsdc.scaler/(strig.scaler+.0001):%5.3f}  BAD = .80
+
+"Any"  means one or more hits per scint plane.
+"Good" means one or two  hits per scint plane.
+
+anyss1x     = {anyss1x.scaler:%7d}   eff = {anyss1x.scaler/(strig.scaler+.0001):%5.3f}  BAD = .99
+anyss1y     = {anyss1y.scaler:%7d}   eff = {anyss1y.scaler/(strig.scaler+.0001):%5.3f}  BAD = .99
+anyss2x     = {anyss2x.scaler:%7d}   eff = {anyss2x.scaler/(strig.scaler+.0001):%5.3f}  BAD = .99
+anyss2y     = {anyss2y.scaler:%7d}   eff = {anyss2y.scaler/(strig.scaler+.0001):%5.3f}  BAD = .99
+
+ss1xshould  = {ss1xshould.scaler:%7d} ss1xdid = {ss1xdid.scaler:%7d}
+ss1yshould  = {ss1yshould.scaler:%7d} ss1ydid = {ss1ydid.scaler:%7d}
+ss2xshould  = {ss2xshould.scaler:%7d} ss2xdid = {ss2xdid.scaler:%7d}
+ss2yshould  = {ss2yshould.scaler:%7d} ss2ydid = {ss2ydid.scaler:%7d}
+
+newss1xeff = {ss1xdid.scaler/(ss1xshould.scaler+.0001)}
+newss1yeff = {ss1ydid.scaler/(ss1yshould.scaler+.0001)}
+newss2xeff = {ss2xdid.scaler/(ss2xshould.scaler+.0001)}
+newss2yeff = {ss2ydid.scaler/(ss2yshould.scaler+.0001)}
+
+goodss1x    = {goodss1x.scaler:%7d}   eff = {goodss1x.scaler/(strig.scaler+.0001):%5.3f}  BAD = .98
+goodss1y    = {goodss1y.scaler:%7d}   eff = {goodss1y.scaler/(strig.scaler+.0001):%5.3f}  BAD = .98
+goodss1     = {goodss1.scaler:%7d}   eff = {goodss1.scaler/(strig.scaler+.0001):%5.3f}  BAD = .96
+goodss2x    = {goodss2x.scaler:%7d}   eff = {goodss2x.scaler/(strig.scaler+.0001):%5.3f}  BAD = .98
+goodss2y    = {goodss2y.scaler:%7d}   eff = {goodss2y.scaler/(strig.scaler+.0001):%5.3f}  BAD = .98
+goodss2     = {goodss2.scaler:%7d}   eff = {goodss2.scaler/(strig.scaler+.0001):%5.3f}  BAD = .96
+goodss1s2   = {goodss1s2.scaler:%7d}   eff = {goodss1s2.scaler/(strig.scaler+.0001):%5.3f}
+
+
+"sfoundtrack" based on analyzer variable SNTRACKS_FP.
+"scleantrack" based on analyzer variable SSNUM_FPTRACK (=foundtrack+chi2+PID).
+
+sfoundtrack = {sfoundtrack.scaler:%7d}   eff = {sfoundtrack.scaler/(strig.scaler+.0001):%5.3f}  BAD = .95
+sfound1track= {sfound1track.scaler:%7d}   eff = {sfound1track.scaler/(strig.scaler+.0001):%5.3f}
+sfound2track= {sfound2track.scaler:%7d}   eff = {sfound2track.scaler/(strig.scaler+.0001):%5.3f}
+sfound3track= {sfound3track.scaler:%7d}   eff = {sfound3track.scaler/(strig.scaler+.0001):%5.3f}
+sfound4track= {sfound4track.scaler:%7d}   eff = {sfound4track.scaler/(strig.scaler+.0001):%5.3f}
+
+scleantrack = {scleantrack.scaler:%7d}   eff = {scleantrack.scaler/(strig.scaler+.0001):%5.3f}  BAD = .95
+sclean1track= {sclean1track.scaler:%7d}   eff = {sclean1track.scaler/(strig.scaler+.0001):%5.3f}
+sclean2track= {sclean2track.scaler:%7d}   eff = {sclean2track.scaler/(strig.scaler+.0001):%5.3f}
+sclean3track= {sclean3track.scaler:%7d}   eff = {sclean3track.scaler/(strig.scaler+.0001):%5.3f}
+sclean4track= {sclean4track.scaler:%7d}   eff = {sclean4track.scaler/(strig.scaler+.0001):%5.3f}
+
+SOS fid eff.={sdid.scaler/(sscinshould.scaler+.0001):%8.3f}
+  w/DC cuts =  {sdid_clean.scaler/(sscinshould_clean.scaler+.0001):%8.3f}%
+
+ccleantrack = {ccleantrack.scaler:%7d}   eff = {ccleantrack.scaler/(strig.scaler+.0001):%5.3f}
+
+goodsdc1 eff = {goodsdc1.scaler:%7d}   eff = {goodsdc1.scaler/(strig.scaler+.0001):%5.3f}  BAD = .90
+goodsdc2 eff = {goodsdc2.scaler:%7d}   eff = {goodsdc2.scaler/(strig.scaler+.0001):%5.3f}  BAD = .90
+ss1x 1/2 eff = {anyss1x.scaler/(strig.scaler+.0001):%5.3f}  BAD = .99
+ss1y 1/2 eff = {anyss1y.scaler/(strig.scaler+.0001):%5.3f}  BAD = .99
+ss2x 1/2 eff = {anyss2x.scaler/(strig.scaler+.0001):%5.3f}  BAD = .99
+ss2y 1/2 eff = {anyss2y.scaler/(strig.scaler+.0001):%5.3f}  BAD = .99
+
+
+*******************************
+* Tracking based efficiencies *
+*******************************
+Plane POS eff NEG eff OR eff AND eff  Hits
+----- ------- ------- ------ -------  ----
+hS1X  {hstat_poseff(1):%6.3f}  {hstat_negeff(1):%6.3f}  {hstat_oreff(1):%6.3f}  {hstat_andeff(1):%6.3f} {hstat_trksum(1):%6d}
+hS1Y  {hstat_poseff(2):%6.3f}  {hstat_negeff(2):%6.3f}  {hstat_oreff(2):%6.3f}  {hstat_andeff(2):%6.3f} {hstat_trksum(2):%6d}
+hS2X  {hstat_poseff(3):%6.3f}  {hstat_negeff(3):%6.3f}  {hstat_oreff(3):%6.3f}  {hstat_andeff(3):%6.3f} {hstat_trksum(3):%6d}
+hS2Y  {hstat_poseff(4):%6.3f}  {hstat_negeff(4):%6.3f}  {hstat_oreff(4):%6.3f}  {hstat_andeff(4):%6.3f} {hstat_trksum(4):%6d}
+
+Calculted Trigger efficiencies:
+hS1   = {heff_s1:%6.3f}
+hS2   = {heff_s2:%6.3f}
+hSTOF = {heff_stof:%6.3f}
+h3/4  = {heff_3_of_4:%6.3f}
+h4/4  = {heff_4_of_4:%6.3f}
+
+Plane POS eff NEG eff OR eff AND eff  Hits
+----- ------- ------- ------ -------  ----
+sS1X {sstat_poseff(1):%6.3f}  {sstat_negeff(1):%6.3f}  {sstat_oreff(1):%6.3f}  {sstat_andeff(1):%6.3f} {sstat_trksum(1):%6d}
+sS1Y {sstat_poseff(2):%6.3f}  {sstat_negeff(2):%6.3f}  {sstat_oreff(2):%6.3f}  {sstat_andeff(2):%6.3f} {sstat_trksum(2):%6d}
+sS2X {sstat_poseff(3):%6.3f}  {sstat_negeff(3):%6.3f}  {sstat_oreff(3):%6.3f}  {sstat_andeff(3):%6.3f} {sstat_trksum(3):%6d}
+sS2Y {sstat_poseff(4):%6.3f}  {sstat_negeff(4):%6.3f}  {sstat_oreff(4):%6.3f}  {sstat_andeff(4):%6.3f} {sstat_trksum(4):%6d}
+
+Calculted Trigger efficiencies:
+sS1   = {seff_s1:%6.3f}
+sS2   = {seff_s2:%6.3f}
+sSTOF = {seff_stof:%6.3f}
+s3/4  = {seff_3_of_4:%6.3f}
+s4/4  = {seff_4_of_4:%6.3f}
+
+************
+* Cerenkov *
+************
+
+Good Track Requirements:
+   1. Only one track found in the focal plane
+   2. chisq/dof < {hcer_chi2max:%5.1f}
+   3. {hcer_beta_min:%5.3f} < beta < {hcer_beta_max:%5.3f}
+   4. {hcer_et_min:%5.3f} < calorimeter energy < {hcer_et_max:%5.3f}
+Threshold set at {hcer_threshold:%4.1f}
+
+HMS Region 1 Efficiency: {hcer_region_eff(1):%5.3f} = {hcer_fired_counter(1):%6d} of {hcer_track_counter(1):%6d} good tracks.
+HMS Region 2 Efficiency: {hcer_region_eff(2):%5.3f} = {hcer_fired_counter(2):%6d} of {hcer_track_counter(2):%6d} good tracks.
+HMS Region 3 Efficiency: {hcer_region_eff(3):%5.3f} = {hcer_fired_counter(3):%6d} of {hcer_track_counter(3):%6d} good tracks.
+
+Good Track Requirements:
+   1. Only one track found in the focal plane
+   2. chisq/dof < {scer_chi2max:%5.1f}
+   3. {scer_beta_min:%5.3f} < beta < {scer_beta_max:%5.3f}
+   4. {scer_et_min:%5.3f} < calorimeter energy < {scer_et_max:%5.3f}
+Threshold set at {scer_threshold:%4.1f}
+
+SOS Region 1 Efficiency: {scer_region_eff(1):%5.3f} = {scer_fired_counter(1):%6d} of {scer_track_counter(1):%6d} good tracks.
+SOS Region 2 Efficiency: {scer_region_eff(2):%5.3f} = {scer_fired_counter(2):%6d} of {scer_track_counter(2):%6d} good tracks.
+SOS Region 3 Efficiency: {scer_region_eff(3):%5.3f} = {scer_fired_counter(3):%6d} of {scer_track_counter(3):%6d} good tracks.
+SOS Region 4 Efficiency: {scer_region_eff(4):%5.3f} = {scer_fired_counter(4):%6d} of {scer_track_counter(4):%6d} good tracks.
+SOS Region 5 Efficiency: {scer_region_eff(5):%5.3f} = {scer_fired_counter(5):%6d} of {scer_track_counter(5):%6d} good tracks.
+
+***************
+* Calorimeter *
+***************
+
+CALORIMETER PARAMETERS
+**********************
+hcal_slop    = {hcal_slop:%7.2f}
+hcal_fv_test = {hcal_fv_test:%4d}
+hcal_pos_gain_cor  = {hcal_pos_gain_cor(3):%8.4f}
+hcal_pos_ped_limit ={hcal_pos_ped_limit(3):%8.4f}
+
+Calorimeter Efficiencies 
+************************
+Events examined = htrig       = {htrig.scaler:%7d}
+Tracks found    = hcleantrack = {hcleantrack.scaler:%7d}
+Tracks passing chisquared cut = {hstat_cal_numevents:%7d}
+
+
+Layer     effic   Hits
+-----     -----   ----
+hA      {hstat_cal_hitsum(1)/(.0001+hstat_cal_trksum(1)):%6.3f}  {hstat_cal_trksum(1):%6d}
+hB      {hstat_cal_hitsum(2)/(.0001+hstat_cal_trksum(2)):%6.3f}  {hstat_cal_trksum(2):%6d}
+hC      {hstat_cal_hitsum(3)/(.0001+hstat_cal_trksum(3)):%6.3f}  {hstat_cal_trksum(3):%6d}
+hD      {hstat_cal_hitsum(4)/(.0001+hstat_cal_trksum(4)):%6.3f}  {hstat_cal_trksum(4):%6d}
+
+Layer     effic   Hits
+-----     -----   ----
+sA      {sstat_cal_hitsum(1)/(.0001+sstat_cal_trksum(1)):%6.3f}  {sstat_cal_trksum(1):%6d}
+sB      {sstat_cal_hitsum(2)/(.0001+sstat_cal_trksum(2)):%6.3f}  {sstat_cal_trksum(2):%6d}
+sC      {sstat_cal_hitsum(3)/(.0001+sstat_cal_trksum(3)):%6.3f}  {sstat_cal_trksum(3):%6d}
+sD      {sstat_cal_hitsum(4)/(.0001+sstat_cal_trksum(4)):%6.3f}  {sstat_cal_trksum(4):%6d}
+
+*************
+* PID Tests *
+*************
+helec_bothcut.scaler={helec_bothcut.scaler:%10d}
+helec_calcut.scaler={helec_calcut.scaler:%10d}
+helec_cercut.scaler={helec_cercut.scaler:%10d}
+hpion_bothcut.scaler={hpion_bothcut.scaler:%10d}
+hpion_bothcut.scaler={hpion_bothcut.scaler:%10d}
+hpion_bothcut.scaler={hpion_bothcut.scaler:%10d}
+hprhi_n_cercut.scaler={hprhi_n_cercut.scaler:%10d}
+hprlo_n_cercut.scaler={hprlo_n_cercut.scaler:%10d}
+hshlo_n_cercut.scaler={hshlo_n_cercut.scaler:%10d}
+hcerlat_n_calcut.scaler={hcerlat_n_calcut.scaler:%10d}
+hprhi_n_cercutpi.scaler={hprhi_n_cercutpi.scaler:%10d}
+hprlo_n_cercutpi.scaler={hprlo_n_cercutpi.scaler:%10d}
+hshlo_n_cercutpi.scaler={hshlo_n_cercutpi.scaler:%10d}
+hcerlat_n_calcutpi.scaler={hcerlat_n_calcutpi.scaler:%10d}
+
+hcer e- cut eff= {helec_bothcut.scaler/ (helec_calcut.scaler+.0001):%7.4f}  = sum(cercut) / sum(cercut & calcut) for electron cuts
+hcal e- cut eff= {helec_bothcut.scaler/ (helec_cercut.scaler+.0001):%7.4f}  = sum(calcut) / sum(cercut & calcut) for electron cuts
+hcer pi cut eff= {hpion_bothcut.scaler/ (hpion_calcut.scaler+.0001):%7.4f}  = sum(cercut) / sum(cercut & calcut) for pion cuts
+hcal pi cut eff= {hpion_bothcut.scaler/ (hpion_cercut.scaler+.0001):%7.4f}  = sum(calcut) / sum(cercut & calcut) for pion cuts
+
+hprhi e- effic = {hprhi_n_cercut.scaler/(helec_cercut.scaler+.0001):%7.4f}  = prob. for PRHI if passed electron cer cut.
+hprlo e- effic = {hprlo_n_cercut.scaler/(helec_cercut.scaler+.0001):%7.4f}  = prob. for PRLO "    "       "      "   "
+vt 1x effic prlo  = {vt_ello_1x_prlo.scaler/(vt_ello_1x.scaler+.0001):%7.4f}  = prob. for VTPRLO 1
+vt 1y effic prlo  = {vt_ello_1y_prlo.scaler/(vt_ello_1y.scaler+.0001):%7.4f}  = prob. for VTPRLO 2 
+vt 2x effic prlo  = {vt_ello_2x_prlo.scaler/(vt_ello_2x.scaler+.0001):%7.4f}  = prob. for VTPRLO 3 
+vt 2y effic prlo  = {vt_ello_2y_prlo.scaler/(vt_ello_2y.scaler+.0001):%7.4f}  = prob. for VTPRLO 4 
+vt old prlo  = {vt_old.scaler/(vt_cer_cut.scaler+.0001):%7.4f} 
+hshlo e- effic = {hshlo_n_cercut.scaler/(helec_cercut.scaler+.0001):%7.4f}
+hcerlat e- eff = {hcerlat_n_calcut.scaler/(helec_calcut.scaler+.0001):%7.4f}
+vt ello num = {vt_ello.scaler:%10d}
+vt prlo num = {vt_prlo.scaler:%10d}
+
+hprhi pi contam= {hprhi_n_cercutpi.scaler/(hpion_cercut.scaler+.0001):%7.4f}
+hprlo pi contam= {hprlo_n_cercutpi.scaler/(hpion_cercut.scaler+.0001):%7.4f}
+hshlo pi contam= {hshlo_n_cercutpi.scaler/(hpion_cercut.scaler+.0001):%7.4f}
+hcerlat pi con = {hcerlat_n_calcutpi.scaler/(hpion_calcut.scaler+.0001):%7.4f}
+
+selec_bothcut.scaler={selec_bothcut.scaler:%10d}
+selec_calcut.scaler={selec_calcut.scaler:%10d}
+selec_cercut.scaler={selec_cercut.scaler:%10d}
+spion_bothcut.scaler={spion_bothcut.scaler:%10d}
+spion_calcut.scaler={spion_calcut.scaler:%10d}
+spion_cercut.scaler={spion_cercut.scaler:%10d}
+sprhi_n_cercut.scaler={sprhi_n_cercut.scaler:%10d}
+sprlo_n_cercut.scaler={sprlo_n_cercut.scaler:%10d}
+sshlo_n_cercut.scaler={sshlo_n_cercut.scaler:%10d}
+scerlat_n_calcut.scaler={scerlat_n_calcut.scaler:%10d}
+sprhi_n_cercutpi.scaler={sprhi_n_cercutpi.scaler:%10d}
+sprlo_n_cercutpi.scaler={sprlo_n_cercutpi.scaler:%10d}
+sshlo_n_cercutpi.scaler={sshlo_n_cercutpi.scaler:%10d}
+scerlat_n_calcutpi.scaler={scerlat_n_calcutpi.scaler:%10d}
+
+scer e- cut eff= {selec_bothcut.scaler/ (selec_calcut.scaler+.0001):%7.4f}  = sum(cercut) / sum(cercut & calcut) for electron cuts
+scal e- cut eff= {selec_bothcut.scaler/ (selec_cercut.scaler+.0001):%7.4f}  = sum(calcut) / sum(cercut & calcut) for electron cuts
+scer pi cut eff= {spion_bothcut.scaler/ (spion_calcut.scaler+.0001):%7.4f}  = sum(cercut) / sum(cercut & calcut) for pion cuts
+scal pi cut eff= {spion_bothcut.scaler/ (spion_cercut.scaler+.0001):%7.4f}  = sum(calcut) / sum(cercut & calcut) for pion cuts
+
+sprhi e- effic = {sprhi_n_cercut.scaler/(selec_cercut.scaler+.0001):%7.4f}  = prob. for PRHI if passed electron cer cut.
+sprlo e- effic = {sprlo_n_cercut.scaler/(selec_cercut.scaler+.0001):%7.4f}  = prob. for PRLO "    "       "      "   "
+sshlo e- effic = {sshlo_n_cercut.scaler/(selec_cercut.scaler+.0001):%7.4f}
+scerlat e- eff = {scerlat_n_calcut.scaler/(selec_calcut.scaler+.0001):%7.4f}
+
+sprhi pi contam= {sprhi_n_cercutpi.scaler/(spion_cercut.scaler+.0001):%7.4f}
+sprlo pi contam= {sprlo_n_cercutpi.scaler/(spion_cercut.scaler+.0001):%7.4f}
+sshlo pi contam= {sshlo_n_cercutpi.scaler/(spion_cercut.scaler+.0001):%7.4f}
+scerlat pi con = {scerlat_n_calcutpi.scaler/(spion_calcut.scaler+.0001):%7.4f}
+
+
+***************
+* ALL SCALERS *
+***************
+
+DA01: hS1X+
+gscaler( 17) = {gscaler( 17):%15d}
+gscaler( 18) = {gscaler( 18):%15d}
+gscaler( 19) = {gscaler( 19):%15d}
+gscaler( 20) = {gscaler( 20):%15d}
+gscaler( 21) = {gscaler( 21):%15d}
+gscaler( 22) = {gscaler( 22):%15d}
+gscaler( 23) = {gscaler( 23):%15d}
+gscaler( 24) = {gscaler( 24):%15d}
+gscaler( 25) = {gscaler( 25):%15d}
+gscaler( 26) = {gscaler( 26):%15d}
+gscaler( 27) = {gscaler( 27):%15d}
+gscaler( 28) = {gscaler( 28):%15d}
+gscaler( 29) = {gscaler( 29):%15d}
+gscaler( 30) = {gscaler( 30):%15d}
+gscaler( 31) = {gscaler( 31):%15d}
+gscaler( 32) = {gscaler( 32):%15d}
+
+DA02: hS1X-
+gscaler( 33) = {gscaler( 33):%15d}
+gscaler( 34) = {gscaler( 34):%15d}
+gscaler( 35) = {gscaler( 35):%15d}
+gscaler( 36) = {gscaler( 36):%15d}
+gscaler( 37) = {gscaler( 37):%15d}
+gscaler( 38) = {gscaler( 38):%15d}
+gscaler( 39) = {gscaler( 39):%15d}
+gscaler( 40) = {gscaler( 40):%15d}
+gscaler( 41) = {gscaler( 41):%15d}
+gscaler( 42) = {gscaler( 42):%15d}
+gscaler( 43) = {gscaler( 43):%15d}
+gscaler( 44) = {gscaler( 44):%15d}
+gscaler( 45) = {gscaler( 45):%15d}
+gscaler( 46) = {gscaler( 46):%15d}
+gscaler( 47) = {gscaler( 47):%15d}
+gscaler( 48) = {gscaler( 48):%15d}
+
+DA03: hS1Y+
+gscaler( 49) = {gscaler( 49):%15d}
+gscaler( 50) = {gscaler( 50):%15d}
+gscaler( 51) = {gscaler( 51):%15d}
+gscaler( 52) = {gscaler( 52):%15d}
+gscaler( 53) = {gscaler( 53):%15d}
+gscaler( 54) = {gscaler( 54):%15d}
+gscaler( 55) = {gscaler( 55):%15d}
+gscaler( 56) = {gscaler( 56):%15d}
+gscaler( 57) = {gscaler( 57):%15d}
+gscaler( 58) = {gscaler( 58):%15d}
+gscaler( 59) = {gscaler( 59):%15d}
+gscaler( 60) = {gscaler( 60):%15d}
+gscaler( 61) = {gscaler( 61):%15d}
+gscaler( 62) = {gscaler( 62):%15d}
+gscaler( 63) = {gscaler( 63):%15d}
+gscaler( 64) = {gscaler( 64):%15d}
+
+DA04: hS1Y-
+gscaler( 65) = {gscaler( 65):%15d}
+gscaler( 66) = {gscaler( 66):%15d}
+gscaler( 67) = {gscaler( 67):%15d}
+gscaler( 68) = {gscaler( 68):%15d}
+gscaler( 69) = {gscaler( 69):%15d}
+gscaler( 70) = {gscaler( 70):%15d}
+gscaler( 71) = {gscaler( 71):%15d}
+gscaler( 72) = {gscaler( 72):%15d}
+gscaler( 73) = {gscaler( 73):%15d}
+gscaler( 74) = {gscaler( 74):%15d}
+gscaler( 75) = {gscaler( 75):%15d}
+gscaler( 76) = {gscaler( 76):%15d}
+gscaler( 77) = {gscaler( 77):%15d}
+gscaler( 78) = {gscaler( 78):%15d}
+gscaler( 79) = {gscaler( 79):%15d}
+gscaler( 80) = {gscaler( 80):%15d}
+
+DA05: hS2X+
+gscaler( 81) = {gscaler( 81):%15d}
+gscaler( 82) = {gscaler( 82):%15d}
+gscaler( 83) = {gscaler( 83):%15d}
+gscaler( 84) = {gscaler( 84):%15d}
+gscaler( 85) = {gscaler( 85):%15d}
+gscaler( 86) = {gscaler( 86):%15d}
+gscaler( 87) = {gscaler( 87):%15d}
+gscaler( 88) = {gscaler( 88):%15d}
+gscaler( 89) = {gscaler( 89):%15d}
+gscaler( 90) = {gscaler( 90):%15d}
+gscaler( 91) = {gscaler( 91):%15d}
+gscaler( 92) = {gscaler( 92):%15d}
+gscaler( 93) = {gscaler( 93):%15d}
+gscaler( 94) = {gscaler( 94):%15d}
+gscaler( 95) = {gscaler( 95):%15d}
+gscaler( 96) = {gscaler( 96):%15d}
+
+DA06: hS2X-
+gscaler( 97) = {gscaler( 97):%15d}
+gscaler( 98) = {gscaler( 98):%15d}
+gscaler( 99) = {gscaler( 99):%15d}
+gscaler(100) = {gscaler(100):%15d}
+gscaler(101) = {gscaler(101):%15d}
+gscaler(102) = {gscaler(102):%15d}
+gscaler(103) = {gscaler(103):%15d}
+gscaler(104) = {gscaler(104):%15d}
+gscaler(105) = {gscaler(105):%15d}
+gscaler(106) = {gscaler(106):%15d}
+gscaler(107) = {gscaler(107):%15d}
+gscaler(108) = {gscaler(108):%15d}
+gscaler(109) = {gscaler(109):%15d}
+gscaler(110) = {gscaler(110):%15d}
+gscaler(111) = {gscaler(111):%15d}
+gscaler(112) = {gscaler(112):%15d}
+
+DA07: hS2Y+
+gscaler(113) = {gscaler(113):%15d}
+gscaler(114) = {gscaler(114):%15d}
+gscaler(115) = {gscaler(115):%15d}
+gscaler(116) = {gscaler(116):%15d}
+gscaler(117) = {gscaler(117):%15d}
+gscaler(118) = {gscaler(118):%15d}
+gscaler(119) = {gscaler(119):%15d}
+gscaler(120) = {gscaler(120):%15d}
+gscaler(121) = {gscaler(121):%15d}
+gscaler(122) = {gscaler(122):%15d}
+gscaler(123) = {gscaler(123):%15d}
+gscaler(124) = {gscaler(124):%15d}
+gscaler(125) = {gscaler(125):%15d}
+gscaler(126) = {gscaler(126):%15d}
+gscaler(127) = {gscaler(127):%15d}
+gscaler(128) = {gscaler(128):%15d}
+
+DA08: hS2Y-
+gscaler(129) = {gscaler(129):%15d}
+gscaler(130) = {gscaler(130):%15d}
+gscaler(131) = {gscaler(131):%15d}
+gscaler(132) = {gscaler(132):%15d}
+gscaler(133) = {gscaler(133):%15d}
+gscaler(134) = {gscaler(134):%15d}
+gscaler(135) = {gscaler(135):%15d}
+gscaler(136) = {gscaler(136):%15d}
+gscaler(137) = {gscaler(137):%15d}
+gscaler(138) = {gscaler(138):%15d}
+gscaler(139) = {gscaler(139):%15d}
+gscaler(140) = {gscaler(140):%15d}
+gscaler(141) = {gscaler(141):%15d}
+gscaler(142) = {gscaler(142):%15d}
+gscaler(143) = {gscaler(143):%15d}
+gscaler(144) = {gscaler(144):%15d}
+
+DA09: htrig1
+gscaler(145) = {gscaler(145):%15d}
+gscaler(146) = {gscaler(146):%15d}
+gscaler(147) = {gscaler(147):%15d}
+gscaler(148) = {gscaler(148):%15d}
+gscaler(149) = {gscaler(149):%15d}
+gscaler(150) = {gscaler(150):%15d}
+gscaler(151) = {gscaler(151):%15d}
+gscaler(152) = {gscaler(152):%15d}
+gscaler(153) = {gscaler(153):%15d}
+gscaler(154) = {gscaler(154):%15d}
+gscaler(155) = {gscaler(155):%15d}
+gscaler(156) = {gscaler(156):%15d}
+gscaler(157) = {gscaler(157):%15d}
+gscaler(158) = {gscaler(158):%15d}
+gscaler(159) = {gscaler(159):%15d}
+gscaler(160) = {gscaler(160):%15d}
+
+DA0A: htrig2
+gscaler(161) = {gscaler(161):%15d}
+gscaler(162) = {gscaler(162):%15d}
+gscaler(163) = {gscaler(163):%15d}
+gscaler(164) = {gscaler(164):%15d}
+gscaler(165) = {gscaler(165):%15d}
+gscaler(166) = {gscaler(166):%15d}
+gscaler(167) = {gscaler(167):%15d}
+gscaler(168) = {gscaler(168):%15d}
+gscaler(169) = {gscaler(169):%15d}
+gscaler(170) = {gscaler(170):%15d}
+gscaler(171) = {gscaler(171):%15d}
+gscaler(172) = {gscaler(172):%15d}
+gscaler(173) = {gscaler(173):%15d}
+gscaler(174) = {gscaler(174):%15d}
+gscaler(175) = {gscaler(175):%15d}
+gscaler(176) = {gscaler(176):%15d}
+
+DA0B: hHODO
+gscaler(177) = {gscaler(177):%15d}
+gscaler(178) = {gscaler(178):%15d}
+gscaler(179) = {gscaler(179):%15d}
+gscaler(180) = {gscaler(180):%15d}
+gscaler(181) = {gscaler(181):%15d}
+gscaler(182) = {gscaler(182):%15d}
+gscaler(183) = {gscaler(183):%15d}
+gscaler(184) = {gscaler(184):%15d}
+gscaler(185) = {gscaler(185):%15d}
+gscaler(186) = {gscaler(186):%15d}
+gscaler(187) = {gscaler(187):%15d}
+gscaler(188) = {gscaler(188):%15d}
+gscaler(189) = {gscaler(189):%15d}
+gscaler(190) = {gscaler(190):%15d}
+gscaler(191) = {gscaler(191):%15d}
+gscaler(192) = {gscaler(192):%15d}
+
+DA0C: hCAL
+gscaler(193) = {gscaler(193):%15d}
+gscaler(194) = {gscaler(194):%15d}
+gscaler(195) = {gscaler(195):%15d}
+gscaler(196) = {gscaler(196):%15d}
+gscaler(197) = {gscaler(197):%15d}
+gscaler(198) = {gscaler(198):%15d}
+gscaler(199) = {gscaler(199):%15d}
+gscaler(200) = {gscaler(200):%15d}
+gscaler(201) = {gscaler(201):%15d}
+gscaler(202) = {gscaler(202):%15d}
+gscaler(203) = {gscaler(203):%15d}
+gscaler(204) = {gscaler(204):%15d}
+gscaler(205) = {gscaler(205):%15d}
+gscaler(206) = {gscaler(206):%15d}
+gscaler(207) = {gscaler(207):%15d}
+gscaler(208) = {gscaler(208):%15d}
+
+DA0D: sS1X
+gscaler(209) = {gscaler(209):%15d}
+gscaler(210) = {gscaler(210):%15d}
+gscaler(211) = {gscaler(211):%15d}
+gscaler(212) = {gscaler(212):%15d}
+gscaler(213) = {gscaler(213):%15d}
+gscaler(214) = {gscaler(214):%15d}
+gscaler(215) = {gscaler(215):%15d}
+gscaler(216) = {gscaler(216):%15d}
+gscaler(217) = {gscaler(217):%15d}
+gscaler(218) = {gscaler(218):%15d}
+gscaler(219) = {gscaler(219):%15d}
+gscaler(220) = {gscaler(220):%15d}
+gscaler(221) = {gscaler(221):%15d}
+gscaler(222) = {gscaler(222):%15d}
+gscaler(223) = {gscaler(223):%15d}
+gscaler(224) = {gscaler(224):%15d}
+
+DA0E: sS1Y
+gscaler(225) = {gscaler(225):%15d}
+gscaler(226) = {gscaler(226):%15d}
+gscaler(227) = {gscaler(227):%15d}
+gscaler(228) = {gscaler(228):%15d}
+gscaler(229) = {gscaler(229):%15d}
+gscaler(230) = {gscaler(230):%15d}
+gscaler(231) = {gscaler(231):%15d}
+gscaler(232) = {gscaler(232):%15d}
+gscaler(233) = {gscaler(233):%15d}
+gscaler(234) = {gscaler(234):%15d}
+gscaler(235) = {gscaler(235):%15d}
+gscaler(236) = {gscaler(236):%15d}
+gscaler(237) = {gscaler(237):%15d}
+gscaler(238) = {gscaler(238):%15d}
+gscaler(239) = {gscaler(239):%15d}
+gscaler(240) = {gscaler(240):%15d}
+
+DA0F: sS2X+
+gscaler(241) = {gscaler(241):%15d}
+gscaler(242) = {gscaler(242):%15d}
+gscaler(243) = {gscaler(243):%15d}
+gscaler(244) = {gscaler(244):%15d}
+gscaler(245) = {gscaler(245):%15d}
+gscaler(246) = {gscaler(246):%15d}
+gscaler(247) = {gscaler(247):%15d}
+gscaler(248) = {gscaler(248):%15d}
+gscaler(249) = {gscaler(249):%15d}
+gscaler(250) = {gscaler(250):%15d}
+gscaler(251) = {gscaler(251):%15d}
+gscaler(252) = {gscaler(252):%15d}
+gscaler(253) = {gscaler(253):%15d}
+gscaler(254) = {gscaler(254):%15d}
+gscaler(255) = {gscaler(255):%15d}
+gscaler(256) = {gscaler(256):%15d}
+
+DA10: sS2X-
+gscaler(257) = {gscaler(257):%15d}
+gscaler(258) = {gscaler(258):%15d}
+gscaler(259) = {gscaler(259):%15d}
+gscaler(260) = {gscaler(260):%15d}
+gscaler(261) = {gscaler(261):%15d}
+gscaler(262) = {gscaler(262):%15d}
+gscaler(263) = {gscaler(263):%15d}
+gscaler(264) = {gscaler(264):%15d}
+gscaler(265) = {gscaler(265):%15d}
+gscaler(266) = {gscaler(266):%15d}
+gscaler(267) = {gscaler(267):%15d}
+gscaler(268) = {gscaler(268):%15d}
+gscaler(269) = {gscaler(269):%15d}
+gscaler(270) = {gscaler(270):%15d}
+gscaler(271) = {gscaler(271):%15d}
+gscaler(272) = {gscaler(272):%15d}
+
+DA11: sS2Y
+gscaler(273) = {gscaler(273):%15d}
+gscaler(274) = {gscaler(274):%15d}
+gscaler(275) = {gscaler(275):%15d}
+gscaler(276) = {gscaler(276):%15d}
+gscaler(277) = {gscaler(277):%15d}
+gscaler(278) = {gscaler(278):%15d}
+gscaler(279) = {gscaler(279):%15d}
+gscaler(280) = {gscaler(280):%15d}
+gscaler(281) = {gscaler(281):%15d}
+gscaler(282) = {gscaler(282):%15d}
+gscaler(283) = {gscaler(283):%15d}
+gscaler(284) = {gscaler(284):%15d}
+gscaler(285) = {gscaler(285):%15d}
+gscaler(286) = {gscaler(286):%15d}
+gscaler(287) = {gscaler(287):%15d}
+gscaler(288) = {gscaler(288):%15d}
+
+DA12: sHODO spare
+gscaler(289) = {gscaler(289):%15d}
+gscaler(290) = {gscaler(290):%15d}
+gscaler(291) = {gscaler(291):%15d}
+gscaler(292) = {gscaler(292):%15d}
+gscaler(293) = {gscaler(293):%15d}
+gscaler(294) = {gscaler(294):%15d}
+gscaler(295) = {gscaler(295):%15d}
+gscaler(296) = {gscaler(296):%15d}
+gscaler(297) = {gscaler(297):%15d}
+gscaler(298) = {gscaler(298):%15d}
+gscaler(299) = {gscaler(299):%15d}
+gscaler(300) = {gscaler(300):%15d}
+gscaler(301) = {gscaler(301):%15d}
+gscaler(302) = {gscaler(302):%15d}
+gscaler(303) = {gscaler(303):%15d}
+gscaler(304) = {gscaler(304):%15d}
+
+DA13: strig1
+gscaler(305) = {gscaler(305):%15d}
+gscaler(306) = {gscaler(306):%15d}
+gscaler(307) = {gscaler(307):%15d}
+gscaler(308) = {gscaler(308):%15d}
+gscaler(309) = {gscaler(309):%15d}
+gscaler(310) = {gscaler(310):%15d}
+gscaler(311) = {gscaler(311):%15d}
+gscaler(312) = {gscaler(312):%15d}
+gscaler(313) = {gscaler(313):%15d}
+gscaler(314) = {gscaler(314):%15d}
+gscaler(315) = {gscaler(315):%15d}
+gscaler(316) = {gscaler(316):%15d}
+gscaler(317) = {gscaler(317):%15d}
+gscaler(318) = {gscaler(318):%15d}
+gscaler(319) = {gscaler(319):%15d}
+gscaler(320) = {gscaler(320):%15d}
+
+DA14: strig2
+gscaler(321) = {gscaler(321):%15d}
+gscaler(322) = {gscaler(322):%15d}
+gscaler(323) = {gscaler(323):%15d}
+gscaler(324) = {gscaler(324):%15d}
+gscaler(325) = {gscaler(325):%15d}
+gscaler(326) = {gscaler(326):%15d}
+gscaler(327) = {gscaler(327):%15d}
+gscaler(328) = {gscaler(328):%15d}
+gscaler(329) = {gscaler(329):%15d}
+gscaler(330) = {gscaler(330):%15d}
+gscaler(331) = {gscaler(331):%15d}
+gscaler(332) = {gscaler(332):%15d}
+gscaler(333) = {gscaler(333):%15d}
+gscaler(334) = {gscaler(334):%15d}
+gscaler(335) = {gscaler(335):%15d}
+gscaler(336) = {gscaler(336):%15d}
+
+DA15: sHODO
+gscaler(337) = {gscaler(337):%15d}
+gscaler(338) = {gscaler(338):%15d}
+gscaler(339) = {gscaler(339):%15d}
+gscaler(340) = {gscaler(340):%15d}
+gscaler(341) = {gscaler(341):%15d}
+gscaler(342) = {gscaler(342):%15d}
+gscaler(343) = {gscaler(343):%15d}
+gscaler(344) = {gscaler(344):%15d}
+gscaler(345) = {gscaler(345):%15d}
+gscaler(346) = {gscaler(346):%15d}
+gscaler(347) = {gscaler(347):%15d}
+gscaler(348) = {gscaler(348):%15d}
+gscaler(349) = {gscaler(349):%15d}
+gscaler(350) = {gscaler(350):%15d}
+gscaler(351) = {gscaler(351):%15d}
+gscaler(352) = {gscaler(352):%15d}
+
+end report grep

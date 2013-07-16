@@ -1,0 +1,37 @@
+begin hist sos_fp group=sos group=both
+
+rf25ps,gmisc_dec_data(116),1,0,1 $### SOS FOCAL PLANE VARS
+
+sx_fp,300,-60.,60.        $sx-fp t=user
+sy_fp,200,-40.,40.        $sy-fp t=user
+sxp_fp,400,-.4,.4         $sxp-fp t=user
+syp_fp,100,-.1,.1         $syp-fp t=user
+slogchi2_fp,60,-1.,5.     $slogchi2-fp t=user
+snfree_fp,20,0.,20.       $snfree-fp t=user
+schi2perdeg_fp,300,0.,30. $schi2perdeg-fp t=user
+ssp-,ssp,100,0.6*spcentral,1.4*spcentral,scleantrack   $ssp fp t=scleantrack
+ssx_fp,ssx_fp,300,-60,60,scleantrack                   $ssx fp t=scleantrack
+ssy_fp,ssy_fp,200,-40,40,scleantrack                   $ssy fp t=scleantrack
+ssxp_fp,ssxp_fp,400,-.4,.4,scleantrack                 $ssxp fp t=scleantrack
+ssyp_fp,ssyp_fp,100,-.1,.1,scleantrack                 $ssyp fp t=scleantrack
+ssnfree fp,snfree_fp,20,0.5,20.5,scleantrack           $ssnfree fp t=scleantrack
+sschi2perdeg,sschi2perdeg,300,0,30,scleantrack         $sschi2perdof t=scleantrack
+
+; focal plane x vs y with 1 cm resolution and various PID requirements
+ssxvsssyzoom,ssy_fp,ssx_fp,30,-15,15,60,-40,40,sgoodtar  $SOS x-fp vs y-fp t= sgoodtar
+ssxvsssy,ssy_fp,ssx_fp,30,-15,15,60,-40,40,scleantrack $SOS x-fp vs y-fp t=scleantrack
+ssxvsssye,ssy_fp,ssx_fp,30,-15,15,60,-40,40,selec_cercut  $SOS x-fp vs y-fp t=selec_cercut 
+ssxvsssypi,ssy_fp,ssx_fp,30,-15,15,60,-40,40,spion_cercut  $SOS x-fp vs y-fp t=spion_cercut
+;ssxvsssytare,ssy_fp,ssx_fp,50,-15,15,60,-40,40,sgoodtar_seleccercut $SOS x-fp vs y-fp t=sgoodtar_seleccercut
+
+; close up of transverse focus to look for waist motion, elestic peaks near x=0, and mt target runs.
+ssxvsssytar,ssy_fp,ssx_fp,30,-7.5,7.5,60,-15,15,sgoodtar    $SOS x vs y (zoom) t=sgoodtar
+
+;histograms for Henk's optics check
+; gh - 03.03.18
+sinvmass,sinvmass,200,-5,15,scleantrack $SOS invmass t=scleantrack
+sswxpfp_H,sinvmass,sxp_fp,50,0.90,1.0,50,-0.3,0.3,scleantrack $SOS sxp-fp vs W(1H) t=scleantrack
+sswxpfp_C,sinvmass,sxp_fp,50,11.170,11.185,50,-0.3,0.3,scleantrack $SOS sxp-fp vs W(12C) t=scleantrack
+ssxypfp,syp_fp,sx_fp,50,-0.05,0.05,50,-40,40,scleantrack $SOS sx-fp vs syp-fp t=scleantrack
+
+end   hist sos_fp

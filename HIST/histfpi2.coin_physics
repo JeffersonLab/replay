@@ -1,0 +1,118 @@
+begin hist coin_physics group=hms group=sos group=both
+
+dummy1,gmisc_dec_data(116),1,0,1 $### COINC PHYSICS
+
+; put missing mass first!
+cmissingmass,cmissing_mass,500,.5,1.5,ccleantrack       $Mm (pi prod) t=ccleantrack
+cmissingmasscut,cmissing_mass,500,.5,1.5,coincut         $Mm  (pi prod, 3 bursts) t=coincut
+cmissingmasscutepi,cmissing_mass,500,.5,1.5,coincut_e_pi    $Mm (pi prod, 3 bursts + PID) t=coincut_e_pi
+cmissingmasstcutepi,cmissing_mass,500,.5,1.5,tightcoincut_e_pi    $Mm (pi prod, 1 burst + PID) t=tightcoincut_e_pi
+cmissingmasscutepiran,cmissing_mass,500,.5,1.5,coincut_e_pi_ran   $Mm (pi prod, 4 random bursts + PID) t=coincut_e_pi
+;
+;missmasscutzoom,cmissing_mass,400,.90,1.10,coincut       $Mm (zoom) t=coincut
+missmasscutzoomepi,cmissing_mass,400,.90,1.10,coincut_e_pi  $Mm (pi prod, zoom) t=coincut_e_pi
+;
+; missing energy
+;cmissinge,cmissing_e,200,-.5,1.5,ccleantrack             $Em  t=ccleantrack
+;cmissingecut,cmissing_e,200,-.5,1.5,coincut              $Em  t=coincut
+cmissingecutepi,cmissing_e,200,-.5,1.5,coincut_e_pi         $Em  t=coincut_e_pi
+cmissinge,cmissing_e,500,-.5,.5,ccleantrack             $Em  t=ccleantrack
+cmissingecut,cmissing_e,500,-.5,.5,coincut              $Em  t=coincut
+;cmissingecutepi,cmissing_e,500,-.5,.5,coincut_e_pi         $Em  t=coincut_e_pi
+cmissingezoomepi,cmissing_e,400,-.1,.1,coincut_e_pi        $Em (zoom) t=coincut
+cmissingezoomepi,cmissing_e,400,-.1,.1,ccleantrack        $Em (zoom) t=ccleantrack
+;cmissingetcutepi,cmissing_e,200,-.5,1.5,tightcoincut_e_pi         $Em  t=tightcoincut_e_pi
+;
+;eexccutzoom,ce_exc,500,-.25,.25,coincut                    $Eexc t=coincut 
+eexccutzoomepi,ce_exc,500,-.25,.25,coincut_e_pi               $Eexc t=coincut_e_pi
+;eexctcutzoomepi,ce_exc,500,-.25,.25,tightcoincut_e_pi               $Eexc t=tightcoincut_e_pi
+;
+; missing momentum
+cmissingmom,cmissing_mom,250,-1.,1.,ccleantrack          $Pm  t=ccleantrack
+cmissingmomcut,cmissing_mom,250,-1.,1.,coincut           $Pm  t=coincut
+cmissingmomcutepi,cmissing_mom,250,-1.,1.,coincut_e_pi      $Pm  t=coincut_e_pi
+;cmissingmomtcutepi,cmissing_mom,250,-1.,1.,tightcoincut_e_pi      $Pm  t=tightcoincut_e_pi
+;
+cmissingmomx,cmissing_momx,250,-.5,.5,coincut_e_pi         $Pm x t=coincut_e_pi 
+cmissingmomy,cmissing_momy,250,-.5,.5,coincut_e_pi         $Pm y t=coincut_e_pi 
+cmissingmomz,cmissing_momz,250,-.5,1.5,coincut_e_pi        $Pm z t=coincut_e_pi 
+;
+cmissingmompar,cmissing_mom_par,250,-.5,2.5,coincut_e_pi   $Pm Par t=coincut_e_pi 
+cmissingmomparzoomepi,cmissing_mom_par,400,-.1,.1,coincut_e_pi $Pm Par (zoom) t=coincut_e_pi
+cmissingmomparzoom,cmissing_mom_par,400,-.1,.1,ccleantrack $Pm Par (zoom) t=ccleantrack
+;
+cmissingmomperp,cmissing_mom_perp,250,-1.,1.,coincut_e_pi  $Pm Per t=coincut_e_pi 
+cmissingmomperpzoomepi,cmissing_mom_perp,400,-.1,.1,coincut_e_pi $Pm Per (zoom) t=coincut_e_pi
+cmissingmomperpzoom,cmissing_mom_perp,400,-.1,.1,ccleantrack $Pm Per (zoom) t=ccleantrack
+;
+cmissingmomoop,cmissing_mom_oop,250,-.5,.5,coincut_e_pi    $Pm Oop t=coincut_e_pi 
+cmissingmomoopzoomepi,cmissing_mom_oop,400,-.1,.1,coincut_e_pi    $Pm Oop t=coincut_e_pi 
+cmissingmomoopzoom,cmissing_mom_oop,400,-.1,.1,ccleantrack    $Pm Oop t=ccleantrack 
+;
+; various important Lorentz invariants 
+cinvmass,c_invmass,150,1,3,ccleantrack                   $W (invariant mass) t=ccleantrack
+cinvmass2,c_invmass,150,1,3,mmcut_relax                  $W (invariant mass) t=mmcut_relax
+cq2,c_bigq2,200,0,3,ccleantrack                          $Q2 t=ccleantrack
+cq22,c_bigq2,200,0,3,mmcut_relax                         $Q2 t=mmcut_relax 
+cq2vsw,c_bigq2,c_invmass,50,0.,3.,50,1.,3.,mmcut_relax    $W vs Q2  t=mmcut_relax 
+cmint,cmin_t,200,0,1.,ccleantrack                        $-t  t=ccleantrack
+cmint2,cmin_t,200,0,1.,coincut_e_pi                      $-t  t=coincut_e_pi 
+cmint3,cmin_t,200,0,1.,mmcut_relax                       $-t  t=mmcut_relax  
+cpolartvsphi,ctphix,ctphiy,50,-.6,.6,50,-.6,.6,mmcut_relax   $-t vs phipi  t= mmcut_relax
+epsilon,c_epsilon,200,0,1.,mmcut_relax                              $epsilon t=mmcut_relax
+
+dummy2,gmisc_dec_data(116),1,0,1 $### COINC TIME
+; coincidence time histos  
+; hms cctime has a resolution problem (missing bit?) so only sos cctime will be used for 2-d histos
+coinbeta1,ccointime_sos,hsbeta,100,-10,10,40,.8,1.2,ccleantrack $HMS beta vs. sos ccointime  t=ccleantrack
+coinbeta2,ccointime_sos,ssbeta,100,-10,10,40,.8,1.2,ccleantrack  $SOS beta vs. sos ccointime  t=ccleantrack
+;coinbeta1,ccointime_sos,hsbeta,100,20,40,40,.8,1.2,ccleantrack $HMS beta vs. sos ccointime  t=ccleantrack
+;coinbeta2,ccointime_sos,ssbeta,100,20,40,40,.8,1.2,ccleantrack  $SOS beta vs. sos ccointime  t=ccleantrack
+
+ccointime_sos,ccointime_sos,1000,-25,25,ccleantrack          $SOS ccointime t=ccleantrack
+ccointime_sosepi,ccointime_sos,1000,-25,25,ccleantrack_e_pi  $SOS ccointime t=ccleantrack_e_pi
+ccointime_sosepiz,ccointime_sos,100,-3,3,ccleantrack_e_pi  $SOS ccointime (zoom) t=ccleantrack_e_pi
+;ccointime_hms,ccointime_hms,1000,-60,-10,ccleantrack         $HMS ccointime t=ccleantrack
+ccointime_hmsepi,ccointime_hms,1000,-25,25,ccleantrack_e_pi $HMS ccointime t=ccleantrack_e_pi
+ccointime_hms,ccointime_hms,1000,-25,25,ccleantrack $HMS ccointime t=ccleantrack
+;ccointime_hmsepiz,ccointime_hms,100,-31.75,-25.75,ccleantrack_e_pi $HMS ccointime (zoom) t=ccleantrack_e_pi
+
+;djm temporary histos for debugging cctime problems. I will delete them later. 
+;cctimehms_vs_hspathcor,ccointime_hms,hspath_cor,100,-30.75,-26.75,100,-1.0,1.0,ccleantrack_e_pi $hms hspath_cor vs cctime
+;cctimehms_vs_sspathcor,ccointime_hms,sspath_cor,100,-30.75,-26.75,100,-1.0,1.0,ccleantrack_e_pi $hms sspath_cor vs cctime
+;poopoo1,ccointime_hms,hmisc_dec_data(10),66,-20,13,60,1860,2160,ccleantrack_e_pi $ hms ctime vs. cctime t=ccleantrack_e_pi
+;poopoo2,ccointime_sos,smisc_dec_data(9),72,-15,21,62,1850,2160,ccleantrack_e_pi  $ sos ctime vs. cctime t=ccleantrack_e_pi
+;coin_checksum,cchecksum,60,3900,4200,ccleantrack_e_pi $ CoinTime Checksum, t=ccleantrack_e_pi
+;hsctime_vs_cchecksum,cchecksum,hmisc_dec_data(10),61,4000,4060,60,1860,2160,ccleantrack_e_pi $ HMS raw ctime vs cchecksum t=ccleantrack_e_pi
+;ssctime_vs_cchecksum,cchecksum,smisc_dec_data(9),61,4000,4060,62,1850,2160,ccleantrack_e_pi $ SOS raw ctime vs cchecksum t=ccleantrack_e_pi
+;hrawtime_vs_srawtime,smisc_dec_data(9),hmisc_dec_data(10),104,1849,2161,100,1860,2160,ccleantrack_e_pi $ HMS vs SOS raw ctime t=ccleantrack_e_pi
+
+hspathcor,hspath_cor,200,-2.,2.,hfoundtrack           $HMS path corr (ns) t=hfndtrk
+sspathcor,sspath_cor,200,-2.,2.,sfoundtrack           $SOS path corr (ns) t=sfndtrk
+cpathcor,cpath_cor,200,-2.,2.,ctrig             $SOS-HMS path corr (ns) t=ctrig
+
+dummy3,gmisc_dec_data(116),1,0,1 $### MISC COINC HISTOS
+ytgt2,ssy_tar,hsy_tar,100,-4,4,100,-4,4,coincut $HMS ytgt vs SOS ytgt t=coincut 
+ztgt2,sszbeam,hszbeam,100,-8,8,100,-8,8,coincut $HMS ztgt vs SOS ztgt t= coincut
+dummy4,gmisc_dec_data(116),1,0,1 $### TDC TRIGGERS
+
+h_hmstrig, hmisc_dec_data(9), 200,500,3500,htrig  $h_hmstrg  t=htrig
+h_sostrig, hmisc_dec_data(10),200,500,3500,ctrig  $h_sostrg (raw ctime) t=ctrig
+h_sostrig2, hmisc_dec_data(10),400,1800,2200,ctrig  $h_sostrg (raw ctime) ZOOM t=ctrig
+h_sostrig3, hmisc_dec_data(10),400,1800,2200,ccleantrack_e_pi   $h_sostrg (raw ctime) ZOOM t=ccleantrack_e_pi 
+h_cointrig,hmisc_dec_data(11),200,500,3500,ctrig  $h_cointrg t=ctrig
+h_pedtrig, hmisc_dec_data(12),200,500,3500,atrig  $h_pedtrg  t=atrig
+
+s_hmstrig, smisc_dec_data(9), 200,500,3500,ctrig $s_hmstrg  (raw ctime) t=ctrig
+s_hmstrig2, smisc_dec_data(9),400,1800,2200,ctrig $s_hmstrg  (raw ctime) ZOOM t=ctrig
+s_hmstrig3, smisc_dec_data(9),400,1800,2200,ccleantrack_e_pi  $s_hmstrg  (raw ctime) ZOOM t=ccleantrack_e_pi
+s_sostrig, smisc_dec_data(10),200,500,3500,strig $s_sostrg  t=strig
+s_cointrig,smisc_dec_data(11),200,500,3500,ctrig $s_cointrg t=ctrig
+s_pedtrig, smisc_dec_data(12),200,500,3500,atrig $s_pedtrg  t=atrig
+
+;hrft1,hmisc_dec_data(53),200,300,4000,htrig $hrft1 49.9 MHZ  t=htrig
+;hrft2,hmisc_dec_data(49),200,350,4000,htrig $hrft2 49.9 MHZ  t=htrig
+;hrft3,hmisc_dec_data(51),200,400,4000,htrig $hrft3 49.9 MHZ  t=htrig
+
+end   hist coin_physics
+

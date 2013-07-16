@@ -1,0 +1,83 @@
+begin hist hms_decoded_aerogel group=hms group=both
+
+rf25ps,gmisc_dec_data(116),1,0,1 $### HMS AEROGEL
+
+haero_pos_mult_adc,haero_adc_pos_hits,9,-0.5,8.5  $ haero-adc-pos-mult t=htrig
+haero_neg_mult_adc,haero_adc_neg_hits,9,-0.5,8.5  $ haero-adc-neg-mult t=htrig
+haero_adc_tot_mult,haero_tot_good_hits,17,-0.5,16.5  $ haero-adc-tot-mult t=goodhs1s2
+
+
+haero_pos_mult_adc_vs_neg_mult_adc,haero_adc_pos_hits,haero_adc_neg_hits,9,-0.5,8.5,9,-0.5,8.5  $ haero-adc-pos-mult vs haero-adc-neg-mult t=htrig
+haero_pos_mult_tdc,haero_tdc_pos_hits,9,-0.5,8.5  $ haero-tdc-pos-mult t=htrig
+haero_neg_mult_tdc,haero_tdc_neg_hits,9,-0.5,8.5  $ haero-tdc-neg-mult t=htrig
+
+;............................ haero_rawadc .......................................
+;
+haero_pos1_adc,haero_rawadc_pos(1),800,0,2000  $ haero-rawadc-pos(1) t=htrig
+haero_pos2_adc,haero_rawadc_pos(2),800,0,2000  $ haero-rawadc-pos(2) t=htrig
+haero_pos3_adc,haero_rawadc_pos(3),800,0,2000  $ haero-rawadc-pos(3) t=htrig
+haero_pos4_adc,haero_rawadc_pos(4),800,0,2000  $ haero-rawadc-pos(4) t=htrig
+haero_pos5_adc,haero_rawadc_pos(5),800,0,2000  $ haero-rawadc-pos(5) t=htrig
+haero_pos6_adc,haero_rawadc_pos(6),800,0,2000  $ haero-rawadc-pos(6) t=htrig
+haero_pos7_adc,haero_rawadc_pos(7),800,0,2000  $ haero-rawadc-pos(7) t=htrig
+haero_pos8_adc,haero_rawadc_pos(8),800,0,2000  $ haero-rawadc-pos(8) t=htrig
+
+haero_neg1_adc,haero_rawadc_neg(1),800,0,2000  $ haero-rawadc-neg(1) t=htrig
+haero_neg2_adc,haero_rawadc_neg(2),800,0,2000  $ haero-rawadc-neg(2) t=htrig
+haero_neg3_adc,haero_rawadc_neg(3),800,0,2000  $ haero-rawadc-neg(3) t=htrig
+haero_neg4_adc,haero_rawadc_neg(4),800,0,2000  $ haero-rawadc-neg(4) t=htrig
+haero_neg5_adc,haero_rawadc_neg(5),800,0,2000  $ haero-rawadc-neg(5) t=htrig
+haero_neg6_adc,haero_rawadc_neg(6),800,0,2000  $ haero-rawadc-neg(6) t=htrig
+haero_neg7_adc,haero_rawadc_neg(7),800,0,2000  $ haero-rawadc-neg(7) t=htrig
+haero_neg8_adc,haero_rawadc_neg(8),800,0,2000  $ haero-rawadc-neg(8) t=htrig
+
+;........................... npe ....................................................
+haero_pos1_npe,haero_pos_npe(1),200,0,10         $haero-npe-pos(1) t=htrig
+haero_pos2_npe,haero_pos_npe(2),200,0,10         $haero-npe-pos(2) t=htrig
+haero_pos3_npe,haero_pos_npe(3),200,0,10         $haero-npe-pos(3) t=htrig
+haero_pos4_npe,haero_pos_npe(4),200,0,10         $haero-npe-pos(4) t=htrig
+haero_pos5_npe,haero_pos_npe(5),200,0,10         $haero-npe-pos(5) t=htrig
+haero_pos6_npe,haero_pos_npe(6),200,0,10         $haero-npe-pos(6) t=htrig
+haero_pos7_npe,haero_pos_npe(7),200,0,10         $haero-npe-pos(7) t=htrig
+haero_pos8_npe,haero_pos_npe(8),200,0,10         $haero-npe-pos(8) t=htrig
+
+haero_neg1_npe,haero_neg_npe(1),200,0,10         $haero-npe-neg(1) t=htrig
+haero_neg2_npe,haero_neg_npe(2),200,0,10         $haero-npe-neg(2) t=htrig
+haero_neg3_npe,haero_neg_npe(3),200,0,10         $haero-npe-neg(3) t=htrig
+haero_neg4_npe,haero_neg_npe(4),200,0,10         $haero-npe-neg(4) t=htrig
+haero_neg5_npe,haero_neg_npe(5),200,0,10         $haero-npe-neg(5) t=htrig
+haero_neg6_npe,haero_neg_npe(6),200,0,10         $haero-npe-neg(6) t=htrig
+haero_neg7_npe,haero_neg_npe(7),200,0,10         $haero-npe-neg(7) t=htrig
+haero_neg8_npe,haero_neg_npe(8),200,0,10         $haero-npe-neg(8) t=htrig
+
+haero_pos_npe_sum,haero_pos_npe_sum,800,-1,39           $haero-pos-npe-sum t=htrig
+haero_neg_npe_sum,haero_neg_npe_sum,800,-1,39           $haero-neg-npe-sum t=htrig
+haero_npe_sum,haero_npe_sum,800,-1,79                   $haero-npe-sum t=htrig
+
+haero_psum_vs_nsum,haero_pos_npe_sum,haero_neg_npe_sum,400,-1,79,400,-1,79   $haero-npe-sum+ vs haero-npe-sum- t=htrig    
+
+haero_npe_sum_vs_pos_mult_adc,haero_npe_sum,haero_adc_pos_hits,400,-1,39,20,0,20   $haero-npe-sum vs pos_mult_adc t=htrig
+haero_npe_sum_vs_neg_mult_adc,haero_npe_sum,haero_adc_neg_hits,400,-1,39,20,0,20   $haero-npe-sum vs neg_mult_adc t=htrig
+
+;hcer_sum_vs_haero_sum,hcer_npe_sum,haero_npe_sum,150,-1,29,280,-1,69 $hcer npe sum vs haero-npe-sum t=htrig
+;............................. tdc ..............................................
+haero_pos1_tdc,haero_tdc_pos(1),500,500,3000         $haero-tdc-pos(1) t=htrig
+haero_pos2_tdc,haero_tdc_pos(2),500,500,3000         $haero-tdc-pos(2) t=htrig
+haero_pos3_tdc,haero_tdc_pos(3),500,500,3000         $haero-tdc-pos(3) t=htrig
+haero_pos4_tdc,haero_tdc_pos(4),500,500,3000         $haero-tdc-pos(4) t=htrig
+haero_pos5_tdc,haero_tdc_pos(5),500,500,3000         $haero-tdc-pos(5) t=htrig
+haero_pos6_tdc,haero_tdc_pos(6),500,500,3000         $haero-tdc-pos(6) t=htrig
+haero_pos7_tdc,haero_tdc_pos(7),500,500,3000         $haero-tdc-pos(7) t=htrig
+haero_pos8_tdc,haero_tdc_pos(8),500,500,3000         $haero-tdc-pos(8) t=htrig
+
+haero_neg1_tdc,haero_tdc_neg(1),500,500,3000         $haero-tdc-neg(1) t=htrig
+haero_neg2_tdc,haero_tdc_neg(2),500,500,3000         $haero-tdc-neg(2) t=htrig
+haero_neg3_tdc,haero_tdc_neg(3),500,500,3000         $haero-tdc-neg(3) t=htrig
+haero_neg4_tdc,haero_tdc_neg(4),500,500,3000         $haero-tdc-neg(4) t=htrig
+haero_neg5_tdc,haero_tdc_neg(5),500,500,3000         $haero-tdc-neg(5) t=htrig
+haero_neg6_tdc,haero_tdc_neg(6),500,500,3000         $haero-tdc-neg(6) t=htrig
+haero_neg7_tdc,haero_tdc_neg(7),500,500,3000         $haero-tdc-neg(7) t=htrig
+haero_neg8_tdc,haero_tdc_neg(8),500,500,3000         $haero-tdc-neg(8) t=htrig
+
+end   hist hms_decoded_aerogel
+

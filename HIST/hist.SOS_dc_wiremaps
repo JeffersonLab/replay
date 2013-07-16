@@ -1,0 +1,20 @@
+begin hist sos_decoded_dc group=sos group=both
+
+rf25ps,gmisc_dec_data(116),1,0,1 $### SOS DC WIREMAPS
+
+sdcrawtdc,200,2000,4000   $sdc raw tdcs t=user
+sdccuttdc,200,2000,4000   $sdc cut tdcs t=user
+; wiremaps
+sdc1u1_wiremap,sdc_nrwire(1),0.5,sdc_nrwire(1)+0.5   $sdc1u1 wiremap t=user
+sdc1u2_wiremap,sdc_nrwire(2),0.5,sdc_nrwire(2)+0.5   $sdc1u2 wiremap t=user
+sdc1x1_wiremap,sdc_nrwire(3),0.5,sdc_nrwire(3)+0.5   $sdc1x1 wiremap t=user
+sdc1x2_wiremap,sdc_nrwire(4),0.5,sdc_nrwire(4)+0.5   $sdc1x2 wiremap t=user
+sdc1v1_wiremap,sdc_nrwire(5),0.5,sdc_nrwire(5)+0.5   $sdc1v1 wiremap t=user
+sdc1v2_wiremap,sdc_nrwire(6),0.5,sdc_nrwire(6)+0.5   $sdc1v2 wiremap t=user
+sdc2u1_wiremap,sdc_nrwire(7),0.5,sdc_nrwire(7)+0.5   $sdc2u1 wiremap t=user
+sdc2u2_wiremap,sdc_nrwire(8),0.5,sdc_nrwire(8)+0.5   $sdc2u2 wiremap t=user
+sdc2x1_wiremap,sdc_nrwire(9),0.5,sdc_nrwire(9)+0.5   $sdc2x1 wiremap t=user
+sdc2x2_wiremap,sdc_nrwire(10),0.5,sdc_nrwire(10)+0.5 $sdc2x2 wiremap t=user
+sdc2v1_wiremap,sdc_nrwire(11),0.5,sdc_nrwire(11)+0.5 $sdc2v1 wiremap t=user
+sdc2v2_wiremap,sdc_nrwire(12),0.5,sdc_nrwire(12)+0.5 $sdc2v2 wiremap t=user
+end   hist sos_decoded_dc

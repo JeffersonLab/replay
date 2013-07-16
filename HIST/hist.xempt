@@ -1,0 +1,10 @@
+begin hist hms_xempt group=hms group=both
+
+rf25ps,gmisc_dec_data(116),1,0,1 $### XEMPT VARS
+hsnu,hsnu,150,0,6       	   $nu  t=htrig
+hsx_bj,hsx_bj,150,0,3       	   $x bjorken     t=htrig
+xsi_scale,xsi_scale,150,0,3        $xsi    t=htrig
+y_scale,y_scale,150,-1, 1          $y t=htrig
+hsbigq2,hsbigq2,150,0,10           $Q squared t=htrig
+;hinvmass, hinvmass, 150,0,5        $W HMS invmass t=htrig
+end   hist hms_xempt

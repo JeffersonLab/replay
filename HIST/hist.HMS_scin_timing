@@ -1,0 +1,20 @@
+begin hist hms_decoded_scin_timing group=hms group=both
+
+rf25ps,gmisc_dec_data(116),1,0,1 $### HMS SCINTILLATOR TIMING
+
+hnallscinhits,hscin_all_tot_hits,53,-0.5,52.5     $raw total scint hits t=htrig
+hnscinhits,hscin_tot_hits,20,0.5,20.5             $total scint hits t=htrig
+hsnum_scin,hsnum_scin_hit,20,0.5,20.5,hcleantrack $scint hits on track t=hclean
+hstart_time1,hstart_time,80,0,80                  $hstart time t=htrig
+hstart_time2,hstart_time,80,0,80,hcleantrack      $hstart time t=hclean
+hfptime1,h_rfptime(1),80,0,80          $hs1xfptime t=hfound
+hfptime2,h_rfptime(2),80,0,80          $hs1yfptime t=hfound
+hfptime3,h_rfptime(3),80,0,80          $hs2xfptime t=hfound
+hfptime4,h_rfptime(4),80,0,80          $hs2yfptime t=hfound
+hfptimdif1,h_fptimedif(1),60,-3,3,hfoundtrack     $hfptime diff (1-2) t=hfound
+hfptimdif2,h_fptimedif(2),60,-3,3,hfoundtrack     $hfptime diff (1-3) t=hfound
+hfptimdif3,h_fptimedif(3),60,-3,3,hfoundtrack     $hfptime diff (1-4) t=hfound
+hfptimdif4,h_fptimedif(4),60,-3,3,hfoundtrack     $hfptime diff (2-3) t=hfound
+hfptimdif5,h_fptimedif(5),60,-3,3,hfoundtrack     $hfptime diff (2-4) t=hfound
+hfptimdif6,h_fptimedif(6),60,-3,3,hfoundtrack     $hfptime diff (3-4) t=hfound
+end   hist hms_decoded_scin_timing

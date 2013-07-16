@@ -1,0 +1,97 @@
+ begin hist sos_hodo_rawadcs  group=sos group=both
+
+; must set sturnon_scin_raw_hist=1 in sdebug.param to fill these
+
+;rf25ps,gmisc_dec_data(116),1,0,1 $### SOS HODOSCOPE RAW ADC's 
+;
+; These are duplicated in hist.SOS_rawadcs
+;
+;sscin1x1posadc,160,-50,750  $ sS1X1+ ADC t=user
+;sscin1x2posadc,160,-50,750  $ sS1X2+ ADC t=user
+;sscin1x3posadc,160,-50,750  $ sS1X3+ ADC t=user
+;sscin1x4posadc,160,-50,750  $ sS1X4+ ADC t=user
+;sscin1x5posadc,160,-50,750  $ sS1X5+ ADC t=user
+;sscin1x6posadc,160,-50,750  $ sS1X6+ ADC t=user
+;sscin1x7posadc,160,-50,750  $ sS1X7+ ADC t=user
+;sscin1x8posadc,160,-50,750  $ sS1X8+ ADC t=user
+;sscin1x9posadc,160,-50,750  $ sS1X9+ ADC t=user
+;sscin1y1posadc,160,-50,750  $ sS1Y1+ ADC t=user
+;sscin1y2posadc,160,-50,750  $ sS1Y2+ ADC t=user
+;sscin1y3posadc,160,-50,750  $ sS1Y3+ ADC t=user
+;sscin1y4posadc,160,-50,750  $ sS1Y4+ ADC t=user
+;sscin1y5posadc,160,-50,750  $ sS1Y5+ ADC t=user
+;sscin1y6posadc,160,-50,750  $ sS1Y6+ ADC t=user
+;sscin1y7posadc,160,-50,750  $ sS1Y7+ ADC t=user
+;sscin1y8posadc,160,-50,750  $ sS1Y8+ ADC t=user
+;sscin1y9posadc,160,-50,750  $ sS1Y9+ ADC t=user
+;sscin2x1posadc,160,-50,750  $ sS2X1+ ADC t=user
+;sscin2x2posadc,160,-50,750  $ sS2X2+ ADC t=user
+;sscin2x3posadc,160,-50,750  $ sS2X3+ ADC t=user
+;sscin2x4posadc,160,-50,750  $ sS2X4+ ADC t=user
+;sscin2x5posadc,160,-50,750  $ sS2X5+ ADC t=user
+;sscin2x6posadc,160,-50,750  $ sS2X6+ ADC t=user
+;sscin2x7posadc,160,-50,750  $ sS2X7+ ADC t=user
+;sscin2x8posadc,160,-50,750  $ sS2X8+ ADC t=user
+;sscin2x9posadc,160,-50,750  $ sS2X9+ ADC t=user
+;sscin2x10posadc,160,-50,750 $ sS2X10+ ADC t=user
+;sscin2x11posadc,160,-50,750 $ sS2X11+ ADC t=user
+;sscin2x12posadc,160,-50,750 $ sS2X12+ ADC t=user
+;sscin2x13posadc,160,-50,750 $ sS2X13+ ADC t=user
+;sscin2x14posadc,160,-50,750 $ sS2X14+ ADC t=user
+;sscin2x15posadc,160,-50,750 $ sS2X15+ ADC t=user
+;sscin2x16posadc,160,-50,750 $ sS2X16+ ADC t=user
+;sscin2y1posadc,160,-50,750  $ sS2Y1+ ADC t=user
+;sscin2y2posadc,160,-50,750  $ sS2Y2+ ADC t=user
+;sscin2y3posadc,160,-50,750  $ sS2Y3+ ADC t=user
+;sscin2y4posadc,160,-50,750  $ sS2Y4+ ADC t=user
+;sscin2y5posadc,160,-50,750  $ sS2Y5+ ADC t=user
+;sscin2y6posadc,160,-50,750  $ sS2Y6+ ADC t=user
+;sscin2y7posadc,160,-50,750  $ sS2Y7+ ADC t=user
+;sscin2y8posadc,160,-50,750  $ sS2Y8+ ADC t=user
+;sscin2y9posadc,160,-50,750  $ sS2Y9+ ADC t=user
+;sscin1x1negadc,160,-50,750  $ sS1X1- ADC t=user
+;sscin1x2negadc,160,-50,750  $ sS1X2- ADC t=user
+;sscin1x3negadc,160,-50,750  $ sS1X3- ADC t=user
+;sscin1x4negadc,160,-50,750  $ sS1X4- ADC t=user
+;sscin1x5negadc,160,-50,750  $ sS1X5- ADC t=user
+;sscin1x6negadc,160,-50,750  $ sS1X6- ADC t=user
+;sscin1x7negadc,160,-50,750  $ sS1X7- ADC t=user
+;sscin1x8negadc,160,-50,750  $ sS1X8- ADC t=user
+;sscin1x9negadc,160,-50,750  $ sS1X9- ADC t=user
+;sscin1y1negadc,160,-50,750  $ sS1Y1- ADC t=user
+;sscin1y2negadc,160,-50,750  $ sS1Y2- ADC t=user
+;sscin1y3negadc,160,-50,750  $ sS1Y3- ADC t=user
+;sscin1y4negadc,160,-50,750  $ sS1Y4- ADC t=user
+;sscin1y5negadc,160,-50,750  $ sS1Y5- ADC t=user
+;sscin1y6negadc,160,-50,750  $ sS1Y6- ADC t=user
+;sscin1y7negadc,160,-50,750  $ sS1Y7- ADC t=user
+;sscin1y8negadc,160,-50,750  $ sS1Y8- ADC t=user
+;sscin1y9negadc,160,-50,750  $ sS1Y9- ADC t=user
+;sscin2x1negadc,160,-50,750  $ sS2X1- ADC t=user
+;sscin2x2negadc,160,-50,750  $ sS2X2- ADC t=user
+;sscin2x3negadc,160,-50,750  $ sS2X3- ADC t=user
+;sscin2x4negadc,160,-50,750  $ sS2X4- ADC t=user
+;sscin2x5negadc,160,-50,750  $ sS2X5- ADC t=user
+;sscin2x6negadc,160,-50,750  $ sS2X6- ADC t=user
+;sscin2x7negadc,160,-50,750  $ sS2X7- ADC t=user
+;sscin2x8negadc,160,-50,750  $ sS2X8- ADC t=user
+;sscin2x9negadc,160,-50,750  $ sS2X9- ADC t=user
+;sscin2x10negadc,160,-50,750 $ sS2X10- ADC t=user
+;sscin2x11negadc,160,-50,750 $ sS2X11- ADC t=user
+;sscin2x12negadc,160,-50,750 $ sS2X12- ADC t=user
+;sscin2x13negadc,160,-50,750 $ sS2X13- ADC t=user
+;sscin2x14negadc,160,-50,750 $ sS2X14- ADC t=user
+;sscin2x15negadc,160,-50,750 $ sS2X15- ADC t=user
+;sscin2x16negadc,160,-50,750 $ sS2X16- ADC t=user
+;sscin2y1negadc,160,-50,750  $ sS2Y1- ADC t=user
+;sscin2y2negadc,160,-50,750  $ sS2Y2- ADC t=user
+;sscin2y3negadc,160,-50,750  $ sS2Y3- ADC t=user
+;sscin2y4negadc,160,-50,750  $ sS2Y4- ADC t=user
+;sscin2y5negadc,160,-50,750  $ sS2Y5- ADC t=user
+;sscin2y6negadc,160,-50,750  $ sS2Y6- ADC t=user
+;sscin2y7negadc,160,-50,750  $ sS2Y7- ADC t=user
+;sscin2y8negadc,160,-50,750  $ sS2Y8- ADC t=user
+;sscin2y9negadc,160,-50,750  $ sS2Y9- ADC t=user
+
+end   hist sos_hodo_rawadcs
+

@@ -1,0 +1,10 @@
+begin hist hms_cer group=hms group=both
+
+rf25ps,gmisc_dec_data(116),1,0,1 $### HMS CERENKOV
+hcer_adc_1,hcer_adc(1),2100,-100,4100         $hcer adc bottom  t=htrig
+hcer_adc_2,hcer_adc(2),2100,-100,4100         $hcer adc top     t=htrig
+hcer_npe_1,hcer_npe(1),150,-1,29             $hcer npe bottom t=htrig
+hcer_npe_2,hcer_npe(2),150,-1,29             $hcer npe top    t=htrig
+hcer_npe_sum,hcer_npe_sum,150,-1,29          $hcer npe sum    t=htrig
+hcer_npe_sum0,hcer_npe_sum,150,-1,29,hclean0track $hcer npe sum t=abs(hsdelta)<8 && hcer_npe>2
+end   hist hms_cer

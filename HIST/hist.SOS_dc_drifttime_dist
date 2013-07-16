@@ -1,0 +1,34 @@
+begin hist sos_decoded_dc_tested group=sos group=both
+; drift time
+
+rf25ps,gmisc_dec_data(116),1,0,1 $### SOS DC DRIFT TIMES
+
+dtime_sdc1u1,sdc_sing_drifttime(1),200,-100,300,realsdc1u1  $sdc1u1 drift time t=real1u1
+dtime_sdc1u2,sdc_sing_drifttime(2),200,-100,300,realsdc1u2  $sdc1u2 drift time t=real1u2
+dtime_sdc1x1,sdc_sing_drifttime(3),200,-100,300,realsdc1x1  $sdc1x1 drift time t=real1x1
+dtime_sdc1x2,sdc_sing_drifttime(4),200,-100,300,realsdc1x2  $sdc1x2 drift time t=real1x2
+dtime_sdc1v1,sdc_sing_drifttime(5),200,-100,300,realsdc1v1  $sdc1v1 drift time t=real1v1
+dtime_sdc1v2,sdc_sing_drifttime(6),200,-100,300,realsdc1v2  $sdc1v2 drift time t=real1v2
+dtime_sdc2u1,sdc_sing_drifttime(7),200,-100,300,realsdc2u1  $sdc2u1 drift time t=real2u1
+dtime_sdc2u2,sdc_sing_drifttime(8),200,-100,300,realsdc2u2  $sdc2u2 drift time t=real2u2
+dtime_sdc2x1,sdc_sing_drifttime(9),200,-100,300,realsdc2x1  $sdc2x1 drift time t=real2x1
+dtime_sdc2x2,sdc_sing_drifttime(10),200,-100,300,realsdc2x2 $sdc2x2 drift time t=real2x2
+dtime_sdc2v1,sdc_sing_drifttime(11),200,-100,300,realsdc2v1 $sdc2v1 drift time t=real2v1
+dtime_sdc2v2,sdc_sing_drifttime(12),200,-100,300,realsdc2v2 $sdc2v2 drift time t=real2v2
+; drift distance
+
+rf25ps,gmisc_dec_data(116),1,0,1 $### SOS DC DRIFT DISTANCES
+
+ddist_sdc1u1,sdc_sing_driftdis(1),30,-.1,.6,realsdc1u1  $sdc1u1 drift dist t=real1u1
+ddist_sdc1u2,sdc_sing_driftdis(2),30,-.1,.6,realsdc1u2  $sdc1u2 drift dist t=real1u2
+ddist_sdc1x1,sdc_sing_driftdis(3),30,-.1,.6,realsdc1x1  $sdc1x1 drift dist t=real1x1
+ddist_sdc1x2,sdc_sing_driftdis(4),30,-.1,.6,realsdc1x2  $sdc1x2 drift dist t=real1x2
+ddist_sdc1v1,sdc_sing_driftdis(5),30,-.1,.6,realsdc1v1  $sdc1v1 drift dist t=real1v1
+ddist_sdc1v2,sdc_sing_driftdis(6),30,-.1,.6,realsdc1v2  $sdc1v2 drift dist t=real1v2
+ddist_sdc2u1,sdc_sing_driftdis(7),30,-.1,.6,realsdc2u1  $sdc2u1 drift dist t=real2u1
+ddist_sdc2u2,sdc_sing_driftdis(8),30,-.1,.6,realsdc2u2  $sdc2u2 drift dist t=real2u2
+ddist_sdc2x1,sdc_sing_driftdis(9),30,-.1,.6,realsdc2x1  $sdc2x1 drift dist t=real2x1
+ddist_sdc2x2,sdc_sing_driftdis(10),30,-.1,.6,realsdc2x2 $sdc2x2 drift dist t=real2x2
+ddist_sdc2v1,sdc_sing_driftdis(11),30,-.1,.6,realsdc2v1 $sdc2v1 drift dist t=real2v1
+ddist_sdc2v2,sdc_sing_driftdis(12),30,-.1,.6,realsdc2v2 $sdc2v2 drift dist t=real2v2
+end   hist sos_decoded_dc_tested

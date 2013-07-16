@@ -1,0 +1,33 @@
+begin hist hms_decoded_dc_tested group=hms group=both
+
+rf25ps,gmisc_dec_data(116),1,0,1 $### HMS DC DRIFT TIMES
+
+dtime_hdc1x1,hdc_sing_drifttime(1),200,-100,300,realhdc1x1  $hdc1x1 drift time t=real1x1 
+dtime_hdc1y1,hdc_sing_drifttime(2),200,-100,300,realhdc1y1  $hdc1y1 drift time t=real1y1
+dtime_hdc1u1,hdc_sing_drifttime(3),200,-100,300,realhdc1u1  $hdc1u1 drift time t=real1u1
+dtime_hdc1v1,hdc_sing_drifttime(4),200,-100,300,realhdc1v1  $hdc1v1 drift time t=real1v1
+dtime_hdc1y2,hdc_sing_drifttime(5),200,-100,300,realhdc1y2  $hdc1y2 drift time t=real1y2
+dtime_hdc1x2,hdc_sing_drifttime(6),200,-100,300,realhdc1x2  $hdc1x2 drift time t=real1x2
+dtime_hdc2x1,hdc_sing_drifttime(7),200,-100,300,realhdc2x1  $hdc2x1 drift time t=real2x1
+dtime_hdc2y1,hdc_sing_drifttime(8),200,-100,300,realhdc2y1  $hdc2y1 drift time t=real2y1
+dtime_hdc2u1,hdc_sing_drifttime(9),200,-100,300,realhdc2u1  $hdc2u1 drift time t=real2u1
+dtime_hdc2v1,hdc_sing_drifttime(10),200,-100,300,realhdc2v1 $hdc2v1 drift time t=real2v1
+dtime_hdc2y2,hdc_sing_drifttime(11),200,-100,300,realhdc2y2 $hdc2y2 drift time t=real2y2
+dtime_hdc2x2,hdc_sing_drifttime(12),200,-100,300,realhdc2x2 $hdc2x2 drift time t=real2x2
+
+
+rf25ps,gmisc_dec_data(116),1,0,1 $### HMS DC DRIFT DISTANCES
+
+ddist_hdc1x1,hdc_sing_driftdis(1),30,-0.1,0.6,realhdc1x1    $hdc1x1 drift dist t=real1x1
+ddist_hdc1y1,hdc_sing_driftdis(2),30,-0.1,0.6,realhdc1y1    $hdc1y1 drift dist t=real1y1
+ddist_hdc1u1,hdc_sing_driftdis(3),30,-0.1,0.6,realhdc1u1    $hdc1u1 drift dist t=real1u1
+ddist_hdc1v1,hdc_sing_driftdis(4),30,-0.1,0.6,realhdc1v1    $hdc1v1 drift dist t=real1v1
+ddist_hdc1y2,hdc_sing_driftdis(5),30,-0.1,0.6,realhdc1y2    $hdc1y2 drift dist t=real1y2
+ddist_hdc1x2,hdc_sing_driftdis(6),30,-0.1,0.6,realhdc1x2    $hdc1x2 drift dist t=real1x2
+ddist_hdc2x1,hdc_sing_driftdis(7),30,-0.1,0.6,realhdc2x1    $hdc2x1 drift dist t=real2x1
+ddist_hdc2y1,hdc_sing_driftdis(8),30,-0.1,0.6,realhdc2y1    $hdc2y1 drift dist t=real2y1
+ddist_hdc2u1,hdc_sing_driftdis(9),30,-0.1,0.6,realhdc2u1    $hdc2u1 drift dist t=real2u1
+ddist_hdc2v1,hdc_sing_driftdis(10),30,-0.1,0.6,realhdc2v1   $hdc2v1 drift dist t=real2v1
+ddist_hdc2y2,hdc_sing_driftdis(11),30,-0.1,0.6,realhdc2y2   $hdc2y2 drift dist t=real2y2
+ddist_hdc2x2,hdc_sing_driftdis(12),30,-0.1,0.6,realhdc2x2   $hdc2x2 drift dist t=real2x2
+end   hist hms_decoded_dc_tested

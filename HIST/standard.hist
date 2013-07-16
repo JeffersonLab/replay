@@ -1,0 +1,66 @@
+;Main Histogram File
+
+; First calculate a few things that aren't calculated anywhere else in the code
+
+#include "HIST/hist.tests"
+#include "HIST/hist.tests.2003"
+
+; Main block: beamline histograms
+
+#include "HIST/hist.beamline"
+
+; HMS histogram block
+
+#include "HIST/hist.HMS_rawtdcs"
+#include "HIST/hist.HMS_dc_wiremaps"
+#include "HIST/hist.HMS_dc_drifttime_dist"
+#include "HIST/hist.HMS_dc_track_statistics"
+#include "HIST/hist.HMS_scin_and_cal"
+#include "HIST/hist.HMS_scin_timing"
+#include "HIST/hist.HMS_fp"
+#include "HIST/hist.HMS_target_recon"
+;  gh - HMS_cer is duplicated in HMS_pid_cerenkov
+;  #include "hist.HMS_cer"
+#include "HIST/hist.HMS_aerogel"
+#include "HIST/hist.HMS_pid_cerenkov"
+#include "HIST/hist.HMS_pid_other"
+;  gh - HMS_hists is duplicated in HMS_scin_and_cal
+;  #include "hist.HMS_hits"
+#include "HIST/hist.HMS_rawadcs"
+#include "HIST/hist.HMS_cal_rawadcs"
+;  gh - HMS_hodo_rawadcs is duplicated in HMS_rawadcs
+;  #include "HIST/hist.HMS_hodo_rawadcs"
+
+; SOS histogram block
+
+#include "HIST/hist.SOS_dc_wiremaps"
+#include "HIST/hist.SOS_dc_drifttime_dist"
+#include "HIST/hist.SOS_dc_track_statistics"
+#include "HIST/hist.SOS_scin_and_cal"
+#include "HIST/hist.SOS_scin_timing"
+#include "HIST/hist.SOS_fp"
+#include "HIST/hist.SOS_target_recon"
+;  gh - SOS_cer is duplicated in SOS_pid_cerenkov
+;  #include "HIST/hist.SOS_cer"
+#include "HIST/hist.SOS_pid_cerenkov"
+#include "HIST/hist.SOS_pid_other"
+;  gh - SOS_hits is duplicated in SOS_scin_and_cal
+;  #include "HIST/hist.SOS_hits"
+;  gh - SOS_hodo_rawadcs
+  #include "HIST/hist.SOS_rawadcs"
+#include "HIST/hist.SOS_cal_rawadcs"
+#include "HIST/hist.SOS_hodo_rawadcs"
+;#include "HIST/hist.SOS_aerogel"
+;#include "HIST/hist.SOS_lucite"
+
+; Physics histograms
+
+; WARNING: THERE IS A LOT OF REDUNDANCY IN COIN_PHYSICS AND ELAST_COIN_PHYSICS
+; SO INCLUDE ONE OR THE OTHER, NOT BOTH.
+
+;#include "HIST/hist.coin_physics"
+#include "HIST/hist.xempt
+#include "HIST/hist.elast_coin_physics"
+
+; ROOT trees
+;#include "HIST/standard.tree"

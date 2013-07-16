@@ -1,0 +1,23 @@
+// cointime.kumac:
+coinbeta1,ccointime_sos,hsbeta,100,-10,10,40,.8,1.2,ccleantrack $HMS beta vs. sos ccointime  t=ccleantrack
+coinbeta2,ccointime_sos,ssbeta,100,-10,10,40,.8,1.2,ccleantrack $SOS beta vs. sos ccointime  t=ccleantrack
+cpathcor,cpath_cor,200,-2.,2.,ctrig                             $SOS-HMS path corr (ns) t=ctrig
+ztgt2,sszbeam,hszbeam,100,-8,8,100,-8,8,coincut                 $HMS ztgt vs SOS ztgt t= coincut
+////////////////////////////////
+// missingmass.kumac:
+// cuts are set to have electrons in the SOS and pions in the HMS...
+cmissingmass,cmissing_mass,500,.5,1.5,ccleantrack               $Mm  t=ccleantrack
+cmissingmasscut,cmissing_mass,500,.5,1.5,coincut                $Mm  (3 bursts) t=coincut
+cmissingmasscutepi,cmissing_mass,500,.5,1.5,coincut_e_pi        $Mm  (3 bursts + PID) t=coincut_e_pi
+////////////////////////////////
+// missingmomentum.kumac:
+cmissingmomcutepi,cmissing_mom,250,-1.,1.,coincut_e_pi      $Pm  t=coincut_e_pi
+cmissingmompar,cmissing_mom_par,250,-.5,2.5,coincut   $Pm Par t=coincut 
+cmissingmomperp,cmissing_mom_perp,250,-1.,1.,coincut  $Pm Per t=coincut 
+cmissingmomoop,cmissing_mom_oop,250,-.5,.5,coincut    $Pm Oop t=coincut 
+////////////////////////////////
+// missingmomentum.kumac:
+cq2,c_bigq2,200,0,3,ccleantrack                          $Q2 t=ccleantrack
+cinvmass,c_invmass,150,0,2,ccleantrack                   $W (invariant mass) t=ccleantrack
+cq2vsw,c_bigq2,c_invmass,50,0.,3.,50,0.,2.,ccleantrack    $W vs Q2  t=ccleantrack
+cpolartvsphi,cphipq,cphipq,50,-.6,.6,50,-.6,.6,mmcut_relax   $-t vs phipi  t= mmcut_relax

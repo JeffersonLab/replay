@@ -1,0 +1,83 @@
+ begin hist sos_decoded_cal  group=sos group=both
+
+rf25ps,gmisc_dec_data(116),1,0,1 $### SOS CALORIMETER RAW ADC's 
+
+scalraw_e1,  scal_e1,100,-.1,1.5*spcentral          $scal raw E1   t=strig
+scalraw_e2,  scal_e2,100,-.1,1.5*spcentral          $scal raw E2   t=strig
+scalraw_e3,  scal_e3,100,-.1,1.5*spcentral          $scal raw E3   t=strig
+scalraw_e4,  scal_e4,100,-.1,1.5*spcentral          $scal raw E4   t=strig
+scalraw_et,  scal_et,100,-.1,1.8*spcentral          $scal raw ET   t=strig
+
+SCAL_ADC1p,SCAL_REALADC_POS(1),150,0,600      $SCAL ADC A1p -ped t=strig
+SCAL_ADC2p,SCAL_REALADC_POS(2),150,0,600      $SCA  ADC A2p -ped t=strig
+SCAL_ADC3p,SCAL_REALADC_POS(3),150,0,600      $SCAL ADC A3p -ped t=strig
+SCAL_ADC4p,SCAL_REALADC_POS(4),150,0,600      $SCAL ADC A4p -ped t=strig
+SCAL_ADC5p,SCAL_REALADC_POS(5),150,0,600      $SCAL ADC A5p -ped t=strig
+SCAL_ADC6p,SCAL_REALADC_POS(6),150,0,600      $SCAL ADC A6p -ped t=strig
+SCAL_ADC7p,SCAL_REALADC_POS(7),150,0,600      $SCAL ADC A7p -ped t=strig
+SCAL_ADC8p,SCAL_REALADC_POS(8),150,0,600      $SCAL ADC A8p -ped t=strig
+SCAL_ADC9p,SCAL_REALADC_POS(9),150,0,600      $SCAL ADC A9p -ped t=strig
+SCAL_ADC10p,SCAL_REALADC_POS(10),150,0,600    $SCAL ADC A10p -ped t=strig
+SCAL_ADC11p,SCAL_REALADC_POS(11),150,0,600    $SCAL ADC A11p -ped t=strig
+
+SCAL_ADC12p,SCAL_REALADC_POS(12),150,0,600    $SCAL ADC B1p -ped t=strig
+SCAL_ADC13p,SCAL_REALADC_POS(13),150,0,600    $SCAL ADC B2p -ped t=strig
+SCAL_ADC14p,SCAL_REALADC_POS(14),150,0,600    $SCAL ADC B3p -ped t=strig
+SCAL_ADC15p,SCAL_REALADC_POS(15),150,0,600    $SCAL ADC B4p -ped t=strig
+SCAL_ADC16p,SCAL_REALADC_POS(16),150,0,600    $SCAL ADC B5p -ped t=strig
+SCAL_ADC17p,SCAL_REALADC_POS(17),150,0,600    $SCAL ADC B6p -ped t=strig
+SCAL_ADC18p,SCAL_REALADC_POS(18),150,0,600    $SCAL ADC B7p -ped t=strig
+SCAL_ADC19p,SCAL_REALADC_POS(19),150,0,600    $SCAL ADC B8p -ped t=strig
+SCAL_ADC20p,SCAL_REALADC_POS(20),150,0,600    $SCAL ADC B9p -ped t=strig
+SCAL_ADC21p,SCAL_REALADC_POS(21),150,0,600    $SCAL ADC B10p -ped t=strig
+SCAL_ADC22p,SCAL_REALADC_POS(22),150,0,600    $SCAL ADC B11p -ped t=strig
+
+SCAL_ADC23p,SCAL_REALADC_POS(23),150,0,600    $SCAL ADC C1p -ped t=strig
+SCAL_ADC24p,SCAL_REALADC_POS(24),150,0,600    $SCAL ADC C2p -ped t=strig
+SCAL_ADC25p,SCAL_REALADC_POS(25),150,0,600    $SCAL ADC C3p -ped t=strig
+SCAL_ADC26p,SCAL_REALADC_POS(26),150,0,600    $SCAL ADC C4p -ped t=strig
+SCAL_ADC27p,SCAL_REALADC_POS(27),150,0,600    $SCAL ADC C5p -ped t=strig
+SCAL_ADC28p,SCAL_REALADC_POS(28),150,0,600    $SCAL ADC C6p -ped t=strig
+SCAL_ADC29p,SCAL_REALADC_POS(29),150,0,600    $SCAL ADC C7p -ped t=strig
+SCAL_ADC30p,SCAL_REALADC_POS(30),150,0,600    $SCAL ADC C8p -ped t=strig
+SCAL_ADC31p,SCAL_REALADC_POS(31),150,0,600    $SCAL ADC C9p -ped t=strig
+SCAL_ADC32p,SCAL_REALADC_POS(32),150,0,600    $SCAL ADC C10p -ped t=strig
+SCAL_ADC33p,SCAL_REALADC_POS(33),150,0,600    $SCAL ADC C11p -ped t=strig
+
+SCAL_ADC34p,SCAL_REALADC_POS(34),150,0,600    $SCAL ADC D1p -ped t=strig
+SCAL_ADC35p,SCAL_REALADC_POS(35),150,0,600    $SCAL ADC D2p -ped t=strig
+SCAL_ADC36p,SCAL_REALADC_POS(36),150,0,600    $SCAL ADC D3p -ped t=strig
+SCAL_ADC37p,SCAL_REALADC_POS(37),150,0,600    $SCAL ADC D4p -ped t=strig
+SCAL_ADC38p,SCAL_REALADC_POS(38),150,0,600    $SCAL ADC D5p -ped t=strig
+SCAL_ADC39p,SCAL_REALADC_POS(39),150,0,600    $SCAL ADC D6p -ped t=strig
+SCAL_ADC40p,SCAL_REALADC_POS(40),150,0,600    $SCAL ADC D7p -ped t=strig
+SCAL_ADC41p,SCAL_REALADC_POS(41),150,0,600    $SCAL ADC D8p -ped t=strig
+SCAL_ADC42p,SCAL_REALADC_POS(42),150,0,600    $SCAL ADC D9p -ped t=strig
+SCAL_ADC43p,SCAL_REALADC_POS(43),150,0,600    $SCAL ADC D10p -ped t=strig
+SCAL_ADC44p,SCAL_REALADC_POS(44),150,0,600    $SCAL ADC D11p -ped t=strig
+
+SCAL_ADC1n,SCAL_REALADC_NEG(1),150,0,600     $SCAL ADC A1n -ped t=strig
+SCAL_ADC2n,scal_REALADC_NEG(2),150,0,600     $SCAL ADC A2n -ped t=strig
+SCAL_ADC3n,scal_REALADC_NEG(3),150,0,600     $SCAL ADC A3n -ped t=strig
+SCAL_ADC4n,scal_REALADC_NEG(4),150,0,600     $SCAL ADC A4n -ped t=strig
+SCAL_ADC5n,scal_REALADC_NEG(5),150,0,600     $SCAL ADC A5n -ped t=strig
+SCAL_ADC6n,scal_REALADC_NEG(6),150,0,600     $SCAL ADC A6n -ped t=strig
+SCAL_ADC7n,scal_REALADC_NEG(7),150,0,600     $SCAL ADC A7n -ped t=strig
+SCAL_ADC8n,scal_REALADC_NEG(8),150,0,600     $SCAL ADC A8n -ped t=strig
+SCAL_ADC9n,scal_REALADC_NEG(9),150,0,600     $SCAL ADC A9n -ped t=strig
+SCAL_ADC10n,scal_REALADC_NEG(10),150,0,600   $SCAL ADC A10n -ped t=strig
+SCAL_ADC11n,scal_REALADC_NEG(11),150,0,600   $SCAL ADC A11n -ped t=strig
+
+SCAL_ADC12n,scal_REALADC_NEG(12),150,0,600   $SCAL ADC B1n -ped t=strig
+SCAL_ADC13n,scal_REALADC_NEG(13),150,0,600   $SCAL ADC B2n -ped t=strig
+SCAL_ADC14n,scal_REALADC_NEG(14),150,0,600   $SCAL ADC B3n -ped t=strig
+SCAL_ADC15n,scal_REALADC_NEG(15),150,0,600   $SCAL ADC B4n -ped t=strig
+SCAL_ADC16n,scal_REALADC_NEG(16),150,0,600   $SCAL ADC B5n -ped t=strig
+SCAL_ADC17n,scal_REALADC_NEG(17),150,0,600   $SCAL ADC B6n -ped t=strig
+SCAL_ADC18n,scal_REALADC_NEG(18),150,0,600   $SCAL ADC B7n -ped t=strig
+SCAL_ADC19n,scal_REALADC_NEG(19),150,0,600   $SCAL ADC B8n -ped t=strig
+SCAL_ADC20n,scal_REALADC_NEG(20),150,0,600   $SCAL ADC B9n -ped t=strig
+SCAL_ADC21n,scal_REALADC_NEG(21),150,0,600   $SCAL ADC B10n -ped t=strig
+SCAL_ADC22n,scal_REALADC_NEG(22),150,0,600   $SCAL ADC B11n -ped t=strig
+end   hist sos_decoded_cal
+

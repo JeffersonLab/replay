@@ -1,0 +1,87 @@
+begin test aerogel_adcsub group=sos group=both
+#real saer_neg1_adc,saer_neg2_adc,saer_neg3_adc,saer_neg4_adc
+#real saer_neg5_adc,saer_neg6_adc,saer_neg7_adc
+saer_neg1_adc=saer_rawadc_neg(1)-saer_neg_ped_mean(1)
+saer_neg2_adc=saer_rawadc_neg(2)-saer_neg_ped_mean(2)
+saer_neg3_adc=saer_rawadc_neg(3)-saer_neg_ped_mean(3)
+saer_neg4_adc=saer_rawadc_neg(4)-saer_neg_ped_mean(4)
+saer_neg5_adc=saer_rawadc_neg(5)-saer_neg_ped_mean(5)
+saer_neg6_adc=saer_rawadc_neg(6)-saer_neg_ped_mean(6)
+saer_neg7_adc=saer_rawadc_neg(7)-saer_neg_ped_mean(7)
+#real saer_pos1_adc,saer_pos2_adc,saer_pos3_adc,saer_pos4_adc
+#real saer_pos5_adc,saer_pos6_adc,saer_pos7_adc
+saer_pos1_adc=saer_rawadc_pos(1)-saer_pos_ped_mean(1)
+saer_pos2_adc=saer_rawadc_pos(2)-saer_pos_ped_mean(2)
+saer_pos3_adc=saer_rawadc_pos(3)-saer_pos_ped_mean(3)
+saer_pos4_adc=saer_rawadc_pos(4)-saer_pos_ped_mean(4)
+saer_pos5_adc=saer_rawadc_pos(5)-saer_pos_ped_mean(5)
+saer_pos6_adc=saer_rawadc_pos(6)-saer_pos_ped_mean(6)
+saer_pos7_adc=saer_rawadc_pos(7)-saer_pos_ped_mean(7)
+
+#real saer_sumaplusb
+saer_sumaplusb=saer_suma+saer_sumb
+
+#int aerotest
+aerotest=(ssbeta>0.9)
+
+#int saerveto,saernoveto,scleanaerveto,scleanaernoveto
+saerveto = ((smisc_dec_data(7)>500)&&(smisc_dec_data(7)<1200))	;aero. veto fires
+saernoveto=((smisc_dec_data(7)<500)||(smisc_dec_data(7)>1200))	;aero. veto does not fire
+scleanaerveto = saerveto & scleantrack
+scleanaernoveto = saernoveto & scleantrack
+end test aerogel_adcsub
+
+
+begin hist sos_pid_aerogel group=sos group=both
+saer_pos1_adcsub,saer_pos1_adc,250,-500,2000   $saer-adcsub-pos(1) t=strig
+saer_pos2_adcsub,saer_pos2_adc,250,-500,2000   $saer-adcsub-pos(2) t=strig
+saer_pos3_adcsub,saer_pos3_adc,250,-500,2000   $saer-adcsub-pos(3) t=strig
+saer_pos4_adcsub,saer_pos4_adc,250,-500,2000   $saer-adcsub-pos(4) t=strig
+saer_pos5_adcsub,saer_pos5_adc,250,-500,2000   $saer-adcsub-pos(5) t=strig
+saer_pos6_adcsub,saer_pos6_adc,250,-500,2000   $saer-adcsub-pos(6) t=strig
+saer_pos7_adcsub,saer_pos7_adc,250,-500,2000   $saer-adcsub-pos(7) t=strig
+saer_neg1_adcsub,saer_neg1_adc,250,-500,2000   $saer-adcsub-neg(1) t=strig
+saer_neg2_adcsub,saer_neg2_adc,250,-500,2000   $saer-adcsub-neg(2) t=strig
+saer_neg3_adcsub,saer_neg3_adc,250,-500,2000   $saer-adcsub-neg(3) t=strig
+saer_neg4_adcsub,saer_neg4_adc,250,-500,2000   $saer-adcsub-neg(4) t=strig
+saer_neg5_adcsub,saer_neg5_adc,250,-500,2000   $saer-adcsub-neg(5) t=strig
+saer_neg6_adcsub,saer_neg6_adc,250,-500,2000   $saer-adcsub-neg(6) t=strig
+saer_neg7_adcsub,saer_neg7_adc,250,-500,2000   $saer-adcsub-neg(7) t=strig
+
+saer_pos1_npe,saer_pos_npe(1),200,-2,8        $saer-npe-pos(1) t=strig
+saer_pos2_npe,saer_pos_npe(2),200,-2,8        $saer-npe-pos(2) t=strig
+saer_pos3_npe,saer_pos_npe(3),200,-2,8        $saer-npe-pos(3) t=strig
+saer_pos4_npe,saer_pos_npe(4),200,-2,8        $saer-npe-pos(4) t=strig
+saer_pos5_npe,saer_pos_npe(5),200,-2,8        $saer-npe-pos(5) t=strig
+saer_pos6_npe,saer_pos_npe(6),200,-2,8        $saer-npe-pos(6) t=strig
+saer_pos7_npe,saer_pos_npe(7),200,-2,8        $saer-npe-pos(7) t=strig
+saer_neg1_npe,saer_neg_npe(1),200,-2,8        $saer-npe-neg(1) t=strig
+saer_neg2_npe,saer_neg_npe(2),200,-2,8        $saer-npe-neg(2) t=strig
+saer_neg3_npe,saer_neg_npe(3),200,-2,8        $saer-npe-neg(3) t=strig
+saer_neg4_npe,saer_neg_npe(4),200,-2,8        $saer-npe-neg(4) t=strig
+saer_neg5_npe,saer_neg_npe(5),200,-2,8        $saer-npe-neg(5) t=strig
+saer_neg6_npe,saer_neg_npe(6),200,-2,8        $saer-npe-neg(6) t=strig
+saer_neg7_npe,saer_neg_npe(7),200,-2,8        $saer-npe-neg(7) t=strig
+
+saer_suma,saer_suma,200,-200,1800	        $saer-rawsumADC-pos t=strig
+saer_sumav,saer_suma,200,-200,1800,saerveto	$saer-rawsumADC-pos t=saerveto
+saer_sumanov,saer_suma,200,-200,1800,saernoveto	$saer-rawsumADC-pos t=saerNOveto
+saer_sumb,saer_sumb,200,-200,1800	        $saer-rawsumADC-neg t=strig
+saer_sumbv,saer_sumb,200,-200,1800,saerveto	$saer-rawsumADC-neg t=saerveto
+saer_sumbnov,saer_sumb,200,-200,1800,saernoveto	$saer-rawsumADC-neg t=saerNOveto
+saer_sumaplusb,saer_sumaplusb,200,-200,1800 $saer-rawADCsum-tot t=strig
+saer_sumaplusbv,saer_sumaplusb,200,-200,1800,saerveto $saer-rawADCsum-tot t=saerveto
+saer_sumaplusbnov,saer_sumaplusb,200,-200,1800,saernoveto $saer-rawADCsum-tot t=saernoveto
+saer_pos_npe_sum,saer_pos_npe_sum,200,-1,39 $saer-pos-npe-sum t=strig
+saer_neg_npe_sum,saer_neg_npe_sum,200,-1,39 $saer-neg-npe-sum t=strig
+saer_npe_sum,saer_npe_sum,200,-1,39         $saer_npe_sum t=strig
+saer_npe_sum1,saer_npe_sum,200,-1,39,scerlat        $saer_npe_sum t=scerlat
+saerlr,saer_pos_npe_sum,saer_neg_npe_sum,31,0.1,15.,31,0.1,15.,strig $saer_pos vs neg t=strig
+saervsc,saer_npe_sum,scer_npe_sum,50,-1,49,31,-1,30,scerlat $saer_npe_sum vs scer_npe t=scerlat 
+saervssx,saer_npe_sum,ssx_aero,36,-1,35,61,-60,60,scleantrack $saer_npe_sum vs scer_npe t=sclean 
+saervssy,saer_npe_sum,ssy_aero,36,-1,35,26,-25,25,scleantrack $saer_npe_sum vs scer_npe t=sclean 
+sxyaero,ssx_aero,ssy_aero,61,-60,60,31,-30,30,scleantrack $ssx_aero vs. ssy_aero t=sclean
+saervsdel,saer_npe_sum,ssdelta,21,-0.5,20.5,41,-20.,20.,scleantrack $saer_npe vs delta t=sclean
+
+saertdc,smisc_dec_data(7),400,-10,4100,scleantrack   $saertdc t=sclean
+end hist sos_pid_aerogel

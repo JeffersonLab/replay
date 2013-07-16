@@ -1,0 +1,34 @@
+begin hist sos_physics_finaltracks group=sos group=both
+
+rf25ps,gmisc_dec_data(116),1,0,1 $### SOS TGT VARS - RECON
+
+;djm chosen scales preserve aspect ratio of collimator. binning is 2 mrad. 
+ssxptarvsssyptar,ssyp_tar,ssxp_tar,80,-.08,.08,80,-.08,.08,scleantrack $SOS xptar vs yptar t=scleantrack
+;djm chosen scale preserves aspect ratio of collimator. binning is a crude 4 mm since an electron is not required. 
+ssycolvsssxcol,sos_y_collim,sos_x_collim,50,-10.,10.,50,-10.,10.,scleantrack $SOS collim recon t=scleantrack
+;djm chosen scale preserves aspect ratio of collimator. binning is 2 mm. an electron is required. 
+ssycolvsssxcole,sos_y_collim,sos_x_collim,100,-10.,10.,100,-10.,10.,selec_cercut $SOS collim recon t=selec_cercut
+
+;djm added electron identification on these plots so sieve runs will show peaks better 
+;ytar binning is .5 mm
+ssy_tar,ssy_tar,320,-8.,8.,scleantrack                   $SOS ytar t=scleantrack
+ssy_tare,ssy_tar,320,-8.,8.,selec_cercut                    $SOS ytar t=selec_cercut 
+; new histo under test
+ssz_tar,sszbeam,100,-8.,8.,scleantrack                   $SOS ztar t=scleantrack
+;
+ssxp_tar,ssxp_tar,100,-.1,.1,scleantrack                    $SOS xptar t=scleantrack
+ssxp_tare,ssxp_tar,100,-.1,.1,selec_cercut                    $SOS xptar t=selec_cercut 
+ssyp_tar,ssyp_tar,100,-.1,.1,scleantrack                   $SOS yptar t=scleantrack
+ssyp_tare,ssyp_tar,100,-.1,.1,selec_cercut                 $SOS yptar t=selec_cercut 
+ssdelta_tar,ssdelta,200,-20.,20.,scleantrack               $SOS delta  t=scleantrack
+;ssdelta_tarfine,ssdelta,1000,-20.,20.,scleantrack          $SOS delta fine t=scleantrack
+sp tar,sp_tar,200,0.8*spcentral,1.2*spcentral,scleantrack  $SOS momentum t=scleantrack
+
+;histograms for Henk's optics check
+; gh - 03.03.18
+sswxptar_H,sinvmass,ssxp_tar,50,0.90,1.0,50,-0.1,0.1,scleantrack $SOS W(1H) vs xptar t=scleantrack
+sswxptar_C,sinvmass,ssxp_tar,50,11.170,11.185,50,-0.1,0.1,scleantrack $SOS W(12C) vs xptar t=scleantrack
+sswyptar_H,sinvmass,ssyp_tar,50,0.90,1.0,50,-0.1,0.1,scleantrack $SOS W(1H) vs yptar t=scleantrack
+sswyptar_C,sinvmass,ssyp_tar,50,11.170,11.185,50,-0.1,0.1,scleantrack $SOS W(12C) vs yptar t=scleantrack
+
+end   hist sos_physics_finaltracks

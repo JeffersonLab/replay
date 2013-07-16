@@ -1,0 +1,39 @@
+begin hist hms_fp group=hms group=both
+
+rf25ps,gmisc_dec_data(116),1,0,1 $### HMS FOCAL PLANE VARS
+	
+hx_fp,300,-60.,60.        $hx-fp t=user
+hy_fp,200,-40.,40.        $hy-fp t=user
+hxp_fp,400,-.4,.4         $hxp-fp t=user
+hyp_fp,100,-.1,.1         $hyp-fp t=user
+hlogchi2_fp,60,-1.,5.     $hlogchi2-fp t=user
+hnfree_fp,20,0.5,20.5     $hnfree-fp t=user
+hchi2perdeg_fp,300,0.,30. $hchi2perdeg-fp t=user
+hsp-,hsp,100,0.8*hpcentral,1.2*hpcentral,hcleantrack $hsp fp t=hcleantrack
+hsx_fp,hsx_fp,200,-70,70,hcleantrack                $hsx fp t=hcleantrack
+hsy_fp,hsy_fp,150,-30,30,hcleantrack                $hsy fp t=hcleantrack
+hsxp_fp,hsxp_fp,200,-.3,.3,hcleantrack              $hsxp fp t=hcleantrack
+hsyp_fp,hsyp_fp,100,-.1,.1,hcleantrack              $hsyp fp t=hcleantrack
+hsnfree,hsnfree_fp,20,0.5,20.5,hcleantrack          $hsnfree t=hcleantrack
+hschi2perdeg,hschi2perdeg,100,0,30,hcleantrack      $hschi2perdeg t=hcleantrack
+
+hsxvshsy,hsy_fp,hsx_fp,50,-25,25,50,-50,50,hcleantrack $HMS x-fp vs y-fp t=hcleantrack
+hsxvshsy_e,hsy_fp,hsx_fp,50,-25,25,50,-50,50,helec_cercut $HMS x-fp vs y-fp t=helec-cercut
+hsxvshsy_pi,hsy_fp,hsx_fp,50,-25,25,50,-50,50,hpion_cercut $HMS x-fp vs y-fp t=pion-cercut
+
+; zoom in so we can better see waist motion, elastic peaks near x = 0, mt target walls, etc.
+;hsxvshsyzoom,hsy_fp,hsx_fp,40,-10,10,40,-10,10,hcleantrack $HMS x vs y (zoom) t=hcleantrack
+hsxvshsytar,hsy_fp,hsx_fp,40,-10,10,40,-10,10,hgoodtar $HMS x vs y (zoom) t=hgoodtar
+
+;exit of dipole
+hsdipolxit,hms_y_dpex,hms_x_dpex,60,-25.,25,60,-35,35,hcleantrack $HMS dipole exit check t=hcleantrack
+hsdipolxittar,hms_y_dpex,hms_x_dpex,60,-25.,25,60,-35,35,hgoodtar $HMS dipole exit check t=hgoodtar
+
+;histograms for Henk's optics check
+; gh - 03.03.18
+hinvmass,hinvmass,200,-5,15,hcleantrack $HMS invmass t=hcleantrack
+hswxpfp_H,hinvmass,hxp_fp,50,0.90,1.0,50,-0.1,0.1,hcleantrack $HMS hxp-fp vs W(1H) t=hcleantrack
+hswxpfp_C,hinvmass,hxp_fp,50,11.170,11.185,50,-0.1,0.1,hcleantrack $HMS hxp-fp vs W(12C) t=hcleantrack
+hsxypfp,hyp_fp,hx_fp,50,-0.05,0.05,50,-50,50,hcleantrack $HMS hx-fp vs hyp-fp t=hcleantrack
+
+end   hist hms_fp

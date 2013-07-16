@@ -1,0 +1,466 @@
+begin test hsingles_trackeff group=hms group=both
+#int h1hit1,h1hit2,h1hit3,h1hit4,h1hit5,h1hit6
+#int h1hit7,h1hit8,h1hit9,h1hit10,h1hit11,h1hit12
+#int h1planes,h2planes
+#int h1hitslt,h2hitslt,h1planesgt,h2planesgt
+#int hhitslt,hplanesgt
+#int hstublt
+#int f1hspacepoints,f2hspacepoints,fhspacepoints
+#int hhitsplanes,hhitsplanesspsstubs,hhitsplanessps
+#int hspacepoints
+#int htest1,htest2
+#int hsfoundtrack, hscleantrack
+#int hgoodbeta,hgoodcal_et,hsupertrack,hsupertrig
+#int hscinshould,hscinshould_x(16),hdid,hdid_x(16)
+#int hscinshouldx4,hscinshouldx5,hscinshouldx6
+#int hscinshouldx7,hscinshouldx8,hscinshouldx9
+#int hscinshouldx10,hscinshouldx11,hscinshouldx12
+#int hscinshouldx13
+#int hdidx4,hdidx5,hdidx6,hdidx7,hdidx8,hdidx9
+#int hdidx10,hdidx11,hdidx12,hdidx13
+#int hscinshoulde,hdide,hscinshouldh,hdidh
+#int hscinshould_clean,hdid_clean
+
+h1hit1 = (HDC_HITS_PER_PLANE(1) >= 1)
+h1hit2 = (HDC_HITS_PER_PLANE(2) >= 1)
+h1hit3 = (HDC_HITS_PER_PLANE(3) >= 1)
+h1hit4 = (HDC_HITS_PER_PLANE(4) >= 1)
+h1hit5 = (HDC_HITS_PER_PLANE(5) >= 1)
+h1hit6 = (HDC_HITS_PER_PLANE(6) >= 1)
+h1hit7 = (HDC_HITS_PER_PLANE(7) >= 1)
+h1hit8 = (HDC_HITS_PER_PLANE(8) >= 1)
+h1hit9 = (HDC_HITS_PER_PLANE(9) >= 1)
+h1hit10 = (HDC_HITS_PER_PLANE(10) >= 1)
+h1hit11 = (HDC_HITS_PER_PLANE(11) >= 1)
+h1hit12 = (HDC_HITS_PER_PLANE(12) >= 1)
+
+h1planes = h1hit1+h1hit2+h1hit3+h1hit4+h1hit5+h1hit6
+h2planes = h1hit7+h1hit8+h1hit9+h1hit10+h1hit11+h1hit12
+
+h1planesgt= (h1planes>=5)
+h2planesgt= (h2planes>=5)
+h1hitslt = ((HDC_HITS_PER_PLANE(1) + HDC_HITS_PER_PLANE(2) + HDC_HITS_PER_PLANE(3 ) + HDC_HITS_PER_PLANE(4) + HDC_HITS_PER_PLANE(5) + HDC_HITS_PER_PLANE(6)) <= hmax_pr_hits(1))
+h2hitslt = ((HDC_HITS_PER_PLANE(7) + HDC_HITS_PER_PLANE(8) + HDC_HITS_PER_PLANE(9) + HDC_HITS_PER_PLANE(10) + HDC_HITS_PER_PLANE(11) + HDC_HITS_PER_PLANE(12)) <= hmax_pr_hits(2))
+
+hhitslt = h1hitslt && h2hitslt
+hplanesgt = h1planesgt && h2planesgt
+hspacepoints = ((hnspace_points(1) >= 1) && (hnspace_points(2) >= 1))
+hstublt = hstubtest
+hhitsplanes = hhitslt && hplanesgt
+hhitsplanessps = hhitsplanes && hspacepoints
+hhitsplanesspsstubs = hhitsplanessps && hstublt
+f1hspacepoints = h1hitslt && h1planesgt && (hnspace_points(1) == 0)
+f2hspacepoints = h2hitslt && h2planesgt && (hnspace_points(2) == 0)
+fhspacepoints = f1hspacepoints || f2hspacepoints
+htest1 = hhitsplanes && !hspacepoints
+htest2 = hspacepoints && !hstublt
+hsfoundtrack = (hntracks_fp != 0)
+hscleantrack = (hsnum_fptrack != 0)
+hgoodbeta = hbeta_notrk > 0.7
+hgoodcal_et = hcal_et > 0.3
+hsupertrack = hgoodbeta && hgoodcal_et && hhitsplanesspsstubs
+hsupertrig = hgoodbeta && hgoodcal_et
+ 
+hscinshould = hgoodscinhits && (hcer_npe_sum > 2.0) && ((hcal_et/hpcentral)>0.7)
+hscinshouldx4 = hgoodscinhits_x(4) && hscinshould
+hscinshouldx5 = hgoodscinhits_x(5) && hscinshould
+hscinshouldx6 = hgoodscinhits_x(6) && hscinshould
+hscinshouldx7 = hgoodscinhits_x(7) && hscinshould
+hscinshouldx8 = hgoodscinhits_x(8) && hscinshould
+hscinshouldx9 = hgoodscinhits_x(9) && hscinshould
+hscinshouldx10 = hgoodscinhits_x(10) && hscinshould
+hscinshouldx11 = hgoodscinhits_x(11) && hscinshould
+hscinshouldx12 = hgoodscinhits_x(12) && hscinshould
+hscinshouldx13 = hgoodscinhits_x(13) && hscinshould
+
+hdid = hscinshould && (hntracks_fp !=0)  
+hdidx4 = hscinshouldx4 && (hntracks_fp !=0)
+hdidx5 = hscinshouldx5 && (hntracks_fp !=0)
+hdidx6 = hscinshouldx6 && (hntracks_fp !=0)
+hdidx7 = hscinshouldx7 && (hntracks_fp !=0)
+hdidx8 = hscinshouldx8 && (hntracks_fp !=0)
+hdidx9 = hscinshouldx9 && (hntracks_fp !=0)
+hdidx10 = hscinshouldx10 && (hntracks_fp !=0)
+hdidx11 = hscinshouldx11 && (hntracks_fp !=0)
+hdidx12 = hscinshouldx12 && (hntracks_fp !=0)
+hdidx13 = hscinshouldx13 && (hntracks_fp !=0)
+
+hscinshoulde = hgoodscinhits && (hcer_npe_sum > 2.0)
+hdide = hscinshoulde && (hntracks_fp !=0) 
+
+hscinshouldh = hgoodscinhits
+hdidh = hscinshouldh && (hntracks_fp !=0)
+
+#int hhitfid1,hhitfid2,hhitfid3,hhitfid4,hhitfid5,hhitfid6
+#int hhitfid7,hhitfid8,hhitfid9,hhitfid10,hhitfid11,hhitfid12
+
+
+hhitfid1 = h1hit1 && hscinshouldh
+hhitfid2 = h1hit2 && hscinshouldh
+hhitfid3 = h1hit3 && hscinshouldh
+hhitfid4 = h1hit4 && hscinshouldh
+hhitfid5 = h1hit5 && hscinshouldh
+hhitfid6 = h1hit6 && hscinshouldh
+hhitfid7 = h1hit7 && hscinshouldh
+hhitfid8 = h1hit8 && hscinshouldh
+hhitfid9 = h1hit9 && hscinshouldh
+hhitfid10 = h1hit10 & hscinshouldh
+hhitfid11 = h1hit11 & hscinshouldh
+hhitfid12 = h1hit12 && hscinshouldh
+
+#int anyhdc1, anyhdc2, anyhdc3, anyhdc4
+#int anyhdc5, anyhdc6, anyhdc7, anyhdc8
+#int anyhdc9, anyhdc10, anyhdc11, anyhdc12
+anyhdc1 = (hdc_hits_per_plane(1) > 0)
+anyhdc2 = (hdc_hits_per_plane(2) > 0)
+anyhdc3 = (hdc_hits_per_plane(3) > 0)
+anyhdc4 = (hdc_hits_per_plane(4) > 0)
+anyhdc5 = (hdc_hits_per_plane(5) > 0)
+anyhdc6 = (hdc_hits_per_plane(6) > 0)
+anyhdc7 = (hdc_hits_per_plane(7) > 0)
+anyhdc8 = (hdc_hits_per_plane(8) > 0)
+anyhdc9 = (hdc_hits_per_plane(9) > 0)
+anyhdc10 = (hdc_hits_per_plane(10) > 0)
+anyhdc11 = (hdc_hits_per_plane(11) > 0)
+anyhdc12 = (hdc_hits_per_plane(12) > 0)
+
+
+#int hdc1should, hdc2should, hdc3should, hdc4should
+#int hdc5should, hdc6should, hdc7should, hdc8should
+#int hdc9should, hdc10should, hdc11should, hdc12should
+
+#int hdc1did, hdc2did, hdc3did, hdc4did
+#int hdc5did, hdc6did, hdc7did, hdc8did
+#int hdc9did, hdc10did, hdc11did, hdc12did
+
+hdc1did = hhitfid1 && hdidh
+hdc2did = hhitfid2 && anyhdc2
+hdc3did = hhitfid3 && anyhdc3
+hdc4did = hhitfid4 && anyhdc4
+hdc5did = hhitfid5 && anyhdc5
+hdc6did = hhitfid6 && anyhdc6
+hdc7did = hhitfid7 && anyhdc7
+hdc8did = hhitfid8 && anyhdc8
+hdc9did = hhitfid9 && anyhdc9
+hdc10did = hhitfid10 && anyhdc10
+hdc11did = hhitfid11 && anyhdc11
+hdc12did = hhitfid12 && anyhdc12
+
+
+#int hdcaveeff1,hdcaveeff2,hdcaveeff,hdc5of6_1,hdc5of6_2,hdc5of6
+
+hdcaveeff1=(hdc_plane_eff(1)+hdc_plane_eff(2)+hdc_plane_eff(3)+hdc_plane_eff(4)+hdc_plane_eff(5)+hdc_plane_eff(6))/6
+hdcaveeff2=(hdc_plane_eff(7)+hdc_plane_eff(8)+hdc_plane_eff(9)+hdc_plane_eff(10)+hdc_plane_eff(11)+hdc_plane_eff(12))/6
+hdcaveeff=(hdcaveeff1+hdcaveeff2)/2
+hdc5of6_1=(6-5*hdcaveeff1)*hdcaveeff1*hdcaveeff1*hdcaveeff1*hdcaveeff1*hdcaveeff1
+hdc5of6_2=(6-5*hdcaveeff2)*hdcaveeff2*hdcaveeff2*hdcaveeff2*hdcaveeff2*hdcaveeff2
+hdc5of6=hdc5of6_1*hdc5of6_2
+
+
+; fiducial cut plus (one chamber with >=5 planes)
+;              plus (BOTH chamber with <=max hits (OK for max=25), either for max=15)
+;	       plus (both with >2 planes)
+;
+#int heitherlt,heithergt
+#int hmin1,hmin2,hmin
+#int hdctest1,hdctest2,hdctest3,hdctest4,hdctest0,hdctest5
+heitherlt = h1hitslt || h2hitslt
+heithergt = h1planesgt || h2planesgt
+hmin1=(h1planes>2)
+hmin2=(h2planes>2)
+
+#int h1hitslt2,h2hitslt2,heitherlt2
+h1hitslt2 = ((HDC_HITS_PER_PLANE(1) + HDC_HITS_PER_PLANE(2) + HDC_HITS_PER_PLANE(3 ) + HDC_HITS_PER_PLANE(4) + HDC_HITS_PER_PLANE(5) + HDC_HITS_PER_PLANE(6)) <= 15)
+h2hitslt2 = ((HDC_HITS_PER_PLANE(7) + HDC_HITS_PER_PLANE(8) + HDC_HITS_PER_PLANE(9) + HDC_HITS_PER_PLANE(10) + HDC_HITS_PER_PLANE(11) + HDC_HITS_PER_PLANE(12)) <= 15)
+heitherlt2 = h1hitslt2 || h2hitslt2
+#int h1planesgt2,h2planesgt2,heithergt2
+h1planesgt2= (h1planes>=4)
+h2planesgt2= (h2planes>=4)
+heithergt2 = h1planesgt2 || h2planesgt2
+
+hdctest0=1
+hdctest1=hscinshould
+hdctest2=hscinshould && hhitslt
+hdctest3=hscinshould && hhitslt && heithergt2
+hdctest4=hscinshould && hhitslt && heithergt2 && hmin1 && hmin2
+hdctest5=hscinshould && hhitslt && heithergt2 && hmin1 && hmin2 && (hntracks_fp != 0)
+
+hscinshould_clean = hscinshould && hhitslt && heithergt2 && hmin1 && hmin2
+hdid_clean = hscinshould_clean && (hntracks_fp != 0)
+
+f1hspacepoints = h1hitslt && h1planesgt && (hnspace_points(1) == 0)
+f2hspacepoints = h2hitslt && h2planesgt && (hnspace_points(2) == 0)
+fhspacepoints = f1hspacepoints || f2hspacepoints
+htest1 = hhitsplanes && !hspacepoints
+htest2 = hspacepoints && !hstublt
+
+#int chdctest0,chdctest1,chdctest2,chdctest3,chdctest4,chdctest5
+#int chscinshould_clean,chdid_clean
+; Same values, requiring coincidence trigger.
+chdctest0 = hdctest0 && ctrig
+chdctest1 = hdctest1 && ctrig
+chdctest2 = hdctest2 && ctrig
+chdctest3 = hdctest3 && ctrig
+chdctest4 = hdctest4 && ctrig
+chdctest5 = hdctest5 && ctrig
+chscinshould_clean = hscinshould_clean && ctrig
+chdid_clean = hdid_clean && ctrig
+
+end test hsingles_trackeff
+********************************************************************************
+begin test ssingles_trackeff group=sos group=both
+
+#int s1hit1,s1hit2,s1hit3,s1hit4,s1hit5,s1hit6
+#int s1hit7,s1hit8,s1hit9,s1hit10,s1hit11,s1hit12
+#int s1planes,s2planes
+#int s1hitslt,s2hitslt,s1planesgt,s2planesgt
+#int shitslt,splanesgt
+#int sstublt
+#int f1sspacepoints,f2sspacepoints,fsspacepoints
+#int shitsplanes,shitsplanessps,shitsplanesspsstubs
+#int sspacepoints
+#int stest1,stest2
+#int ssfoundtrack, sscleantrack
+#int sgoodbeta,sgoodcal_et,ssupertrack,ssupertrig
+#int sscinshould,sdid
+#int sscinshoulde,sdide,sscinshouldh,sdidh
+#int sscinshouldp,sdidp
+#int sscinshould_clean,sdid_clean
+
+s1hit1 = (SDC_HITS_PER_PLANE(1) >= 1)
+s1hit2 = (SDC_HITS_PER_PLANE(2) >= 1)
+s1hit3 = (SDC_HITS_PER_PLANE(3) >= 1)
+s1hit4 = (SDC_HITS_PER_PLANE(4) >= 1)
+s1hit5 = (SDC_HITS_PER_PLANE(5) >= 1)
+s1hit6 = (SDC_HITS_PER_PLANE(6) >= 1)
+s1hit7 = (SDC_HITS_PER_PLANE(7) >= 1)
+s1hit8 = (SDC_HITS_PER_PLANE(8) >= 1)
+s1hit9 = (SDC_HITS_PER_PLANE(9) >= 1)
+s1hit10 = (SDC_HITS_PER_PLANE(10) >= 1)
+s1hit11 = (SDC_HITS_PER_PLANE(11) >= 1)
+s1hit12 = (SDC_HITS_PER_PLANE(12) >= 1)
+
+s1planes = s1hit1+s1hit2+s1hit3+s1hit4+s1hit5+s1hit6
+s2planes = s1hit7+s1hit8+s1hit9+s1hit10+s1hit11+s1hit12
+
+s1planesgt = (s1planes>=5)
+s2planesgt = (s2planes>=5)
+
+s1hitslt = (SDC_HITS_PER_PLANE(1) + SDC_HITS_PER_PLANE(2) + SDC_HITS_PER_PLANE(3) + SDC_HITS_PER_PLANE(4) + SDC_HITS_PER_PLANE(5) + SDC_HITS_PER_PLANE(6)) <= smax_pr_hits(1)
+s2hitslt = (SDC_HITS_PER_PLANE(7) + SDC_HITS_PER_PLANE(8) + SDC_HITS_PER_PLANE(9) + SDC_HITS_PER_PLANE(10) + SDC_HITS_PER_PLANE(11) + SDC_HITS_PER_PLANE(12)) <= smax_pr_hits(2)
+
+shitslt = s1hitslt && s2hitslt
+splanesgt = s1planesgt && s2planesgt
+sspacepoints = ((snspace_points(1) >= 1) && (snspace_points(2) >= 1))
+sstublt = sstubtest
+shitsplanes = shitslt && splanesgt
+shitsplanessps = shitsplanes && sspacepoints
+shitsplanesspsstubs = shitsplanessps && sstublt
+f1sspacepoints = s1hitslt && s1planesgt && (snspace_points(1) == 0)
+f2sspacepoints = s2hitslt && s2planesgt && (snspace_points(2) == 0)
+fsspacepoints = f1sspacepoints || f2sspacepoints
+stest1 = shitsplanes  && !sspacepoints
+stest2 = sspacepoints && !sstublt
+ssfoundtrack = (sntracks_fp != 0)
+sscleantrack = (ssnum_fptrack != 0)
+sgoodbeta = sbeta_notrk > 0.7
+sgoodcal_et = scal_et > 0.3
+ssupertrack = sgoodbeta && sgoodcal_et && shitsplanesspsstubs
+ssupertrig = sgoodbeta && sgoodcal_et
+
+;sscinshould = sgoodscinhits
+
+sscinshould = sgoodscinhits && (scer_npe_sum > 2.0) && ((scal_et/spcentral)>0.7)
+sdid = sscinshould && (sntracks_fp !=0)
+
+sscinshoulde = sscinshould && ((scal_et/spcentral)>0.7)
+sdide = sscinshoulde && (sntracks_fp !=0) 
+
+sscinshouldh = sscinshould && (scer_npe_sum > 2.0)
+sdidh = sscinshouldh && (sntracks_fp !=0)
+
+sscinshouldp = sscinshould
+
+sdidp = sscinshouldp && (sntracks_fp !=0)
+; fiducial cut plus (one chamber with >=5 planes)
+;              plus (BOTH chamber with <=max hits (OK for max=25), either for max=15)
+;            plus (both with >2 planes)
+;
+#int seitherlt,seithergt
+#int smin1,smin2,smin
+#int sdctest1,sdctest2,sdctest3,sdctest4,sdctest0,sdctest5
+seitherlt = s1hitslt || s2hitslt
+seithergt = s1planesgt || s2planesgt
+smin1=(s1planes>2)
+smin2=(s2planes>2)
+
+#int s1hitslt2,s2hitslt2,seitherlt2
+s1hitslt2 = ((SDC_HITS_PER_PLANE(1) + SDC_HITS_PER_PLANE(2) + SDC_HITS_PER_PLANE(3 ) + SDC_HITS_PER_PLANE(4) + SDC_HITS_PER_PLANE(5) + SDC_HITS_PER_PLANE(6)) <= 15)
+s2hitslt2 = ((SDC_HITS_PER_PLANE(7) + SDC_HITS_PER_PLANE(8) + SDC_HITS_PER_PLANE(9) + SDC_HITS_PER_PLANE(10) + SDC_HITS_PER_PLANE(11) + SDC_HITS_PER_PLANE(12)) <= 15)
+seitherlt2 = s1hitslt2 || s2hitslt2
+#int s1planesgt2,s2planesgt2,seithergt2
+s1planesgt2= (s1planes>=4)
+s2planesgt2= (s2planes>=4)
+seithergt2 = s1planesgt2 || s2planesgt2
+
+sdctest0=1
+sdctest1=sscinshould
+sdctest2=sscinshould && shitslt
+sdctest3=sscinshould && shitslt && seithergt2
+sdctest4=sscinshould && shitslt && seithergt2 && smin1 && smin2
+sdctest5=sscinshould && shitslt && seithergt2 && smin1 && smin2 && (sntracks_fp != 0)
+
+#int sdctest4a,sdctest4b,sdctest4c
+sdctest4a=sdctest4  && (s1planes>=4) && (s2planes>=4) 
+sdctest4b=sdctest4  && (s1planes>=5) && (s2planes>=5)
+sdctest4c=sdctest4b && s1hitslt && s2hitslt
+
+sscinshould_clean = sscinshould && shitslt && seithergt2 && smin1 && smin2
+sdid_clean = sscinshould_clean && (sntracks_fp != 0)
+
+; Same values, requiring coincidence trigger.
+#int csdctest0,csdctest1,csdctest2,csdctest3,csdctest4,csdctest5
+#int csscinshould_clean,csdid_clean
+csdctest0 = sdctest0 && ctrig
+csdctest1 = sdctest1 && ctrig
+csdctest2 = sdctest2 && ctrig
+csdctest3 = sdctest3 && ctrig
+csdctest4 = sdctest4 && ctrig
+csdctest5 = sdctest5 && ctrig
+csscinshould_clean = sscinshould_clean && ctrig
+csdid_clean = sdid_clean && ctrig
+
+end test ssingles_trackeff
+
+
+
+; the rest of these tests are only filled if both htrig and strig...
+
+begin test both_trackeff group=both
+#int bh1hit1,bh1hit2,bh1hit3,bh1hit4,bh1hit5,bh1hit6
+#int bh1hit7,bh1hit8,bh1hit9,bh1hit10,bh1hit11,bh1hit12
+#int bh1hitslt,bh2hitslt,bh1planesgt,bh2planesgt
+#int bhhitslt,bhplanesgt
+#int bhstublt
+#int f1bhspacepoints,f2bhspacepoints,fbhspacepoints
+#int bhhitsplanes,bhhitsplanesspsstubs,bhhitsplanessps
+#int bhspacepoints
+#int bhtest1,bhtest2
+#int bhfoundtrack
+#int bhgoodbeta,bhgoodcal_et,bhsupertrack,bhsupertrig
+#int bhscinshould,bhdid
+#int bhscinshoulde,bhdide,bhscinshouldh,bhdidh
+
+bh1hit1 = (HDC_HITS_PER_PLANE(1) >= 1) && ctrig
+bh1hit2 = (HDC_HITS_PER_PLANE(2) >= 1) && ctrig
+bh1hit3 = (HDC_HITS_PER_PLANE(3) >= 1) && ctrig
+bh1hit4 = (HDC_HITS_PER_PLANE(4) >= 1) && ctrig
+bh1hit5 = (HDC_HITS_PER_PLANE(5) >= 1) && ctrig
+bh1hit6 = (HDC_HITS_PER_PLANE(6) >= 1) && ctrig
+bh1hit7 = (HDC_HITS_PER_PLANE(7) >= 1) && ctrig
+bh1hit8 = (HDC_HITS_PER_PLANE(8) >= 1) && ctrig
+bh1hit9 = (HDC_HITS_PER_PLANE(9) >= 1) && ctrig
+bh1hit10 = (HDC_HITS_PER_PLANE(10) >= 1) && ctrig
+bh1hit11 = (HDC_HITS_PER_PLANE(11) >= 1) && ctrig
+bh1hit12 = (HDC_HITS_PER_PLANE(12) >= 1) && ctrig
+
+bh1planesgt = ((bh1hit1 && bh1hit2 && bh1hit3 && bh1hit4 && bh1hit5) ||  (bh1hit1 && bh1hit2 && bh1hit3 && bh1hit4 && bh1hit6) ||  (bh1hit1 && bh1hit2 && bh1hit3 && bh1hit5 && bh1hit6) ||  (bh1hit1 && bh1hit2 && bh1hit4 && bh1hit5 && bh1hit6) ||  (bh1hit1 && bh1hit3 && bh1hit4 && bh1hit5 && bh1hit6) ||  (bh1hit2 && bh1hit3 && bh1hit4 && bh1hit5 && bh1hit6)) && ctrig
+
+bh2planesgt = ((bh1hit7 && bh1hit8 && bh1hit9 && bh1hit10 && bh1hit11) ||  (bh1hit7 && bh1hit8 && bh1hit9 && bh1hit10 && bh1hit12) ||  (bh1hit7 && bh1hit8 && bh1hit9 && bh1hit11 && bh1hit12) ||  (bh1hit7 && bh1hit8 && bh1hit10 && bh1hit11 && bh1hit12) ||(bh1hit7 && bh1hit9 && bh1hit10 && bh1hit11 && bh1hit12) ||  (bh1hit8 && bh1hit9 && bh1hit10 && bh1hit11 && bh1hit12)) && ctrig
+
+bh1hitslt = ((HDC_HITS_PER_PLANE(1) + HDC_HITS_PER_PLANE(2) + HDC_HITS_PER_PLANE(3 ) + HDC_HITS_PER_PLANE(4) + HDC_HITS_PER_PLANE(5) + HDC_HITS_PER_PLANE(6)) <= 15) && ctrig
+bh2hitslt = ((HDC_HITS_PER_PLANE(7) + HDC_HITS_PER_PLANE(8) + HDC_HITS_PER_PLANE(9) + HDC_HITS_PER_PLANE(10) + HDC_HITS_PER_PLANE(11) + HDC_HITS_PER_PLANE(12)) <= 15) && ctrig
+
+bhhitslt = bh1hitslt && bh2hitslt && ctrig
+bhplanesgt = bh1planesgt && bh2planesgt && ctrig
+bhspacepoints = ((hnspace_points(1) >= 1) && (hnspace_points(2) >= 1)) && ctrig
+bhstublt = hstubtest && ctrig
+bhhitsplanes = bhhitslt && bhplanesgt && ctrig
+bhhitsplanessps = bhhitsplanes && bhspacepoints && ctrig
+bhhitsplanesspsstubs = bhhitsplanessps && bhstublt && ctrig
+f1bhspacepoints = bh1hitslt && bh1planesgt && (hnspace_points(1) == 0) && ctrig
+f2bhspacepoints = bh2hitslt && bh2planesgt && (hnspace_points(2) == 0) && ctrig
+fbhspacepoints = f1bhspacepoints || f2bhspacepoints && ctrig
+bhtest1 = bhhitsplanes && !bhspacepoints && ctrig
+bhtest2 = bhspacepoints && !bhstublt && ctrig
+bhfoundtrack = (hsnum_fptrack != 0) && ctrig
+bhgoodbeta = hbeta_notrk > 0.7 && ctrig
+bhgoodcal_et = hcal_et > 0.3 && ctrig
+bhsupertrack = bhgoodbeta && bhgoodcal_et && bhhitsplanesspsstubs && ctrig
+bhsupertrig = bhgoodbeta && bhgoodcal_et && ctrig
+
+bhscinshould = hgoodscinhits && hbeta_notrk>=0.1 && ctrig
+;bhscinshould = hgoodscinhits && hbestxpscin<6 && hbestypscin<2 && hbeta_notrk>=0.1
+bhdid = bhscinshould && (hntracks_fp !=0)
+bhscinshoulde = bhscinshould && (hcer_npe_sum > 0.2) && (hbeta> (hbeta_pcent-.05)) && (hbeta< (hbeta_pcent+.05))
+bhdide = bhscinshoulde && (hntracks_fp !=0)
+bhscinshouldh = bhscinshould && (hcer_npe_sum<0.2)
+bhdidh = bhscinshouldh && (hntracks_fp !=0)
+
+#int bs1hit1,bs1hit2,bs1hit3,bs1hit4,bs1hit5,bs1hit6
+#int bs1hit7,bs1hit8,bs1hit9,bs1hit10,bs1hit11,bs1hit12
+#int bs1hitslt,bs2hitslt,bs1planesgt,bs2planesgt
+#int bshitslt,bsplanesgt
+#int bsstublt
+#int f1bsspacepoints,f2bsspacepoints,fbsspacepoints
+#int bshitsplanes,bshitsplanessps,bshitsplanesspsstubs
+#int bsspacepoints
+#int bstest1,bstest2
+#int bsfoundtrack
+#int bsgoodbeta,bsgoodcal_et,bssupertrack,bssupertrig
+#int bsscinshould,bsdid
+#int bsscinshoulde,bsdide,bsscinshouldh,bsdidh
+#int bsscinshouldp,bsdidp
+
+
+bs1hit1 = (SDC_HITS_PER_PLANE(1) >= 1) && ctrig
+bs1hit2 = (SDC_HITS_PER_PLANE(2) >= 1) && ctrig
+bs1hit3 = (SDC_HITS_PER_PLANE(3) >= 1) && ctrig
+bs1hit4 = (SDC_HITS_PER_PLANE(4) >= 1) && ctrig
+bs1hit5 = (SDC_HITS_PER_PLANE(5) >= 1) && ctrig
+bs1hit6 = (SDC_HITS_PER_PLANE(6) >= 1) && ctrig
+bs1hit7 = (SDC_HITS_PER_PLANE(7) >= 1) && ctrig
+bs1hit8 = (SDC_HITS_PER_PLANE(8) >= 1) && ctrig
+bs1hit9 = (SDC_HITS_PER_PLANE(9) >= 1) && ctrig
+bs1hit10 = (SDC_HITS_PER_PLANE(10) >= 1) && ctrig
+bs1hit11 = (SDC_HITS_PER_PLANE(11) >= 1) && ctrig
+bs1hit12 = (SDC_HITS_PER_PLANE(12) >= 1) && ctrig
+
+
+bs1planesgt = ((bs1hit1 && bs1hit2 && bs1hit3 && bs1hit4 && bs1hit5) ||  (bs1hit1 && bs1hit2 && bs1hit3 && bs1hit4 && bs1hit6) ||  (bs1hit1 && bs1hit2 && bs1hit3 && bs1hit5 && bs1hit6) ||  (bs1hit1 && bs1hit2 && bs1hit4 && bs1hit5 && bs1hit6) ||   (bs1hit1 && bs1hit3 && bs1hit4 && bs1hit5 && bs1hit6) ||  (bs1hit2 && bs1hit3 && bs1hit4 && bs1hit5 && bs1hit6)) && ctrig
+
+bs2planesgt = ((bs1hit7 && bs1hit8 && bs1hit9 && bs1hit10 && bs1hit11) ||  (bs1hit7 && bs1hit8 && bs1hit9 && bs1hit10 && bs1hit12) ||  (bs1hit7 && bs1hit8 && bs1hit9 && bs1hit11 && bs1hit12) ||   (bs1hit7 && bs1hit8 && bs1hit10 && bs1hit11 && bs1hit12) ||  (bs1hit7 && bs1hit9 && bs1hit10 && bs1hit11 && bs1hit12) ||  (bs1hit8 && bs1hit9 && bs1hit10 && bs1hit11 && bs1hit12)) && ctrig
+
+bs1hitslt = ((SDC_HITS_PER_PLANE(1) + SDC_HITS_PER_PLANE(2) + SDC_HITS_PER_PLANE(3 ) + SDC_HITS_PER_PLANE(4) + SDC_HITS_PER_PLANE(5) + SDC_HITS_PER_PLANE(6)) <= 15) && ctrig
+bs2hitslt = ((SDC_HITS_PER_PLANE(7) + SDC_HITS_PER_PLANE(8) + SDC_HITS_PER_PLANE(9) + SDC_HITS_PER_PLANE(10) + SDC_HITS_PER_PLANE(11) + SDC_HITS_PER_PLANE(12)) <= 15) && ctrig
+
+
+bshitslt = bs1hitslt && bs2hitslt && ctrig
+bsplanesgt = bs1planesgt && bs2planesgt && ctrig
+bsspacepoints = ((snspace_points(1) >= 1) && (snspace_points(2) >= 1)) && ctrig
+bsstublt = sstubtest && ctrig
+bshitsplanes = bshitslt && bsplanesgt && ctrig
+bshitsplanessps = bshitsplanes && bsspacepoints && ctrig
+bshitsplanesspsstubs = bshitsplanessps && bsstublt && ctrig
+f1bsspacepoints = bs1hitslt && bs1planesgt && (snspace_points(1) == 0) && ctrig
+f2bsspacepoints = bs2hitslt && bs2planesgt && (snspace_points(2) == 0) && ctrig
+fbsspacepoints = f1bsspacepoints || f2bsspacepoints && ctrig
+bstest1 = bshitsplanes && !bsspacepoints && ctrig
+bstest2 = bsspacepoints && !bsstublt && ctrig
+bsfoundtrack = (ssnum_fptrack != 0) && ctrig
+bsgoodbeta = sbeta_notrk > 0.7 && ctrig
+bsgoodcal_et = scal_et > 0.3 && ctrig
+bssupertrack = bsgoodbeta && bsgoodcal_et && bshitsplanesspsstubs && ctrig
+bssupertrig = bsgoodbeta && bsgoodcal_et && ctrig
+
+bsscinshould = sgoodscinhits && sbeta_notrk>=0.1 && ctrig
+;bsscinshould = sgoodscinhits && sbestxpscin<6 && sbestypscin<2 && sbeta_notrk>=0.1
+bsdid = bsscinshould && (sntracks_fp !=0)
+bsscinshoulde = bsscinshould && (scer_npe_sum > 0.5)
+bsdide = bsscinshoulde && (sntracks_fp !=0)
+bsscinshouldh = bsscinshould && (scer_npe_sum<0.2)
+bsdidh = bsscinshouldh && (sntracks_fp !=0)
+bsscinshouldp = bsscinshould && (scer_npe_sum<0.2)
+bsdidp = bsscinshouldp && (sntracks_fp !=0)
+end test both_trackeff
+

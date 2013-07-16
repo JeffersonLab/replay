@@ -1,0 +1,65 @@
+;begin test beamline_tests group=hms group=sos group=both
+; #integer axp,axm,ayp,aym,bxp,bxm,byp,bym
+; axp=gmisc_dec_data(105)-433	
+; axm=gmisc_dec_data(106)-526
+; ayp=gmisc_dec_data(107)-408
+; aym=gmisc_dec_data(108)-500
+; bxp=gmisc_dec_data(109)-333
+; bxm=gmisc_dec_data(110)-351
+; byp=gmisc_dec_data(111)-364
+; bym=gmisc_dec_data(112)-291
+; #real axprime,ayprime,axbpm,aybpm,bxprime,byprime,bxbpm,bybpm
+; byprime=18.5*(bxp-.7330*bxm)/(bxp+.7330*bxm+.0001)
+; bxprime=-18.5*(byp-.8935*bym)/(byp+.8935*bym+.0001)
+; bxbpm=( bxprime+byprime)/1.414-.04
+; bybpm=(-bxprime+byprime)/1.414+.56
+; ayprime=18.5*(axp-1.8192*axm)/(axp+1.8192*axm+.0001)
+; axprime=-18.5*(ayp-1.0063*aym)/(ayp+1.0063*aym+.0001)
+; axbpm=( axprime+ayprime)/1.414-.11
+; aybpm=(-axprime+ayprime)/1.414+.52
+; end  test beamline_tests
+
+; begin test hms_chamber_offsets group=hms group=both
+; #real hdelta_xp,hdelta_x,hdelta_y
+; hdelta_xp=(hsxp_sp1+hsxp_sp2)/2. - hsxp_fp
+; hdelta_x = hdelta_xp*(hdc_2_zpos-hdc_1_zpos)
+; hdelta_y = hsy_sp2 - hsy_sp1
+; end   test hms_chamber_offsets
+
+begin test sos_misc_vars group=sos group=both
+#real evnumber,bcmratio
+evnumber = gen_event_ID_number
+bcmratio =  1.0-ave_current_bcm(1)/ave_current_bcm(2)
+#real sdelta_beta
+sdelta_beta = ssbeta - ssbeta_p
+ssmass2=ssp*ssp*(1/(ssbeta+.000001)/(ssbeta+.000001)-1)
+#real scal_e123
+scal_e123=scal_e1+scal_e2+scal_e3
+#real ssx_aero
+ssx_aero=ssx_fp+253.8*ssxp_fp
+#real ssy_aero
+ssy_aero=ssy_fp+253.8*ssyp_fp
+end   test sos_misc_vars
+
+begin test hms_misc_vars group=hms group=both
+#real hdelta_beta
+hdelta_beta = hsbeta - hsbeta_p
+hsmass2=hsp*hsp*(1/(hsbeta+.000001)/(hsbeta+.000001)-1)
+end   test hms_misc_vars
+
+begin test hms_collim_optics_check group=hms group=both
+#real hms_x_collim,hms_y_collim,hms_x_dpex,hms_y_dpex
+hms_x_collim=hsxp_tar*(166.2+hsy_tar/tan(htheta_lab*3.14159/180.))
+hms_y_collim=hsyp_tar*(166.2+hsy_tar/tan(htheta_lab*3.14159/180.))+hsy_tar
+;djm hms_x_collim=hsxp_tar*(126.3+hsy_tar/tan(htheta_lab))
+;djm hms_y_collim=hsyp_tar*(126.2+hsy_tar/tan(htheta_lab))+hsy_tar
+hms_x_dpex=hsx_fp-625.*hsxp_fp
+hms_y_dpex=hsy_fp-625.*hsyp_fp
+end test hms_collim_optics_check
+
+begin test sos_collim_optics_check group=sos group=both
+#real sos_x_collim,sos_y_collim
+sos_x_collim=ssxp_tar*(126.3+ssy_tar/tan(stheta_lab*3.14159/180.))
+sos_y_collim=ssyp_tar*(126.3+ssy_tar/tan(stheta_lab*3.14159/180.))+ssy_tar
+end test sos_collim_optics_check
+

@@ -1,0 +1,79 @@
+begin parm stats
+g_stats_blockname = 'stats'
+end parm stats
+
+begin report stats
+run time     :{g_run_time:%7.1f}
+event number :{gen_event_ID_number:%7d}
+dead time    :{100*(1-gscaler(189)/(gscaler(185)+.00001)):%7.1f} %
+Analysis rate:{atrig.scaler/(g_replay_time+.00001):%6d}
+Q_BCM1(mC)   :{gbcm1_charge/1000:%9.4f}
+Q_BCM2(mC)   :{gbcm2_charge/1000:%9.4f}
+Delta_Q      :{200.*abs(gbcm1_charge-gbcm2_charge)/(gbcm1_charge+gbcm2_charge+.000001):%9.4f}%
+             :
+htrig        :{htrig.scaler:%7d}
+htrack/trig  :{100*hcleantrack.scaler/(htrig.scaler+.0000001):%6.1f}%
+hfid effic   :{100*hdid.scaler/(hscinshould.scaler+.0000001):%6.1f}%
+  w/DC cuts  :{100*hdid_clean.scaler/(hscinshould_clean.scaler+.0001):%6.1f}%
+hfid e- effic:{100*hdide.scaler/(hscinshoulde.scaler+.0000001):%6.1f}%
+hms elec dt  :{100*(60/50)*(gscaler(151)-gscaler(148))/(gscaler(151)+.0001):%9.2f} %
+             :
+strig        :{strig.scaler:%7d}
+strack/trig  :{100*scleantrack.scaler/(strig.scaler+.0000001):%6.1f}%
+sfid effic   :{100*sdid.scaler/(sscinshould.scaler+.0000001):%6.1f}%
+  w/DC cuts  :{100*sdid_clean.scaler/(sscinshould_clean.scaler+.0001):%6.1f}%
+sfid e- effic:{100*sdide.scaler/(sscinshoulde.scaler+.0000001):%6.1f}%
+ctrig        :{ctrig.scaler:%7d}
+             :
+hs1x trigeff :{100*htrigeff1:%6.1f}%
+hs1y trigeff :{100*htrigeff2:%6.1f}%
+hs2x trigeff :{100*htrigeff3:%6.1f}%
+hs2y trigeff :{100*htrigeff4:%6.1f}%
+             :	
+ss1x trigeff :{100*strigeff1:%6.1f}%
+ss1y trigeff :{100*strigeff2:%6.1f}%
+ss2x trigeff :{100*strigeff3:%6.1f}%
+ss2y trigeff :{100*strigeff4:%6.1f}%
+             :
+end report stats
+
+  coin only  :{100*chdid_clean.scaler/(chscinshould_clean.scaler+.0001):%6.1f}%
+  coin only  :{100*csdid_clean.scaler/(csscinshould_clean.scaler+.0001):%6.1f}%
+
+             :
+h#fid        :{hdctest1.scaler:%7d}
+h#noshower   :{hdctest2.scaler:%7d}
+h#either>min :{hdctest3.scaler:%7d}
+h#both>lomin :{hdctest4.scaler:%7d}
+h#TRACKS!!   :{hdctest5.scaler:%7d}
+c_hshould    :{chdctest4.scaler:%7d}
+c_hdid       :{chdctest5.scaler:%7d}
+             :
+s#fid        :{sdctest1.scaler:%7d}
+s#noshower   :{sdctest2.scaler:%7d}
+s#either>min :{sdctest3.scaler:%7d}
+s#both>lomin :{sdctest4.scaler:%7d}
+s#TRACKS!!   :{sdctest5.scaler:%7d}
+c_sshould    :{csdctest4.scaler:%7d}
+c_sdid       :{csdctest5.scaler:%7d}
+             :
+good_hms_e   :{hclean0track.scaler:%7d}
+;sometest_pion:{sometest_pion.scaler:%7d}
+;sometest_prot:{sometest_prot.scaler:%7d}
+;
+;             :
+;   K-METER   :{kaon_meter.scaler:%7d}
+;
+;             :
+;I_BCM1(10-6A):{gbcm1_charge/(g_run_time+.00001):%7.2f}
+;Q_BCM1(10-6C):{gbcm1_charge:%7.0f}
+;Q_BCM3(10-6C):{gbcm3_charge:%7.0f}
+;QBCM1/QBCM2  :{(gbcm1_charge+.000001)/(gbcm2_charge+.000001):%7.2f}
+;h#trigs      :{hdctest0.scaler:%7d}
+;s#trigs      :{sdctest0.scaler:%7d}
+;             :
+;epi          :{mmcut.scaler:%7d}
+;1K*epi/10-6C :{1000*mmcut.scaler/(gbcm2_charge+.0000001):%6.1f}
+;epi/ctrig    :{100*mmcut.scaler/(ctrig.scaler+.0000001):%6.1f}%
+;epi_relax    :{mmcut_relax.scaler:%7d}
+

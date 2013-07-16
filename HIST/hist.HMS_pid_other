@@ -1,0 +1,61 @@
+begin hist hms_pid_other group=hms group=both
+
+rf25ps,gmisc_dec_data(116),1,0,1 $### HMS PID DEDX & TOF
+
+hsdedx1-,hsdedx(1),100,-50,950,hcleantrack         $HMS s1xdedx  t=hclean
+hsmass2-,hsmass2,100,-1,5,hcleantrack              $HMS TOFmass2 t=hclean
+hsdelta_beta,hdelta_beta,100,-.5,.5,hcleantrack	   $HMS beta-beta(p) t=hclean
+hbeta_1,hbeta(1),200,-1.5,1.5,hfoundtrack          $hbeta        t=hfound
+hchisq_1,hbeta_chisq(1),100,-3.1,14.9,hfoundtrack  $hbeta chi2   t=hfound
+hsbeta-,hsbeta,200,-1.5,1.5,hcleantrack            $hbeta        t=hclean
+helbeta,hsbeta,100,0.50,1.25,hcleantrack           $hbeta (zoom) t=hclean
+hchisq,hsbeta_chisq,100,-3.1,14.9,hcleantrack      $hbeta chi2   t=hclean
+hbeta_notrk,hbeta_notrk,200,-1.5,1.5               $hbeta notrk  t=htrig
+helbeta_notrk,hbeta_notrk,100,0.50,1.25            $hbeta notrk (zoom) t=htrig
+hchisq_notrk,hbeta_chisq_notrk,100,-3.1,14.9       $hbeta chi2 notrk   t=htrig
+hbetavhsp,hsbeta,hsdelta,100,0.5,1.2,60,-15,15,hcleantrack $HMS delta vs beta t=hclean
+
+rf25ps,gmisc_dec_data(116),1,0,1 $### HMS PID CALORIMETER
+
+hcaltothits,hcal_tot_hits,53,-0.5,52.5             $hcal tot hits t=htrig
+hnhits_cal,hnhits_cal,53,-0.5,52.5                 $hcal nhits    t=htrig
+;hcalraw_e1,e2,...,et already defined in hist.HMS_cal_rawadcs
+;hcalraw_e1,  hcal_e1,100,-.1,1.0*hpcentral          $hcal raw E1   t=htrig
+hsprsum_prlo,hcal_e1,100,-.1,1.0*hpcentral,hprlo    $hcal raw E1   t=hprlo
+hsprsum_prhi,hcal_e1,100,-.1,1.0*hpcentral,hprhi    $hcal raw E1   t=hprhi
+;hcalraw_et,  hcal_et,100,-.1,1.8*hpcentral         $hcal raw Etot t=htrig
+hsshsum_shlo,hcal_et,100,-.1,1.8*hpcentral,hshlo   $hcal raw Etot t=hshlo
+htrackraw_e1,hstrack_preshower_e,100,0.01,1.5*hpcentral,hcleantrack $hcal raw E1 track t=hclean
+htrackraw_et_1,htrack_et(1),100,0.01,1.8*hpcentral,hfoundtrack $hcal raw Etot track t=hfound
+htrackraw_et,hstrack_et,100,0.01,1.8*hpcentral,hcleantrack     $hcal raw Etot track t=hclean
+htrackraw_et_el,hstrack_et,100,0.01,1.8*hpcentral,helec_cercut $hcal raw Etot track t=helec-cercut
+htrackraw_et_pi,hstrack_et,100,0.01,1.8*hpcentral,hpion_cercut $hcal raw Etot track t=hpion-cercut
+hcal_e1,hscal_suma,100,-.1,1.5,hcleantrack       $hcal E1 notrack t=hclean
+hcal_e2,hscal_sumb,100,-.1,1.5,hcleantrack       $hcal E2 notrack t=hclean
+hcal_e3,hscal_sumc,100,-.1,1.5,hcleantrack       $hcal E3 notrackt=hclean
+hcal_e4,hscal_sumd,100,-.1,1.5,hcleantrack       $hcal E4 notrack t=hclean
+hcal_et,hsshsum,100,-.1,1.8,hcleantrack          $hcal Etot notrack t=hclean
+hsprtrk-,hsprtrk,100,0.01,1.5,hcleantrack        $hcal E1 track   t=hclean
+hsshtrk-,hsshtrk,100,0.01,1.8,hcleantrack        $hcal Etot track t=hclean
+hsshtrk_el,hsshtrk,100,0.01,1.8,helec_cercut     $hcal Etot track t=helec-cercut
+hsshtrk_el_2,hsshtrk,100,0.01,1.8,helec_cercut2     $hcal Etot track t=helec-cercut2
+hsshtrk_pi,hsshtrk,100,0.01,1.8,hpion_cercut     $hcal Etot track t=hpion-cercut
+
+; PID plots for pipre triggers, w/various latches for checking thresholds.
+hcalraw_pipree1,  hcal_e1,100,-.1,1.0*hpcentral,hpipre         $hcal raw E1   t=hpipre
+hsprsum_pipreprlo,hcal_e1,100,-.1,1.0*hpcentral,hpipre_prlo    $hcal raw E1   t=hpipre_prlo
+hsprsum_pipreprhi,hcal_e1,100,-.1,1.0*hpcentral,hpipre_prhi    $hcal raw E1   t=hpipre_prhi
+hcalraw_pipreet,  hcal_et,100,-.1,1.8*hpcentral,hpipre         $hcal raw Etot t=hpipre
+hsshsum_pipreshlo,hcal_et,100,-.1,1.8*hpcentral,hpipre_shlo    $hcal raw Etot t=hpipre_shlo
+
+
+hcervssh,hcer_npe_sum,hsshtrk,30,-1.,29.,30,0.01,1.8,hcer_fid  $hcal Etot track vs hcer t=hcer-fid
+hprtrkvsx,hsprtrk,hsx_cal,30,0.01,1.5,24,-70,70,hcleantrack    $hcal x vs E1 track t=hclean
+hshtrkvsx,hsshtrk,hsx_cal,30,0.01,1.8,24,-70,70,hcleantrack    $hcal x vs Etot track t=hclean
+hshtrkvsy,hsshtrk,hsy_cal,30,0.01,1.8,15,-30,30,hcleantrack    $hcal y vs Etot track t=hclean
+hcale1vsx,hscal_suma,hsx_cal,30,0.01,1.4,24,-70,70,hcleantrack $hcal x vs E1 t=hclean
+hcale2vsx,hscal_sumb,hsx_cal,30,0.01,1.0,24,-70,70,hcleantrack $hcal x vs E2 t=hclean
+hcale3vsx,hscal_sumc,hsx_cal,30,0.01,0.5,24,-70,70,hcleantrack $hcal x vs E3 t=hclean
+hcale4vsx,hscal_sumd,hsx_cal,30,0.01,0.2,24,-70,70,hcleantrack $hcal x vs E4 t=hclean
+
+end   hist hms_pid_other
