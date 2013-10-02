@@ -64,6 +64,9 @@ g_data_source_filename = '/cache/mss/hallc/daq04/raw/daq04_%d.log'
 ; output for (LARGE) ntuple file.
  hms_ntuple =         'paw/hms%d.rzdat'  
 ; output for (LARGE) ntuple file.
+ h_dc_Ntuple_file =         'paw/hms_dc_%d.rzdat'  
+ HMS_dc_Ntuple =         'paw/hms_dc_%d.rzdat'  
+; output for (LARGE) ntuple file.
 ; keep coincidence ntuples around for a while
 ; coin_ntuple =        'paw/coin%d.rzdat' 
 ; output for (LARGE) ntuple file.
